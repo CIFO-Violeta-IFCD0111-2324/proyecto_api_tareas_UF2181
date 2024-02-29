@@ -26,7 +26,7 @@ api.post("/insertar", (req, res) => {
     } else {
 
       const query = 'insert into tasks values (default,?,?,?,?)';
-      conexion.query(query, [tarea.nombre,tarea.descripcion,tarea.fecha_incio,tarea.fecha_fin],  (err) => {
+      conexion.query(query, [tarea.nombre,tarea.descripcion,tarea.fecha_inicio,tarea.fecha_fin],  (err) => {
         if (err) {
           res.json("Error en la insercion de la tarea: " + err);
         } else {
