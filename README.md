@@ -43,17 +43,17 @@ paths:
               descripcion:
                 type: "string"
                 example: "Completar el informe mensual para el departamento de ventas."
-              fecha_limite:
+              fechainicio:
                 type: "string"
                 format: "date"
                 example: "2024-03-15"
-              prioridad:
+              fechafinal:
                 type: "string"
-                enum: ["alta", "media", "baja"]
-                example: "alta"
+                format: "date"
+                example: "2024-03-16"
       responses:
         200:
-          description: "Tarea creada exitosamente"
+          description: "dato insertado correctamente"
           schema:
             type: "object"
             properties:
@@ -63,10 +63,9 @@ paths:
               mensaje:
                 type: "string"
                 example: "Tarea creada correctamente"
-        400:
-          description: "Parámetros inválidos"
+        
         500:
-          description: "Error del servidor"
+          description: "Error del servidor mysql"
 
 ```
 
