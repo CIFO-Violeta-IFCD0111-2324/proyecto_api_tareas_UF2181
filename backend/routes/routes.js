@@ -72,7 +72,7 @@ router.post("/insertar", (req, res) => {
       res.status(500).json("Error en la conexion MySQL: " + err);
     } else {
 
-      const query = 'nsert into tasks values (default,?,?,?,?)';
+      const query = 'insert into tasks values (default,?,?,?,?)';
       conexionDB.query(query, [tarea.nombre,tarea.descripcion,tarea.fecha_inicio,tarea.fecha_fin],  (err) => {
         if (err) {
           res.status(400).json("Error en la insercion de la tarea: " + err);
