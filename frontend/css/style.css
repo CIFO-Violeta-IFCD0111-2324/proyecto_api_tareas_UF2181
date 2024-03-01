@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+html, body {
+    height: 100%;
+}
+  
+body {
+    background-color: #aec3b0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+}
+
+    
+
