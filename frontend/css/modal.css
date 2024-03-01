@@ -1,0 +1,64 @@
+body {
+    background-color: #aec3b0;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 200px;
+  }
+
+  /* The Modal (background) */
+
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 200px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  #myBtn {
+    padding: 10px 20px;
+    background-color: #cad2c5;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #124559;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #598392;
+    width: 80%;
+    color: rgb(220, 220, 208)
+  }
+
+  /* The Close Button */
+  .close {
+    color: #1b1a1a;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
