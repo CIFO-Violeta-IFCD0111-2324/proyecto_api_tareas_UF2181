@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Ojuju:wght@200..800&display=swap')
 * {
   margin: 0;
   box-sizing: border-box;
@@ -60,13 +63,20 @@ body {
     width: 80%;
     color: rgb(220, 220, 208);
   }
+#titulo{
+    text-align: center;
+    font-family: "Libre Franklin", sans-serif;
+    font-size: 2em;
+    font-weight: 700;
 
+}
   /* The Close Button */
   .close {
     color: #1b1a1a;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    text-align: right; /* Añadir esta línea */
   }
 
   .close:hover,
@@ -75,3 +85,4 @@ body {
     text-decoration: none;
     cursor: pointer;
   }
+
