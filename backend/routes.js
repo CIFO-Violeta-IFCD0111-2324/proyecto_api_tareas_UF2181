@@ -13,7 +13,6 @@ router.use(express.json());
 
 
 // Rutas
-
 router.get("/hola", (req, res) => {
     res.json({
         "saludo": "hola",
