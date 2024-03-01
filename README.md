@@ -16,7 +16,7 @@ info:
   version: "1.0.0"
   title: "API de Tareas"
   description: "API para administrar tareas"
-basePath: "/api/v1"
+basePath: "http://localhost:3000/api/v1"
 schemes:
   - "http"
 consumes:
