@@ -41,7 +41,7 @@ body {
     background-color: #2f3e46;
     color: #cad2c5;
     font-family: "Libre Franklin", sans-serif;
-    border-radius: 10%;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
