@@ -1,0 +1,34 @@
+body{
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(3, 73, 61, 0.486);
+    margin: auto;
+}
+
+input{
+    background-color:  rgba(6, 255, 214, 0.385);;
+    border-color:  rgb(7, 158, 133);
+    width: 70%; 
+    padding: 3px;
+    color: black;
+    display: block;
+}
+
+label{  
+ 
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    display: flex;
+    color: black;
+}
+
+button{
+    color: black;
+    background-color: rgba(6, 255, 214, 0.671);
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 30px;
+}
+

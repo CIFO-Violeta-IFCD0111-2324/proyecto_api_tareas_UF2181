@@ -5,15 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Conexion MySQL</title>
   <script src="./js/app.js" defer></script>
+  <link rel="stylesheet" href="./css/styles.css">
   
 </head>
 <body>
   <form>
-    <input type="text" placeholder="titulo" id="titulo">
-    <input type="text" placeholder="descripcion" id="descripcion">
-    <input type="date" placeholder="fechainicio" id="inicio">
-    <input type="date" placeholder="fechafinal" id="fin">
-    <button type="button">Conectar!</button>
+    <label for="">Titulo</label>
+    <input type="text" placeholder="Titulo" id="titulo">
+    <label for="">Descripcion</label>
+    <input type="text" placeholder="Descripcion" id="descripcion">
+
+    <div id="fechas">
+    <label for="">Fecha inicio</label>  
+    <input type="date" placeholder="Fecha inicio" id="inicio">
+    <label for="">Fecha final</label>
+    <input type="date" placeholder="Fecha final" id="fin">
+    </div>
+
+    <button type="button">Guardar Tarea!</button>
     <div></div>
   </form>
 </body>
