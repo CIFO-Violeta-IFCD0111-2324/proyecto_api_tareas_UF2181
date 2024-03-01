@@ -35,8 +35,3 @@ body {
 #div_inputs > div:nth-last-child(1) button {
     font-weight: 600;
 }
-    
-.input-mal {
-    border: 1px solid red;
-}
-
