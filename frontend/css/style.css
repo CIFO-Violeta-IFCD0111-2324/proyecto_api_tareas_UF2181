@@ -21,4 +21,17 @@ body {
 }
 
 
+.close-caja {
+    display: flex;
+    justify-content: flex-end;
+}
 
+#div_inputs > div:nth-last-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#div_inputs > div:nth-last-child(1) button {
+    font-weight: 600;
+}

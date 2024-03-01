@@ -39,7 +39,7 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #598392;
-  width: 80%;
+  width: 50%;
   color: rgb(220, 220, 208);
 }
 
@@ -54,9 +54,13 @@
 .close {
   color: #1b1a1a;
   float: right;
+  width: 25px;
+  height: 25px;
   font-size: 28px;
   font-weight: bold;
-  text-align: right; /* Añadir esta línea */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .close:hover,
