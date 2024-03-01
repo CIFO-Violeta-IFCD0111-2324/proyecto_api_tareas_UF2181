@@ -37,20 +37,18 @@ paths:
           schema:
             type: "object"
             properties:
-              titulo:
-                type: "string"
+              Nombre tarea:
+                type: "text"
                 example: "Completar informe"
-              descripcion:
-                type: "string"
-                example: "Completar el informe mensual para el departamento de ventas."
-              fecha_limite:
-                type: "string"
+              Fecha inicio:
+                format: "date"
+                example: "2024-03-10"
+              Fecha final:
                 format: "date"
                 example: "2024-03-15"
-              prioridad:
-                type: "string"
-                enum: ["alta", "media", "baja"]
-                example: "alta"
+              Descripción:
+                type: "text"
+                example: "Lorem ipsum,...."
       responses:
         200:
           description: "Tarea creada exitosamente"
