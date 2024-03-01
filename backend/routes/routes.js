@@ -53,7 +53,9 @@ router.use(express.json());
  *           example: 2024-01-01
  *     responses:
  *       200:
- *         description: Tarea introducida correctamente         
+ *         description: Tarea introducida correctamente 
+ *       400:
+ *         description: Error de ruta         
  */
 router.get("/hola", (req, res) => {
     res.json({
@@ -67,15 +69,15 @@ router.post("/insertar", (req, res) => {
 
   conexionDB.connect((err) => {
     if (err) {
-      res.json("Error en la conexion MySQL: " + err);
+      res.status(500).json("Error en la conexion MySQL: " + err);
     } else {
 
-      const query = 'insert into tasks values (default,?,?,?,?)';
+      const query = 'nsert into tasks values (default,?,?,?,?)';
       conexionDB.query(query, [tarea.nombre,tarea.descripcion,tarea.fecha_inicio,tarea.fecha_fin],  (err) => {
         if (err) {
-          res.json("Error en la insercion de la tarea: " + err);
+          res.status(400).json("Error en la insercion de la tarea: " + err);
         } else {
-          res.json("Tarea insertada correctamente!");
+          res.status(200).json("Tarea insertada correctamente!");
         }
       });
     }
