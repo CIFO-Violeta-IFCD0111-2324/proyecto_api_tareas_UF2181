@@ -17,29 +17,41 @@
 
 <body>
 
-  <h2>Añadir tareas</h2>
+  <div>
+    <h2>Añadir tareas</h2>
+    <button id="myBtn">Añadir</button>
+  </div>
 
-  <!-- Trigger/Open The Modal -->
-  <button id="myBtn">Añadir</button>
-
-  <!-- The Modal -->
+  <!-- Modal content -->
   <div id="myModal" class="modal">
-
-    <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
       <p>Tareas</p>
       <div id="div_inputs">
-        <input type="text" placeholder="Nombre de la tarea">
-        <input type="text" placeholder="Descripción de la tarea">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Nombre de la tarea</span>
+          <input type="text" class="form-control" aria-label="nombre de la tarea" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2">Fecha inicio</span>
+          <input type="date" class="form-control" aria-label="Fecha inicio" aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">Fecha final</span>
+          <input type="date" class="form-control" aria-label="Fecha final" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon4">Añadir Tarea</span>
+          <input type="text" class="form-control" aria-label="Añadir Tarea" aria-describedby="basic-addon4">
+        </div>
+        <!-- <input type="text" placeholder="Descripción de la tarea">
         <label for="fecha_inicio">Fecha inicio</label>
         <input type="date" name="Fecha inicio" id="fecha_inicio">
         <label for="fecha_final">Fecha final</label>
-        <input type="date" name="fecha_final" id="fecha_final">
+        <input type="date" name="fecha_final" id="fecha_final"> -->
         <button type="button">Añadir Tarea</button>
       </div>
     </div>
-
   </div>
 
 </body>
