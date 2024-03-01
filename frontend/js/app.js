@@ -17,8 +17,6 @@ async function insertSQL() {
         }
     });
 
-    
-
 }
 
 
