@@ -9,7 +9,7 @@ const swaggerUi = require('swagger-ui-express');
 
 
 // // importar routes:
-api.use("/api", require("./routes"));
+api.use("/api", require("./routes/routes"));
 
 
 const swaggerDefinition = {
@@ -26,8 +26,8 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://localhost:3000',
-      description: 'Development server',
+      url: 'http://localhost:3000/api',
+      description: 'Servidor Local de desarrollo',
     },
   ],
 };
