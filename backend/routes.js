@@ -1,9 +1,15 @@
 
 const express = require("express");
 const router = express.Router();
+const cors = require("cors");
 
 //Importar conexion DB:
 const conexionDB = require("./connectionDB")
+
+
+// Utilidades
+router.use(cors());
+router.use(express.json());
 
 
 // Rutas
