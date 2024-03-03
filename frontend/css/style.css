@@ -26,15 +26,6 @@ body {
     justify-content: flex-end;
 }
 
-#div_inputs > div:nth-last-child(1) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#div_inputs > div:nth-last-child(1) button {
-    font-weight: 600;
-}
 
 #caja-1{
     padding: 35px;
