@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Frontend</title>
   <script src="./js/app.js" defer></script>
+  <script src="./js/modal.js" defer></script>
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/modal.css">
 </head>
 <body>
-  
+  <div id="cajaResultados"></div>
+  <!-- Crud Crear -->
+  <button id="crearBTN">Crear Dato</button>
+  <!-- Crear Modal -->
+  <div id="crearMODAL" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form>
+        <input type="text" id="crearINPUT">
+        <button type="button" id="crearBTNform">Crear!</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

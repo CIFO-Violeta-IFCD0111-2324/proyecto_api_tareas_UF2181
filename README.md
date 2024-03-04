@@ -1,14 +1,21 @@
 # proyecto_api_tareas
 Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api gestiona un CRUD de tareas
 
-# PASOS
+# PASOS Creación API REST TAREAS
+- Base de datos MySQL
+- Extra: Iniciar maquetacion de la webapp con HTML, CSS
 
-## 1- Crear API REST con el recurso que crea una tarea (Crud):
+## 1- Recurso que crea una tarea (Crud):
 - Documentar el recurso que crea la tarea 
 - La tarea tendrá mínimo 4 campos
-- Base de datos MySQL
 - Comprobar mediante Postman
-- Extra: Iniciar maquetacion de la webapp con HTML, CSS
+- En la maquetación insertar el form en un "modal"
+
+## 2- Recurso que lee las tareas (cRud):
+- Documentar el recurso que lea las tareas 
+- Comprobar mediante Postman
+- En la maquetación insertar la tarea en el "body" de htm5
+
 - Ejemplo documentación API creada con chatgpt:
 
 ```
