@@ -45,8 +45,7 @@ fetch("http://localhost:3000/api/read")
     const tareasOut = datos.resultado;
     tareasOut.forEach(tarea => {
         const divTarea = document.createElement("div");
-        divTarea.setAttribute("id", "idPrueba");
-        divTarea.setAttribute("class", "container-fluid");
+        
         // Elemento del nombre
         const nombreElm = document.createElement("h3");
         const textNombre = document.createTextNode(tarea.nombre);
