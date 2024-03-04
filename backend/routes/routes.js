@@ -14,7 +14,7 @@ router.use(express.json());
 
 /**
  * @swagger
- * /insertar:
+ * /insert:
  *   post:
  *     summary: Insertar una tarea en la base de datos.
  *     description: A traves de nuestra api insertar en la tabla tasks una tarea.
@@ -55,7 +55,7 @@ router.use(express.json());
  *       400:
  *         description: Error de ruta         
  */
-router.post("/insertar", (req, res) => {
+router.post("/insert", (req, res) => {
   //Importar conexion DB:
   const conexionDB = mysql.createConnection({
     host: "localhost",
@@ -87,7 +87,7 @@ router.post("/insertar", (req, res) => {
 
 /**
  * @swagger
- * /insertar:
+ * /read:
  *   get:
  *     summary: Leer los tareas insertadas
  *     description: A traves de nuestra api leer las tareas.
