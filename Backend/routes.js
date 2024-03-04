@@ -35,5 +35,22 @@ router.post("/insertar", (req, res) => {
   })
 });
 
+router.get("/leer", (req, res) => {
+  const sql = "select * from tabla";
+  conexionMySQL.query(sql, (error, resultado) => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "Error en la inserción del dato. Error:" + error
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "resultado": resultado
+      });
+    }
+  });
+});
+
 
   module.exports = router;

@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Conexion MySQL</title>
   <script src="./js/app.js" defer></script>
+  <script src="./js/modal.js" defer></script>
   <link rel="stylesheet" href="./css/styles.css">
-  
+  <link rel="stylesheet" href="./css/modal.css">
+
 </head>
 <body>
-  <form>
+  <div id="cajaResultados"></div>
+  <button id="crearBTN">Crear Dato</button>
+  <div id="crearMODAL" class="modal"></div>
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form>
     <label for="">Titulo</label>
     <input type="text" placeholder="Titulo" id="titulo">
     <label for="">Descripcion</label>
@@ -25,5 +32,9 @@
     <button type="button">Guardar Tarea!</button>
     <div></div>
   </form>
+  </div>
+  </div>
 </body>
+
 </html>
+

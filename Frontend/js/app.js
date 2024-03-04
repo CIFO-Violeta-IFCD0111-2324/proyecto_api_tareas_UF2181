@@ -26,3 +26,22 @@ button.addEventListener("click", () => {
     })
 
 });
+
+fetch("http://localhost:3001/api/v1/leer")
+  .then(res => res.json())
+  .then(basedatos => {
+    const cajaResultados = document.getElementById("cajaResultados");
+    const arrayDatosConsulta = basedatos.resultado;
+    for (let i = 0; i < arrayDatosConsulta.length; i++) {
+      cajaResultados.innerHTML += `
+        <h3>${arrayDatosConsulta[i].titulo}</h3>
+        <h3>${arrayDatosConsulta[i].descripcion}</h3>  
+        <h3>${arrayDatosConsulta[i].fechainicio}</h3> 
+        <h3>${arrayDatosConsulta[i].fechafinal}</h3>   
+      `;
+    }
+  })
+  .catch(error => alert(error))
+
+
+  
