@@ -20,10 +20,16 @@ button.addEventListener("click", () => {
     
   })
 
-    .then(res => res.json())
-    .then(mensaje => {
-      document.querySelector("div").innerHTML = mensaje;
-    })
+    
+
+.then(res => res.json())
+.then(msg => {
+  alert(msg.mensaje);
+  setTimeout(() => {
+    location.reload(); // refresca página
+  }, 3000);
+})
+.catch(error => alert(error))
 
 });
 
@@ -34,10 +40,10 @@ fetch("http://localhost:3001/api/v1/leer")
     const arrayDatosConsulta = basedatos.resultado;
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
       cajaResultados.innerHTML += `
-        <h3>${arrayDatosConsulta[i].titulo}</h3>
-        <h3>${arrayDatosConsulta[i].descripcion}</h3>  
-        <h3>${arrayDatosConsulta[i].fechainicio}</h3> 
-        <h3>${arrayDatosConsulta[i].fechafinal}</h3>   
+        <h3>titulo -- >${arrayDatosConsulta[i].titulo}</h3>
+        <h3>descripcion -- >${arrayDatosConsulta[i].descripcion}</h3>  
+        <h3>fechainicio -- >${arrayDatosConsulta[i].fechainicio}</h3> 
+        <h3>fechafinal -- >${arrayDatosConsulta[i].fechafinal}</h3>   
       `;
     }
   })
