@@ -4,10 +4,10 @@ const addBtn = document.querySelector("button.btn.btn-light");
 addBtn.addEventListener("click", insertSQL);
 
 async function insertSQL() {
-    const nombre = document.querySelector("form input.form-control:nth-of-type(1)");
-    const fechaIn = document.querySelector("form input.form-control:nth-of-type(2)");
-    const fechaFin = document.querySelector("form input.form-control:nth-of-type(3)");
-    const desc = document.querySelector("form input.form-control:nth-of-type(4)");
+    const nombre = document.querySelector("input#nombre");
+    const fechaIn = document.querySelector("input#fecha-in");
+    const fechaFin = document.querySelector("input#fecha-fin");
+    const desc = document.querySelector("input#descrip");
     console.log(nombre, fechaIn, fechaFin, desc)
     // comprobador
     const inputs = document.querySelectorAll("inputs.form-control")
@@ -17,7 +17,7 @@ async function insertSQL() {
         }
     });
 
-    const url = "http://localhost:3000/insert";
+    const url = "http://localhost:3000/api/insert";
     await fetch(url, {
         method: "post",
         headers: { "Content-Type": "application/json",},
