@@ -57,13 +57,13 @@ fetch("http://localhost:3000/api/read")
 
         // Elemento de la fecha-in
         const fechaInElm = document.createElement("h3");
-        const textFechaIn = document.createTextNode(tarea.fecha_inicio.substring(0,10));
+        const textFechaIn = document.createTextNode(tarea.fecha_inicio);
         fechaInElm.appendChild(textFechaIn);
         divTarea.appendChild(fechaInElm);
 
         // Elemento de la fecha-fin
         const fechaFinElm = document.createElement("h3");
-        const textFechaFin = document.createTextNode(tarea.fecha_fin.substring(0,10));
+        const textFechaFin = document.createTextNode(tarea.fecha_fin);
         fechaFinElm.appendChild(textFechaFin);
         divTarea.appendChild(fechaFinElm);
 
