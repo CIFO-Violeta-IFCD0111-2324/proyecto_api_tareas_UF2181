@@ -85,6 +85,40 @@ router.post("/insertar", (req, res) => {
 
 
 
+/**
+ * @swagger
+ * /insertar:
+ *   get:
+ *     summary: Leer los tareas insertadas
+ *     description: A traves de nuestra api leer las tareas.
+ *     responses:
+ *       200:
+ *         description: Lectura correcta
+ *       400:
+ *         description: Error de query         
+ */
+router.get("/read", (req, res) => {
+  const conexionDB = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "task_db",
+  });
+
+  const query = "select * from tasks";
+  conexionDB.query(query, (error, result) => {
+    if (error) {
+      res.status(400).json({
+        "mensaje": "Error en la query. Error: " + error,
+      });
+    } else {
+      res.status(200).json({
+        "resultado": result,
+      });
+    }
+  });
+});
+
 
 
 

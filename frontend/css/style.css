@@ -41,3 +41,8 @@ body {
 #label-descrip {
     font-weight: 600;
 }
+
+#caja-de-tarea {
+    width: 100%;
+    height: auto;
+}
