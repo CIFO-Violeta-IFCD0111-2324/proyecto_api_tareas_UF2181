@@ -45,8 +45,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     background-color: #005B41;
-    border: 1px solid black;
+    border-radius: 15px;
 }
 
 #caja-de-tareas > div{
