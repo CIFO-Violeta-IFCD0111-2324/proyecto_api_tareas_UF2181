@@ -29,7 +29,7 @@
 
         <!-- Modal content -->
         <div id="myModal" class="modal">
-          <form class="modal-content row g-3 needs-validation" novalidate>
+          <form class="modal-content row g-3 was-validated">
             <div class="close-caja">
               <span class="close">&times;</span>
             </div>
@@ -39,7 +39,7 @@
               <input id="nombre" type="text" class="form-control" aria-label="nombre de la tarea"
                 aria-describedby="basic-addon1" required>
               <div class="invalid-feedback">
-                Please choose a username.
+                Introduzca el nombre de la tarea
               </div>
             </div>
             <div class="input-group mb-3">
@@ -52,14 +52,13 @@
               <input id="fecha-fin" type="date" class="form-control" aria-label="Fecha final"
                 aria-describedby="basic-addon3" required>
             </div>
-            <div class="input-group mb-3">
-              <label for="descrip" class="form-label">Descripción de la tarea</label>
-              <textarea class="form-control is-invalid" id="descrip" placeholder="Required example textarea"
+            <div class="mb-3">
+              <label for="descrip" class="form-label" id="label-descrip">Descripción de la tarea</label>
+              <textarea class="form-control" id="descrip" placeholder="Required example textarea"
                 aria-label="Descripcion de la Tarea" required></textarea>
               <div class="invalid-feedback">
-                Please enter a message in the textarea.
+                Introduzca la descripcion
               </div>
-
             </div>
             <div>
               <button type="button" class="btn btn-light">Añadir Tarea</button>

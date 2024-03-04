@@ -38,3 +38,6 @@ body {
     align-items: center;
 }
 
+#label-descrip {
+    font-weight: 600;
+}
