@@ -30,6 +30,9 @@ async function insertSQL() {
     })
         .then(res => res.json())
         .then(msg => console.log(msg))
+        setTimeout(() => {
+            location.reload(); // refresca página automatico en 1 segundo
+          }, 1000);
 
 }   
 
@@ -42,7 +45,8 @@ fetch("http://localhost:3000/api/read")
     const tareasOut = datos.resultado;
     tareasOut.forEach(tarea => {
         const divTarea = document.createElement("div");
-
+        divTarea.setAttribute("id", "idPrueba");
+        divTarea.setAttribute("class", "container-fluid");
         // Elemento del nombre
         const nombreElm = document.createElement("h3");
         const textNombre = document.createTextNode(tarea.nombre);
@@ -50,19 +54,19 @@ fetch("http://localhost:3000/api/read")
         divTarea.appendChild(nombreElm);
 
         // Elemento de la descripcion
-        const descElm = document.createElement("h3");
+        const descElm = document.createElement("h5");
         const textDesc = document.createTextNode(tarea.descripcion);
         descElm.appendChild(textDesc);
         divTarea.appendChild(descElm);
 
         // Elemento de la fecha-in
-        const fechaInElm = document.createElement("h3");
+        const fechaInElm = document.createElement("h6");
         const textFechaIn = document.createTextNode(tarea.fecha_inicio.substring(0,10));
         fechaInElm.appendChild(textFechaIn);
         divTarea.appendChild(fechaInElm);
 
         // Elemento de la fecha-fin
-        const fechaFinElm = document.createElement("h3");
+        const fechaFinElm = document.createElement("h6");
         const textFechaFin = document.createTextNode(tarea.fecha_fin.substring(0,10));
         fechaFinElm.appendChild(textFechaFin);
         divTarea.appendChild(fechaFinElm);
