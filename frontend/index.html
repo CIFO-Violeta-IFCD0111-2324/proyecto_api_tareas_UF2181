@@ -17,56 +17,53 @@
 </head>
 
 <body>
+  <div id="caja-1">
+    <h2>Añadir tareas</h2>
+    <button id="myBtn" class="btn btn-primary">Añadir</button>
+  </div>
 
   <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div id="caja-1">
-          <h2>Añadir tareas</h2>
-          <button id="myBtn" class="btn btn-primary">Añadir</button>
+    <div id="caja-de-tareas"></div>
+
+    <!-- Modal content -->
+    <div id="myModal" class="modal">
+      <form class="modal-content row g-3 was-validated">
+        <div class="close-caja">
+          <span class="close">&times;</span>
         </div>
-
-        <div id="caja-de-tareas"></div>
-
-        <!-- Modal content -->
-        <div id="myModal" class="modal">
-          <form class="modal-content row g-3 was-validated">
-            <div class="close-caja">
-              <span class="close">&times;</span>
-            </div>
-            <p id="titulo">TAREA </p>
-            <div class="input-group mb-3 col">
-              <span class="input-group-text" id="basic-addon1">Nombre de la tarea</span>
-              <input id="nombre" type="text" class="form-control" aria-label="nombre de la tarea"
-                aria-describedby="basic-addon1" required>
-              <div class="invalid-feedback">
-                Introduzca el nombre de la tarea
-              </div>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon2">Fecha inicio</span>
-              <input id="fecha-in" type="date" class="form-control" aria-label="Fecha inicio"
-                aria-describedby="basic-addon2" required>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon3">Fecha final</span>
-              <input id="fecha-fin" type="date" class="form-control" aria-label="Fecha final"
-                aria-describedby="basic-addon3" required>
-            </div>
-            <div class="mb-3">
-              <label for="descrip" class="form-label" id="label-descrip">Descripción de la tarea</label>
-              <textarea class="form-control" id="descrip" placeholder="Required example textarea"
-                aria-label="Descripcion de la Tarea" required></textarea>
-              <div class="invalid-feedback">
-                Introduzca la descripcion
-              </div>
-            </div>
-            <div>
-              <button type="button" class="btn btn-light">Añadir Tarea</button>
-            </div>
-          </form>
+        <p id="titulo">TAREA </p>
+        <div class="input-group mb-3 col">
+          <span class="input-group-text" id="basic-addon1">Nombre de la tarea</span>
+          <input id="nombre" type="text" class="form-control" aria-label="nombre de la tarea"
+            aria-describedby="basic-addon1" required>
+          <div class="invalid-feedback">
+            Introduzca el nombre de la tarea
+          </div>
         </div>
-
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2">Fecha inicio</span>
+          <input id="fecha-in" type="date" class="form-control" aria-label="Fecha inicio"
+            aria-describedby="basic-addon2" required>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">Fecha final</span>
+          <input id="fecha-fin" type="date" class="form-control" aria-label="Fecha final"
+            aria-describedby="basic-addon3" required>
+        </div>
+        <div class="mb-3">
+          <label for="descrip" class="form-label" id="label-descrip">Descripción de la tarea</label>
+          <textarea class="form-control" id="descrip" placeholder="Required example textarea"
+            aria-label="Descripcion de la Tarea" required></textarea>
+          <div class="invalid-feedback">
+            Introduzca la descripcion
+          </div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-light">Añadir Tarea</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 
 </html>
