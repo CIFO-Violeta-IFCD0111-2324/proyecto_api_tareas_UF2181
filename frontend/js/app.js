@@ -17,7 +17,7 @@ async function insertSQL() {
         }
     });
 
-    const url = "http://localhost:3000/api/insert";
+    const url = "http://localhost:3000/api/insertar";
     await fetch(url, {
         method: "post",
         headers: { "Content-Type": "application/json",},

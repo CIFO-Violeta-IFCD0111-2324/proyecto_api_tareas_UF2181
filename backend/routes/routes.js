@@ -1,10 +1,8 @@
 
 const express = require("express");
+const mysql = require("mysql");
 const router = express.Router();
 const cors = require("cors");
-
-//Importar conexion DB:
-const conexionDB = require("../connectionDB")
 
 
 // Utilidades
@@ -57,16 +55,16 @@ router.use(express.json());
  *       400:
  *         description: Error de ruta         
  */
-router.get("/hola", (req, res) => {
-    res.json({
-        "saludo": "hola",
-    });
-});
-
-
 router.post("/insertar", (req, res) => {
-  const tarea = req.body;
+  //Importar conexion DB:
+  const conexionDB = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "task_db",
+  });
 
+  const tarea = req.body;
   conexionDB.connect((err) => {
     if (err) {
       res.status(500).json("Error en la conexion MySQL: " + err);
@@ -82,6 +80,7 @@ router.post("/insertar", (req, res) => {
       });
     }
   });
+
 });
 
 
