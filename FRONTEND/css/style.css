@@ -9,6 +9,13 @@
 body{
     font-family: "Raleway", sans-serif;
 }
+
+img.iconoTareas{
+    width: 25px; 
+    height: 25px;
+    line-height:normal;
+}
+
 div{
     width: 500px;
     display: flex;

@@ -5,26 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/lista.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/index.js"></script>
-    <title>tareas</title>
+    <link rel="stylesheet" href="./css/modal.css">
+    <script src="./js/modal.js" defer></script>
+    <script src="./js/index.js" defer></script>
+
+    <title>Gestor de Tareas: Isa, JosePe, Pedro</title>
 </head>
 <body>
-    <div>
-        <span>descripción:</span>
-        <input type="text" name="" id="descripcion">
-        <input type="date" name="" id="fecha_inicio">
-        <input type="date" name="" id="fecha_final">
-        <select name="" id="estadoTarea">
-        <option value="Vacio"></option>
-        <option value="Inicio">Inicio</option>
-        <option value="Pendiente">Pendiente</option>
-        <option value="Finalizada">Finalizada</option>
-        </select>     
+<Header>
+    <H1>Gestor Tareas</H1>
+    <button type="button" class="BTNMODAL"><img src="./img/lista.png" class="iconoTareas"> Tarea</button>
+</Header>
+<main id="contenedor">
+    <div id="CrearModal" class="modal">
+            <span>descripción:</span>
+            <input type="text" name="" id="descripcion">
+            <input type="date" name="" id="fecha_inicio">
+            <input type="date" name="" id="fecha_final">
+            <select name="" id="estadoTarea">
+                <option value="Vacio"></option>
+                <option value="Inicio">Inicio</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Finalizada">Finalizada</option>
+            </select>     
+            <button type="button" id="GuardarTarea">Guardar Tarea!</button>
+            <div id="mensajes"></div>
+        </div>
+</main> 
+<footer>
 
-        <button type="button">Guardar Tarea</button>
-        <div id="mensajes"></div>
-    </div>
-
+</footer>
     
 </body>
 </html>
