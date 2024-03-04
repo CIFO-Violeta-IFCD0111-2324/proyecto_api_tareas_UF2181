@@ -26,5 +26,6 @@ boton.addEventListener("click", () => {
             })
             .then(res => res.json())
             .then(mensaje => mensajes.innerHTML = mensaje)
+            .catch(error => alert(error))
         }
 })

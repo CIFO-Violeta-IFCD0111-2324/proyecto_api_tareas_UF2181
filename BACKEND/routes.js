@@ -17,7 +17,7 @@ router.post("/crearTarea", (req, res) => {
   const Fechafinal = req.body.Fechafinal;
   const Estado = req.body.Estado;
 
-  const query = "insert into usuarios values (default, '" + Descripcion + "', '" + FechaInicio + "',  '" + Fechafinal + "', '" + Estado + "' );";
+  const query = "insert into proyecto_tarea_PIJ values (default, '" + Descripcion + "', '" + FechaInicio + "',  '" + Fechafinal + "', '" + Estado + "' );";
 
   conexionMySQL.query(query, err => {
         if (err) {
