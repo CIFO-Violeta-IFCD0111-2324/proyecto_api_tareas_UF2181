@@ -4,10 +4,9 @@
 }
 
 #cajaResultados {
-  
+  text-shadow: 2px 2px 4px #FFF;
+  font-weight: bold;
 }
-
-
 
 #crearGestor {
   margin: auto;
@@ -15,16 +14,23 @@
   flex-direction: column;
   justify-content: center;
   padding: 50px;
-  width: 100%;
+  width: 25%;
   text-align: center;
+
 }
 
 h1 {
-  color: red;
+  color:teal ;
+  text-shadow: 2px 2px 4px #000;
   font-family: Arial, Helvetica, sans-serif;
-
+  font-weight:bold;
+  margin-bottom: 25px;
 }
 
+h3 {
+  background: (#000, 0.1);
+  /* opacity: 0.2; */
+}
 
 input {
   margin: 10px;
@@ -37,7 +43,7 @@ input {
   color: white;
   font-size: large;
   cursor: pointer;
-  /* falta centrar */
+  position: 50%;
 }
 
 #crearBTN:hover {
@@ -45,5 +51,7 @@ input {
 }
 
 body {
-  background-color: darkcyan;
+  /* background-color: darkcyan; */
+  background-image: url("https://evermotion.org/files/EVRprfolio/fe73e1b07abe841a25d2eb71ed861c568d08b137.jpg");
+  /* width: 100%; */
 }
