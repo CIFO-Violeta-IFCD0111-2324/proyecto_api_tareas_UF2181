@@ -16,7 +16,7 @@ botonGuardar.addEventListener("click", () => {
             mensajes.innerHTML = "Campos vacios!";
             return;
         }
-    const url = "http://localhost:3000/crearTarea";
+    const url = "http://localhost:3500/api/v1/crearTarea";
     fetch(url, {
         method: "post",
         headers: {'Content-Type': 'application/json'},

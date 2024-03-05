@@ -25,6 +25,7 @@ img.icono{
 #CrearModal{
     width: 500px;
     padding: 50px;
+    display: block;
     flex-direction: column;
     justify-content: center;
     align-items: center;
