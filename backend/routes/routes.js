@@ -17,43 +17,61 @@ router.use(express.json());
  * /insert:
  *   post:
  *     summary: Insertar una tarea en la base de datos.
- *     description: A traves de nuestra api insertar en la tabla tasks una tarea.
+ *     description: A través de nuestra API, insertar una tarea en la tabla de tareas.
  *     parameters:
  *       - in: body
  *         name: nombre
  *         required: true
- *         description: "Nombre de la tarea que desea insertar en la base de datos"
+ *         description: Nombre de la tarea que desea insertar en la base de datos.
  *         schema:
  *           type: string
  *           example: completar proyecto
- *       - name: descripcion
- *         in: body
+ *       - in: body
+ *         name: descripcion
  *         required: true
- *         description: "Descripcion de la tarea a introducir"
+ *         description: Descripción de la tarea a introducir.
  *         schema:
  *           type: string
- *           example: Usar JavaScript y Mysql para completar el proyecto
- *       - name: fecha_inicio
- *         in: body
+ *           example: Usar JavaScript y MySQL para completar el proyecto.
+ *       - in: body
+ *         name: fecha_inicio
  *         required: true
- *         description: Fecha de inicio de la tarea
+ *         description: Fecha de inicio de la tarea en formato YYYY-MM-DD.
  *         schema:
  *           type: string
  *           format: date
  *           example: 2024-01-01
- *       - name: fecha_fin
- *         in: body
+ *       - in: body
+ *         name: fecha_fin
  *         required: true
- *         description: Fecha de finalizacion de la tarea
+ *         description: Fecha de finalización de la tarea en formato YYYY-MM-DD.
  *         schema:
  *           type: string
  *           format: date
  *           example: 2024-01-01
  *     responses:
  *       200:
- *         description: Tarea introducida correctamente 
+ *         description: Tarea introducida correctamente.
  *       400:
- *         description: Error de ruta         
+ *         description: Error de ruta.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensaje de error.
+ *       500:
+ *         description: Error del servidor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensaje de error.
  */
 router.post("/insert", (req, res) => {
   //Importar conexion DB:
@@ -83,19 +101,49 @@ router.post("/insert", (req, res) => {
 
 });
 
-
-
 /**
  * @swagger
  * /read:
  *   get:
- *     summary: Leer los tareas insertadas
- *     description: A traves de nuestra api leer las tareas.
+ *     summary: Leer las tareas insertadas
+ *     description: Leer las tareas insertadas a través de nuestra API.
  *     responses:
  *       200:
  *         description: Lectura correcta
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: ID de la tarea
+ *                   nombre:
+ *                     type: string
+ *                     description: Nombre de la tarea
+ *                   descripcion:
+ *                     type: string
+ *                     description: Descripción de la tarea
+ *                   fecha_inicio:
+ *                     type: string
+ *                     format: date
+ *                     description: Fecha de inicio de la tarea
+ *                   fecha_fin:
+ *                     type: string
+ *                     format: date
+ *                     description: Fecha de finalización de la tarea
  *       400:
- *         description: Error de query         
+ *         description: Error de query
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensaje de error
  */
 router.get("/read", (req, res) => {
   const conexionDB = mysql.createConnection({

@@ -27,6 +27,7 @@ async function insertSQL() {
 }
 
 // IIFE immediatly invoked function expression - strict mode activado
+// Se usa para separar las variables globales de las locales, no-pollution
 (() => {
     'use strict';
 
