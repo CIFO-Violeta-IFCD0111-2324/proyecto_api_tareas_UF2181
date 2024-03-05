@@ -58,12 +58,23 @@ router.get("/leer", (req, res) => {
 router.put("/actualizarTarea", (req, res) => {
  
 });
-
-router.delete("/borrarTarea", (req, res) => {
- 
-});
-
 */
+router.delete("/borrarTarea", (req, res) => {
+  const id = req.body.id;
+  conexionMySQL.query("delete from tareas where id ="+id, err => {
+    if (err) {
+      res.json({
+        "status": 500,
+        "mensaje": "Error al borrar dato. Error:" + err
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "Dato eliminado correctamente!"
+      });
+    }
+  });
+});
 
 ////*******Esta línea siempre al final para recoger todo lo ejecutado antes en el mismo archivo ********** */
 
