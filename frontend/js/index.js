@@ -1,21 +1,32 @@
-const input = document.querySelector(".text");
+const nombre_tarea = document.querySelector("#nombre_tarea");
+const fecha_inicio = document.querySelector("#fecha_inicio");
+const fecha_fin = document.querySelector("#fecha_fin");
+const descripcion = document.querySelector("#descripcion");
 const boton = document.querySelector("#validar");
-const inputDate = document.querySelector(".date");
+
 
 boton.addEventListener("click", () => {
-  if (input.value.length === 0) {
+  if (nombre_tarea.value.length === 0) {
     alert("El campo esta vacio.");
   }
-  if (inputDate.value.length === 0) {
+  if (fecha_inicio.value.length === 0) {
     alert("No has seleccionado una fecha.");
+  }
+  if (fecha_fin.value.length === 0) {
+    alert("No has seleccionado una fecha.");
+  }
+  if (descripcion.value.length === 0) {
+    alert("El campo esta vacio.");
     return;
   }
   fetch("http://localhost:3333/api/v1/crear", {
     method: "post",
-    headers: { 'Content-Type': "application/json" },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      "tareas": input.value
-
+      "nombre_tarea": nombre_tarea.value,
+      "fecha_inicio": fecha_inicio.value,
+      "fecha_fin": fecha_fin.value,
+      "descripcion": descripcion.value
     })
   })
 
@@ -24,7 +35,36 @@ boton.addEventListener("click", () => {
       alert(msg.mensaje);
       setTimeout(() => {
         location.reload(); // refrescar
-      }, 3000);
-            })
-            .catch (error => alert(error))
+      }, 3000); // son 3mil milisegundos = 3 seg.
+    })
+    .catch(error => alert(error))
 });
+
+
+// cRud (LEER)
+
+fetch("http://localhost:3333/api/v1/leer")
+  .then(res => res.json())
+  .then(test => {
+    const cajaResultados = document.querySelector("#cajaResultados");
+    console.log(test.resultado);
+    const arrayDatosConsulta = test.resultado;
+    for (let i = 0; i < arrayDatosConsulta.length; i++) {
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].nombre_tarea+ "</h3>"
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_inicio+ "</h3>"
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_fin+ "</h3>"
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].descripcion+ "</h3>"
+    }
+  })
+  .catch(error => alert(error));
+
+
+
+
+
+
+
+
+
+
+

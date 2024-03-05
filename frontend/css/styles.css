@@ -3,15 +3,28 @@
   box-sizing: border-box;
 }
 
+#cajaResultados {
+  
+}
+
+
+
 #crearGestor {
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 50px;
-  width: 25%;
+  width: 100%;
   text-align: center;
 }
+
+h1 {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
 
 input {
   margin: 10px;
@@ -25,11 +38,11 @@ input {
   font-size: large;
   cursor: pointer;
   /* falta centrar */
-  }
+}
 
-  #crearBTN:hover {
-    background-color:mediumaquamarine;
-  }
+#crearBTN:hover {
+  background-color: mediumaquamarine;
+}
 
 body {
   background-color: darkcyan;

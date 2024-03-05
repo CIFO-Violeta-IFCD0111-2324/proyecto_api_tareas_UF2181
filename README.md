@@ -1,7 +1,9 @@
 # proyecto_api_tareas
 Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api gestiona un CRUD de tareas
 
-# PASOS
+# PASOS Creación API REST TAREAS
+- Base de datos MySQL
+- Extra: Iniciar maquetacion de la webapp con HTML, CSS
 
 ## 1- Crear API REST con el recurso que crea una tarea (Crud):
 - Documentar el recurso que crea la tarea 
@@ -9,6 +11,13 @@ Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api ges
 - Base de datos MySQL
 - Comprobar mediante Postman
 - Extra: Iniciar maquetacion de la webapp con HTML, CSS
+- En la maquetación insertar el form en un "modal"
+
+## 2- Recurso que lee las tareas (cRud):
+- Documentar el recurso que lea las tareas 
+- Comprobar mediante Postman
+- En la maquetación insertar la tarea en el "body" de html5
+
 - Ejemplo documentación API creada con chatgpt:
 
 ```
@@ -31,23 +40,23 @@ paths:
       description: "Crea una nueva tarea con los datos proporcionados"
       parameters:
         - in: "body"
-          name: "dato"
+          name: "tareas"
           description: "Datos de la tarea a crear"
           required: true
           schema:
             type: "object"
             properties:
-              Nombre tarea:
-                type: "text"
+              nombre_tarea:
+                type: "varchar"
                 example: "Completar informe"
-              Fecha inicio:
+              fecha_inicio:
                 format: "date"
                 example: "2024-03-10"
-              Fecha final:
+              fecha_fin:
                 format: "date"
                 example: "2024-03-15"
-              Descripción:
-                type: "text"
+              descripción:
+                type: "varchar"
                 example: "Lorem ipsum,...."
       responses:
         200:
@@ -64,7 +73,7 @@ paths:
         400:
           description: "Parámetros inválidos"
         500:
-          description: "Error del servidor"
+          description: "Error del servidor. Error:" + error
 
 ```
 

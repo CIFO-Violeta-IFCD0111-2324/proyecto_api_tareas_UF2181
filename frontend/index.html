@@ -10,13 +10,6 @@
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/modal.css">
 </head>
-<style>
-  h1 {
-    color: red;
-    font-family: Arial, Helvetica, sans-serif;
-
-  }
-</style>
 
 <body>
   <div id="crearGestor">
@@ -32,13 +25,13 @@
       <span class="close">&times;</span>
       <form>
         <label><b>Nombre tarea</b><br></label>
-        <input type="text" class="text"><br>
+        <input type="text" id="nombre_tarea"><br>
         <label><b>Fecha inicio</b><br></label>
-        <input type="date" class="date"><br>
+        <input type="date" id="fecha_inicio"><br>
         <label><b>Fecha final</b><br></label>
-        <input type="date" class="date"><br>
+        <input type="date" id="fecha_fin"><br>
         <label><b>Descripción tarea</b><br></label>
-        <input type="text" class="text"><br>
+        <input type="text" id="descripcion"><br>
         <button type="button" id="validar">Validar</button>
       </form>
     </div>
