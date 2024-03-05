@@ -1,17 +1,20 @@
 body{
-    padding: 20px;
+    padding: 100px;
     text-align: center;
     background-color: rgba(3, 73, 61, 0.486);
-    margin: auto;
+    
+    
 }
 
 input{
+    
     background-color:  rgba(6, 255, 214, 0.385);;
     border-color:  rgb(7, 158, 133);
-    width: 70%; 
+    width: auto; 
     padding: 3px;
     color: black;
-    display: block;
+    height: 15px;
+    padding: 10px;
 }
 
 label{  
@@ -22,13 +25,103 @@ label{
     margin-top: 6px;
     display: flex;
     color: black;
+    padding: 10px;
+
 }
 
 button{
     color: black;
     background-color: rgba(6, 255, 214, 0.671);
-    margin-top: 30px;
-    padding: 10px;
+    margin-top: 2px;
+    padding: 20px;
     border-radius: 30px;
 }
+h3{
+    
+    background-color: antiquewhite;
+    border: 10px;
+    width: 35%;
+    border-radius: 15%;
+    text-align: center;
+}
+h2{
+    background-color: green;
+    font-size: medium;
+    border-style: dotted;
+    border: 10px;
+    border-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 15px;
+    text-align: center;
+}
+#cajaResultados{
+    display: inline;
+    
+    background-color: white;
+    
+    width: 25%;
+    text-align: left;  
+    border-radius: 10%;
+    
+}
+#resultado{
+   
+        display: flex;
+        background-color:aquamarine;
+        
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 5px black;
+}
+#encabezados{
+   
+    
+    text-align: left;
+    font-size: medium;
+    background-color: yellow;
+    border-color: black;
+    border-width: 5px;
+    border-style: double;
+    width: auto;
+    height: auto;
+    border-radius: 10%;
+    padding: 15px;
+    justify-content: space-around;
+}
+#contenido{
+   
+    text-align: left;
+    font-size: medium;
+    background-color: green;
+    border-color: black;
+    border-width: 5px;
+    border-style: double;
+    width:auto;
+    height: auto;
+    border-radius: 10%;
+    padding: 15px;
+}
+form{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(3, 73, 61, 0.486);
+    height: auto;
+    width:auto;
+    border-radius: 15px;
+    justify-content: space-between;
+    border: solid 5px black;
+    
+}
+#fechas{
+    display: flex;
+}
+header{
+    
+    margin-bottom: 25px;
+}
+
+
 

@@ -20,16 +20,10 @@ button.addEventListener("click", () => {
     
   })
 
-    
-
-.then(res => res.json())
-.then(msg => {
-  alert(msg.mensaje);
-  setTimeout(() => {
-    location.reload(); // refresca página
-  }, 3000);
-})
-.catch(error => alert(error))
+    .then(res => res.json())
+    .then(mensaje => {
+      document.querySelector("div").innerHTML = mensaje;
+    })
 
 });
 
@@ -40,10 +34,19 @@ fetch("http://localhost:3001/api/v1/leer")
     const arrayDatosConsulta = basedatos.resultado;
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
       cajaResultados.innerHTML += `
-        <h3>titulo -- >${arrayDatosConsulta[i].titulo}</h3>
-        <h3>descripcion -- >${arrayDatosConsulta[i].descripcion}</h3>  
-        <h3>fechainicio -- >${arrayDatosConsulta[i].fechainicio}</h3> 
-        <h3>fechafinal -- >${arrayDatosConsulta[i].fechafinal}</h3>   
+    
+        
+        <div id="resultado">
+        <h2 id="encabezados">Titulo</h2>
+        <h3 id="contenido">${arrayDatosConsulta[i].titulo}</h3>
+        <h2 id="encabezados" >Descripcion</h2>
+        <h3 id="contenido">${arrayDatosConsulta[i].descripcion}  </h3>
+        <h2 id="encabezados" >FechaInicio</h2>
+        <h3 id="contenido">${arrayDatosConsulta[i].fechainicio} </h3>
+        <h2 id="encabezados">FechaFinal</h2>
+        <h3 id="contenido">${arrayDatosConsulta[i].fechafinal}
+        </h3>
+        </div>   
       `;
     }
   })
