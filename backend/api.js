@@ -43,7 +43,7 @@ const swaggerSpec = swaggerJSDoc(options);
 // configuracion
 api.use(cors()); 
 api.use(express.json());
-api.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+api.use(swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 // arrancar server
