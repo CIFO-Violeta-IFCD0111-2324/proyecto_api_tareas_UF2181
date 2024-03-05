@@ -2,8 +2,6 @@ const path = require("path");
 const swaggerJSDoc = require("swagger-jsdoc");
 
 //SWAGGER
-
-const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerSpec = swaggerJSDoc({
     definition: {
         openai: "3.0.0",
@@ -52,7 +50,7 @@ const swaggerSpec = swaggerJSDoc({
 
 /**
  * @swagger
- * /api/tareas:
+ * /api/v1/tareas:
  *   post:
  *   summary: Crear una nueva tarea
  *   tags: [Tareas]
@@ -73,7 +71,7 @@ const swaggerSpec = swaggerJSDoc({
 // Obtener todas las tareas
 /**
  * @swagger
- * /api/tareas:
+ * /api/v1/tareas:
  *   get:
  *   summary: Devuelve todas las tareas
  *   tags: [Tareas]
@@ -93,7 +91,7 @@ const swaggerSpec = swaggerJSDoc({
 // Borra  las o una tareas
 /**
  * @swagger
- * /api/tareas/(id):
+ * /api/v1/tareas/(id):
  *   delete:
  *   summary: Borra una tarea
  *   tags: [Tareas]
@@ -116,7 +114,7 @@ const swaggerSpec = swaggerJSDoc({
 
 /**
  * @swagger
- * /api/tareas/(id):
+ * /api/v1/tareas/(id):
  *   put:
  *   summary: actualiza una tarea
  *   tags: [Tareas]

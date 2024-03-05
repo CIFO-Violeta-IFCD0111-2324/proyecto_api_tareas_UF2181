@@ -28,7 +28,13 @@ botonGuardar.addEventListener("click", () => {
             })
         })
         .then(res => res.json())
-        .then(mensaje => mensajes.innerHTML = mensaje)
+        //.then(mensaje => mensajes.innerHTML = mensaje)
+        .then(mensaje => {
+            mensajes.innerHTML = mensaje;
+            setTimeout(() => {
+              location.reload(); // refresca página
+            }, 1000);
+          })
         .catch(error => alert(error))
         
 });
