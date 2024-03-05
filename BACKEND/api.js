@@ -1,11 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const port = 3500;
+const swaggerUI= require("swagger-ui-express");
+const swaggerJSDoc = require("swagger-jsdoc");
+const swaggerSpec = require("./swagger");
 
+
+//CONFIGURACION
+const port = 3500;
 const api = express();
 
+//MIDDLEWEAR
 api.use(cors());
 api.use(express.json());
+//ruta para mostrar la documentacion de swagger
+api.use('./api/doc', 
+swaggerUI.serve,
+swaggerUI.setup(swaggerJSDoc(swaggerSpec)));
+
+
 
 //***************** importar rutas ************************ */
 // Importar las rutas
