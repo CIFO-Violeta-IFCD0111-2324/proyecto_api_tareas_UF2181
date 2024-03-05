@@ -51,6 +51,6 @@ fetch("http://localhost:3500/api/v1/leer")
                                   + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
                                   + "- Fecha de fin: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
                                   + " || Estado: " + tarea.Estado_tarea 
-                                  + " || <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono' alt='Eliminar tarea'></a> <a href='#'><img src='./img/iconoEditar.png' class='icono' alt=Editar tarea'></a></p></div>";    }
+                                  + " || <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono' alt='Eliminar tarea'></a> <a href='"+ tarea.id +"'><img src='./img/iconoEditar.png' class='icono' alt=Editar tarea'></a></p></div>";    }
   })
   .catch(error => contenedorDatos.innerHTML =error);
