@@ -8,7 +8,11 @@ api.use(cors());
 api.use(express.json());
 
 //***************** importar rutas ************************ */
-api.use('./api/v1', require('./routes.js'));
+// Importar las rutas
+const routes = require('./routes.js');
+
+// Usar las rutas
+api.use('/api/v1', routes);
 
 
 //ARRANCAR EL SERVIDOR

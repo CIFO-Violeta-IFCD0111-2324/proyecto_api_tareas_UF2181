@@ -17,9 +17,9 @@ router.post("/crearTarea", (req, res) => {
   const Fechafinal = req.body.Fechafinal;
   const Estado = req.body.Estado;
 
-  const query = "insert into proyecto_tarea_PIJ values (default, '" + Descripcion + "', '" + FechaInicio + "',  '" + Fechafinal + "', '" + Estado + "' );";
+  const query = "insert into tareas values (default, ?, ?, ?, ? );";
 
-  conexionMySQL.query(query, err => {
+  conexionMySQL.query(query, [Descripcion, FechaInicio,  Fechafinal, Estado], err => {
         if (err) {
           res.json('Error en la insercion de datos: ' + err);
         } else {
