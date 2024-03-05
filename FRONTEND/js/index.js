@@ -47,8 +47,7 @@ fetch("http://localhost:3500/api/v1/leer")
     const arrayDatosConsulta = datos.resultado;
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
         const tarea = arrayDatosConsulta[i];
-        contenedorDatos.innerHTML += "<div class='indiv'><h3>ID: " + tarea.id +" "+ tarea.descripcion + "</h3>";
-        contenedorDatos.innerHTML += "<p> Fecha de inicio: "
+        contenedorDatos.innerHTML += "<div class='indiv'><h3>ID: " + tarea.id +" "+ tarea.descripcion + "</h3><p> Fecha de inicio:"
                                   + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
                                   + "- Fecha de fin: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
                                   + " || Estado: " + tarea.Estado_tarea 
