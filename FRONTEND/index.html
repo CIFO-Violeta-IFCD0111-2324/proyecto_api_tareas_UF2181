@@ -13,23 +13,34 @@
 <body>
 <Header>
     <H1>Gestor Tareas</H1>
-    <button type="button" class="BTNMODAL"><img src="./img/lista.png" class="iconoTareas"> Tarea</button>
+        <!-- Trigger/Open The Modal -->
+<button id="myBtn">Crear tarea</button>
 </Header>
 <main id="contenedor">
-    <div id="CrearModal" class="modal">
-            <span>descripción:</span>
-            <input type="text" name="" id="descripcion">
-            <input type="date" name="" id="fecha_inicio">
-            <input type="date" name="" id="fecha_final">
-            <select name="" id="estadoTarea">
-                <option value="Vacio"></option>
-                <option value="Inicio">Inicio</option>
-                <option value="Pendiente">Pendiente</option>
-                <option value="Finalizada">Finalizada</option>
-            </select>     
-            <button type="button" id="GuardarTarea">Guardar Tarea!</button>
-            <div id="mensajes"></div>
-        </div>
+    
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <span>descripción:</span>
+    <input type="text" name="" id="descripcion">
+    <input type="date" name="" id="fecha_inicio">
+    <input type="date" name="" id="fecha_final">
+    <select name="" id="estadoTarea">
+        <option value="Vacio"></option>
+        <option value="Inicio">Inicio</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Finalizada">Finalizada</option>
+    </select>     
+    <button type="button" id="GuardarTarea">Guardar Tarea!</button>
+    <div id="mensajes"></div>
+  </div>
+
+</div>
         <div id="contenedorDatos"></div>
 </main> 
 <footer>

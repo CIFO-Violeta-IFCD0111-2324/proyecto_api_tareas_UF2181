@@ -12,11 +12,10 @@ const api = express();
 //MIDDLEWEAR
 api.use(cors());
 api.use(express.json());
-/*//ruta para mostrar la documentacion de swagger
-api.use('./api/doc', 
+//ruta para mostrar la documentacion de swagger
+/*api.use('./api/v1/doc', 
 swaggerUI.serve,
-swaggerUI.setup(swaggerJSDoc(swaggerSpec)));
-*/
+swaggerUI.setup(swaggerJSDoc(swaggerSpec)));*/
 
 
 //***************** importar rutas ************************ */
