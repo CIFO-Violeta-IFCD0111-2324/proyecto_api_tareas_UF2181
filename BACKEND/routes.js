@@ -10,23 +10,48 @@ router.get("/saludo", (req, res) => {
   });
 });
 
-
+// CREAR, Crud
 router.post("/crearTarea", (req, res) => {
   const Descripcion = req.body.Descripcion;
   const FechaInicio = req.body.FechaInicio;
   const Fechafinal = req.body.Fechafinal;
   const Estado = req.body.Estado;
 
-  const query = "insert into tareas values (default, ?, ?, ?, ? );";
-
-  conexionMySQL.query(query, [Descripcion, FechaInicio,  Fechafinal, Estado], err => {
-        if (err) {
-          res.json('Error en la insercion de datos: ' + err);
-        } else {
-          res.json('Tarea insertada correctamente!');
-        }
+  const sql = "insert into tareas values (default, ?, ?, ?, ? );";
+  conexionMySQL.query(sql, [Descripcion, FechaInicio,  Fechafinal, Estado], err => {
+    if (err) {
+      res.json({
+        "status": 500,
+        "mensaje": "Error en la inserción del dato. Error:" + err
       });
-    });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "Dato insertado correctamente!"
+      });
+    }
+  });
+});
+
+
+// LEER, cRud
+router.get("/leer", (req, res) => {
+  const sql = "select * from tareas";
+  conexionMySQL.query(sql, (error, resultado) => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "Error en la inserción del dato. Error:" + error
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "resultado": resultado
+      });
+    }
+  });
+});
+
 
 /*
 
