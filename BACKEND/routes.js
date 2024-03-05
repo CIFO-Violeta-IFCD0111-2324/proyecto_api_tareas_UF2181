@@ -28,9 +28,7 @@ router.post("/crearTarea", (req, res) => {
       });
     });
 
-/*router.get("/leerTarea", (req, res) => {
- 
-});
+/*
 
 router.put("/actualizarTarea", (req, res) => {
  
