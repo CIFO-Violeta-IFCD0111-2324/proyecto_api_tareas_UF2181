@@ -30,7 +30,7 @@ botonGuardar.addEventListener("click", () => {
         .then(res => res.json())
         //.then(mensaje => mensajes.innerHTML = mensaje)
         .then(mensaje => {
-            mensajes.innerHTML = mensaje;
+            mensajes.innerHTML = "<h1 class='titulo'> Tarea, <b>¡¡¡Insertada!!!</b></h1>";
             setTimeout(() => {
               location.reload(); // refresca página
             }, 1000);
@@ -46,7 +46,7 @@ fetch("http://localhost:3500/api/v1/leer")
     const contenedorDatos = document.getElementById("contenedorDatos");
     const arrayDatosConsulta = datos.resultado;
     if (arrayDatosConsulta.length===0) {
-      contenedorDatos.innerHTML ="<h1> No hay ninguna tarea </h1>";
+      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
      }else{
             for (let i = 0; i < arrayDatosConsulta.length; i++) {
               const tarea = arrayDatosConsulta[i];
