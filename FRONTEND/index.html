@@ -1,57 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./img/lista.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/modal.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./img/lista.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
     <script src="./js/modal.js" defer></script>
     <script src="./js/index.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <title>Gestor de Tareas: Isa, JosePe, Pedro</title>
-</head>
-<body>
-<Header>
-  <nav> <!-- Trigger/Open The Modal -->
-    <div class="titulo"><img src="../frontend/img/cabecera_A.png" class="cabecera"></div>
-    <div class="titulo"><img src="../frontend/img/cabecera_B.png" class="cabecera"></div>
-    <div class="boton_content"><button id="myBtn">Crear nueva tarea <i class="fa-regular fa-pen-to-square" id="icon_nav"></i></button></div>
-  </nav>
-</Header>
-<main id="contenedor">
-    <div class="contenedor_int">
-
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <span>descripción:</span>
-    <input type="text" name="" id="descripcion">
-    <input type="date" name="" id="fecha_inicio">
-    <input type="date" name="" id="fecha_final">
-    <select name="" id="estadoTarea">
-        <option value="Vacio"></option>
-        <option value="Inicio">Inicio</option>
-        <option value="Pendiente">Pendiente</option>
-        <option value="Finalizada">Finalizada</option>
-    </select>     
-    <button type="button" id="GuardarTarea">Guardar Tarea!</button>
-    <div id="mensajes"></div>
-  </div>
-
-</div>
-        <div id="contenedorDatos">
-          
+  </head>
+  <body>
+    <header>
+      <nav>
+        <!-- Trigger/Open The Modal -->
+        <div class="titulo">
+          <img src="../frontend/img/cabecera_A.png" class="cabecera" />
         </div>
-    </div>
-</main> 
-<footer>
+        <div class="titulo">
+          <img src="../frontend/img/cabecera_B.png" class="cabecera" />
+        </div>
+        <div class="boton_content">
+          <button id="myBtn">
+            Crear nueva tarea
+            <i class="fa-regular fa-pen-to-square" id="icon_nav"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main id="contenedor">
+      <div class="contenedor_int">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="row">
+              <div class="col-100">
+                <h3>Descripción de la tarea</h3><span class="close">&times;</span>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-100">
+                <textarea id="descripcion" cols="50" rows="5"></textarea>
+              </div>
+            </div>
 
-</footer>
-    
-</body>
+            <div class="row">
+              <div class="col-30">
+                <input type="date" name="" id="fecha_inicio" />
+              </div>
+              <div class="col-30">
+                <input type="date" name="" id="fecha_final" />
+              </div>
+              <div class="col-30">
+                <select name="" id="estadoTarea">
+                  <option value="Vacio"></option>
+                  <option value="Inicio">Inicio</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Finalizada">Finalizada</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" id="GuardarTarea">Guardar Tarea!</button>
+            <div id="mensajes"></div>
+          </div>
+        </div>
+        <div id="contenedorDatos"></div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
 </html>

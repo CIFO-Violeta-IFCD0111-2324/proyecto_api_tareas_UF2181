@@ -15,18 +15,24 @@
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(180deg,  rgba(245,194,143,1) 10% ,rgba(255,255,255,1) 100%);
+  margin:120px auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 16px;
+  width: 600px; /* Could be more or less, depending on screen size */
+  height: 300px;
   transition: all .5s;
 }
 
 /* The Close Button */
 .close {
   color: #aaa;
-  float: right;
+  float:right;
   font-size: 28px;
   font-weight: bold;
   transition: all .5s;
