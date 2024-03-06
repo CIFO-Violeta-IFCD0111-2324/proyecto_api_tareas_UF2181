@@ -47,10 +47,9 @@ fetch("http://localhost:3500/api/v1/leer")
     const arrayDatosConsulta = datos.resultado;
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
         const tarea = arrayDatosConsulta[i];
-        contenedorDatos.innerHTML += "<div class='indiv'><h3>ID: " + tarea.id +" "+ tarea.descripcion + "</h3><p> Fecha de inicio:"
+        contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3>"+ "<BR>"+ "<h2 class='detalle'>" +tarea.descripcion +"</h2>" + "<p>INICIO: "
                                   + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
-                                  + "- Fecha de fin: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
-                                  + " || Estado: " + tarea.Estado_tarea 
-                                  + " || <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono' alt='Eliminar tarea'></a> <a href='"+ tarea.id +"'><img src='./img/iconoEditar.png' class='icono' alt=Editar tarea'></a></p></div>";    }
+                                  + "<BR>"+"FIN: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
+                                  + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ " <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono_eliminar' alt='Eliminar tarea'></a> <a href='"+ tarea.id +"'><img src='./img/iconoEditar.png' class='icono_editar' alt=Editar tarea'></a></p></div>";    }
   })
   .catch(error => contenedorDatos.innerHTML =error);

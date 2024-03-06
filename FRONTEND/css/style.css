@@ -18,71 +18,71 @@ body {
 }
 header {
   width: 100%;
-  padding: 20px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 25px;
+
 }
 nav {
-  background: rgb(251, 251, 251);
-  background: linear-gradient(
-    267deg,
-    rgba(251, 251, 251, 1) 0%,
-    rgba(80, 188, 235, 1) 110%
-  );
-  width: 80%;
-  height: 100px;
-  padding: 20px;
+ 
+  width: 75%;
+  height: 150px;
   display: flex;
-  justify-content: space-around;
-  border-radius: 16px;
-  box-shadow: 5px 5px 5px rgb(204, 200, 200);
+  justify-content: space-between;
+
+  
 }
-h1 {
-  color: rgb(243, 245, 247);
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 500;
-  font-size: 40px;
+
+.cabecera {
+  height: 150px;
+  
 }
 
 .boton_content .titulo {
   margin: auto;
   width: 50%;
-  margin-left: 60px;
 }
 
-img.icono {
+.icono_eliminar {
   height: 25px;
-  line-height: normal;
   border-radius: 10%;
   box-shadow: 5px;
+  margin-left: 160px;
+}
+.icono_editar {
+  height: 25px;
+  border-radius: 10%;
+  box-shadow: 5px;
+  margin-left: 10px;
 }
 #contenedor {
-  width: 70%;
+  width: 80%;
   height: 80%;
-  padding: 20px;
+  padding: 60px 20px 20px 20px;
   background-color: rgb(255, 255, 255);
-  background: rgb(235, 249, 250);
+  background: rgb(247, 245, 249);
   border-radius: 16px;
 }
 
 #contenedorDatos {
   flex-wrap: wrap;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .indiv {
-  width: 250px;
-  height: 200px;
-  background-color: rgb(251, 252, 197);
-  border-radius: 0px 0px 40px 0px;
+  width: 280px;
+  height: 280px;
+  background-image: url("../img/post-it.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   font-size: 14px;
-  padding: 20px;
+  padding: 50px 30px 30px 30px;
   color: rgb(6, 69, 73);
-  margin: 10px;
-  box-shadow: 5px 5px 5px rgb(204, 200, 200);
 }
 
 input,
@@ -93,20 +93,18 @@ select {
 }
 button {
   display: flex;
-  background: rgb(150, 167, 54);
-  background: linear-gradient(
-    356deg,
-    rgba(70, 106, 126, 1) 0%,
-    rgba(80, 188, 235, 1) 100%
-  );
+  background: #a9bae6;
+  margin-top: 60px;
+  margin-right: 20px;
   border-radius: 10px;
   border: solid 1px rgb(240, 243, 242);
-  padding: 10px;
+  padding: 15px;
   align-items: center;
   justify-content: center;
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   color: white;
+  font-size: 20px;
 }
 
 button img {
@@ -117,4 +115,19 @@ button img {
 
 button:hover {
   background-color: rgb(150, 202, 224);
+}
+.titulo {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  color: brown;
+  text-align: center;
+}
+.detalle {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: brown;
 }
