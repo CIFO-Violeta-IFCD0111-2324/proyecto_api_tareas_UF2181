@@ -65,13 +65,14 @@ fetch("http://localhost:3000/api/read")
     .then(res => res.json())
     .then(datos => {
         const cajaTareas = document.getElementById("caja-de-tareas");
+        const divRespuestas = document.getElementsByClassName("respuestas");
         const tareasOut = datos.resultado;
         if (tareasOut.length == 0) {
             cajaTareas.innerHTML = "Todavia no hay tareas"
         }
         tareasOut.forEach(tarea => {
             const divTarea = document.createElement("div");
-
+            
             // Elemento del nombre
             const nombreElm = document.createElement("h3");
             const textNombre = document.createTextNode(tarea.nombre);
@@ -95,7 +96,34 @@ fetch("http://localhost:3000/api/read")
             const textFechaFin = document.createTextNode(tarea.fecha_fin.substring(0, 10));
             fechaFinElm.appendChild(textFechaFin);
             divTarea.appendChild(fechaFinElm);
-            
+
+
+            // Papelera
+            const papelera = document.createElement("i");
+            papelera.classList.add("fa-solid");
+            papelera.classList.add("fa-trash");
+            papelera.setAttribute("id", tarea.id);
+            papelera.addEventListener("click", e => {
+                if (confirm("Estás seguro que quieres eliminar la tarea?")) {
+                    fetch("http://localhost:3000/api/delete", {
+                        method: "delete",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            "id": e.target.id
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(msg => {
+                            divRespuestas.innerHTML += msg.mensaje;
+                            setTimeout(() => {
+                                location.reload(); 
+                            }, 1000)
+                        })
+                        .catch(error => divRespuestas.innerHTML = error);
+                }
+            });
+            divTarea.appendChild(papelera);
+
             // Append caja al html
             cajaTareas.appendChild(divTarea);
         });
@@ -103,7 +131,9 @@ fetch("http://localhost:3000/api/read")
     .catch(error => alert(error))
 
 
+function deleteTask() {
 
+}
 
 
 

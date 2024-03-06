@@ -69,3 +69,11 @@ body {
     align-items: center;
 }
 
+.fa-trash {
+    transition: 600ms;
+}
+
+.fa-trash:hover {
+    color: #7a7a7a;
+    cursor: pointer;
+}

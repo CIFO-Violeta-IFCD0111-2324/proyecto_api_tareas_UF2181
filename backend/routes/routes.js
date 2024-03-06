@@ -170,5 +170,34 @@ router.get("/read", (req, res) => {
 
 
 
+router.delete("/delete", (req, res) => {
+  const dato = req.body.id;
+  const query = "delete from tasks where id=?;"
+  const conexionDB = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "task_db",
+  });
+
+  conexionDB.query(query, [dato], error => {
+    if(error) {
+      res.status(400).json({
+        "mensaje": "Error en el borrado del dato" + error
+      });
+    } else {
+      res.status(200).json({
+        "mensaje": "Dato borrado correctamente"
+      });
+    }
+  })
+});
+
+
+
+
+
+
+
 
 module.exports = router;
