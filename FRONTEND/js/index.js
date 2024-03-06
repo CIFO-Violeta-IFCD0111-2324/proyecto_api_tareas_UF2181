@@ -53,7 +53,7 @@ fetch("http://localhost:3500/api/v1/leer")
               contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3>"+ "<BR>"+ "<h2 class='detalle'>" +tarea.descripcion +"</h2>" + "<p>INICIO: "
                                         + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
                                         + "<BR>"+"FIN: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
-                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ "<i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></p></div>";    }
+                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ "<div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></p></div>";    }
           }
     })
   .catch(error => contenedorDatos.innerHTML =error);
