@@ -20,6 +20,7 @@ header {
   width: 100%;
   height: 150px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 25px;
@@ -37,12 +38,16 @@ nav {
 
 .cabecera {
   height: 150px;
+  display: flex;
+
   
 }
 
 .boton_content .titulo {
   margin: auto;
   width: 50%;
+  display: flex;
+
 }
 
 .icono_eliminar {
@@ -97,7 +102,8 @@ button {
   margin-top: 60px;
   margin-right: 20px;
   border-radius: 10px;
-  border: solid 1px rgb(240, 243, 242);
+  border: solid 1px rgb(255, 255, 255);
+  box-shadow: 5px 5px 5px gainsboro;
   padding: 15px;
   align-items: center;
   justify-content: center;
@@ -105,6 +111,7 @@ button {
   font-weight: 400;
   color: white;
   font-size: 20px;
+  cursor: pointer;
 }
 
 button img {
@@ -114,7 +121,7 @@ button img {
 }
 
 button:hover {
-  background-color: rgb(150, 202, 224);
+  background-color: #c6d4f9;
 }
 .titulo {
   margin-top: 10px;
