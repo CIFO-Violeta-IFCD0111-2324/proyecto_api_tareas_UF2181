@@ -18,8 +18,7 @@ body {
 }
 
 main {
-    background: rgb(97, 102, 96);
-    background: linear-gradient(180deg, rgba(97, 102, 96, 1) 0%, rgba(187, 187, 230, 1) 72%, rgba(236, 252, 255, 1) 100%);
+    background: rgb(241, 240, 237);
     flex: 1;
 }
 
@@ -52,8 +51,10 @@ main {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    background-color: #0d131185;
-    border-radius: 15px;
+    background-image: url("./imagenes/corcho-ecologico.jpg");
+    background-size: auto;
+    border: 10px solid #30261c;
+    border-radius: 10px;
 }
 
 #caja-de-tareas>div {
