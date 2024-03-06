@@ -53,8 +53,34 @@ fetch("http://localhost:3500/api/v1/leer")
               contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3>"+ "<BR>"+ "<h2 class='detalle'>" +tarea.descripcion +"</h2>" + "<p>INICIO: "
                                         + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
                                         + "<BR>"+"FIN: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
-                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ " <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono_eliminar' alt='Eliminar tarea'></a> <a href='"+ tarea.id +"'><img src='./img/iconoEditar.png' class='icono_editar' alt=Editar tarea'></a></p></div>";    }
+                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ "<i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></p></div>";    }
           }
     })
   .catch(error => contenedorDatos.innerHTML =error);
+
+  // cruD (borrar)
+function borrarFuncion() {
+  const papeleras = document.querySelectorAll(".fa-trash-can");
+  for (let i = 0; i < papeleras.length; i++) {
+    papeleras[i].addEventListener("click", e => {
+      if (confirm("Estás seguro que quieres eliminar la tarea?")) {
+        fetch("http://localhost:3500/api/v1/borrar", {
+          method: "delete",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "id": e.target.id
+          })
+        })
+          .then(res => res.json())
+          .then(msg => {
+            bodyRespuesta.innerHTML += msg.mensaje;
+            setTimeout(() => {
+              location.reload(); // refresca página
+            }, 2000);
+          })
+          .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+      }
+    });
+  }
+}
 

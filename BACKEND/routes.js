@@ -59,23 +59,24 @@ router.put("/actualizarTarea", (req, res) => {
  
 });
 */
-/*router.delete("/borrarTarea/:id", (req, res) => {
-  const idTarea = req.params.id;
-  const sql = "DELETE FROM tareas WHERE id = ?";
-  conexionMySQL.query(sql, [idTarea], err => {
-    if (err) {
+// BORRAR
+router.delete("/borrar", (req, res) => {
+  const idTarea = req.body.id;
+  const sql = "delete from tareas where id=?";
+  conexionMySQL.query(sql, [idTarea], error => {
+    if (error) {
       res.json({
         "status": 500,
-        "mensaje": "Error al borrar dato. Error:" + err
+        "mensaje": "<span class='error'>Error en el borrado de la tarea. Error:" + error + "</span>"
       });
     } else {
       res.json({
         "status": 200,
-        "mensaje": "Dato eliminado correctamente!"
+        "mensaje": "<span class='correcto'>Tarea eliminada correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
       });
     }
   });
-});*/
+});
 
 
   
