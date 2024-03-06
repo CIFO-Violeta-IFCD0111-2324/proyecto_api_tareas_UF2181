@@ -76,7 +76,7 @@ function borrar() {
               location.reload(); // refresca página
             }, 1000);
           })
-          .catch(error => cajaResultados.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+          .catch(error => resultados.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
       }
     });
   }
