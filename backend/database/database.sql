@@ -3,8 +3,8 @@ create database datos;
 use datos;
 
 create table dato (
-  id int primary key auto_increment,
-  dato varchar(100) 
+  id varchar(255) primary key,
+  dato varchar(255) 
 );
 
 select * from dato;

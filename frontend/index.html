@@ -11,9 +11,11 @@
   <link rel="stylesheet" href="./css/modal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
   <header class="header-top">
-    <h2><span>APP web/desktop</span> que consume una <span>API REST CRUD NodeJS/MySQL</span> realizado en el curso <span>IFCD0111</span></h2>
+    <h2><span>APP web/desktop</span> que consume una <span>API REST CRUD NodeJS/MySQL</span> realizado en el curso
+      <span>IFCD0111</span></h2>
   </header>
   <header class="header-bottom">
     <button id="crearBTN"><b>GUARDAR DATO <i class="fa-solid fa-square-plus"></i></b></button>
@@ -32,5 +34,19 @@
       </form>
     </div>
   </div>
+  <!-- Editar Modal -->
+  <div id="editarMODAL" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form>
+        <h3>Editar dato en la app</h3>
+        <input type="text" id="editarINPUT">
+        <button type="button" id="editarBTNform">Modificar!</button>
+        <div id="modalEditarRespuesta"></div>
+      </form>
+    </div>
+  </div>
 </body>
+
 </html>
