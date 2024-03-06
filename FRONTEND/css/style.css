@@ -66,20 +66,20 @@ nav {
   color: #ffffff;
 }
 .fa-pen-to-square {
-  height: 30px;
-  border-radius: 10%;
-  box-shadow: 5px;
-  margin-left: 100px;
   color: #c9460a;
+  padding-right: 20px;
 
 }
 #iconosPosit {
   width: 100%;
   text-align: right;
+  margin-top: 30px;
+  padding-right: 15px;
+  font-size: 20px;
 }
 .fa-trash-can {
-  height: 30px;
   color: #c9460a;
+  
 
 }
 #contenedor {
