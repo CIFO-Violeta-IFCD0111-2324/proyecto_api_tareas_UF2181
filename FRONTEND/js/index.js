@@ -49,10 +49,11 @@ fetch("http://localhost:3500/api/v1/leer")
      }else{
             for (let i = 0; i < arrayDatosConsulta.length; i++) {
               const tarea = arrayDatosConsulta[i];
-              contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3>"+ "<BR>"+ "<h2 class='detalle'>" +tarea.descripcion +"</h2>" + "<p>INICIO: "
-                                        + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
-                                        + "<BR>"+"FIN: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
-                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ "<div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></p></div>";
+              contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3><h2 class='detalle'>Título: " 
+              + tarea.descripcion + "</h2><p><div class='colum25'>INICIO:</div><div class='colum75'>"
+              + tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div><div class='colum25'>FIN:</div> <div class='colum75'>" 
+              + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div><div class='colum25'>ESTADO:</div><div class='colum75'>" 
+              + tarea.Estado_tarea +"</div></p><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
                                           }
             borrarFuncion();
           }

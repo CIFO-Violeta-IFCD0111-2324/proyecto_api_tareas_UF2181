@@ -36,7 +36,7 @@ router.post("/crearTarea", (req, res) => {
 
 // LEER, cRud
 router.get("/leer", (req, res) => {
-  const sql = "select * from tareas";
+  const sql = "select id, descripcion, year(fecha_inicio) as anoInicio, month(fecha_inicio) as mesInicio, day(fecha_inicio) as diaInicio, year(fecha_fin) as anofin, month(fecha_fin) as mesfin, day(fecha_fin) as diafin, Estado_tarea   from tareas;";
   conexionMySQL.query(sql, (error, resultado) => {
     if (error) {
       res.json({
