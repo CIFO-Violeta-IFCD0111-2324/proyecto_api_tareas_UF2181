@@ -45,12 +45,16 @@ fetch("http://localhost:3500/api/v1/leer")
   .then(datos => {
     const contenedorDatos = document.getElementById("contenedorDatos");
     const arrayDatosConsulta = datos.resultado;
-    for (let i = 0; i < arrayDatosConsulta.length; i++) {
-        const tarea = arrayDatosConsulta[i];
-        contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3>"+ "<BR>"+ "<h2 class='detalle'>" +tarea.descripcion +"</h2>" + "<p>INICIO: "
-                                  + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
-                                  + "<BR>"+"FIN: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
-                                  + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ " <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono_eliminar' alt='Eliminar tarea'></a> <a href='"+ tarea.id +"'><img src='./img/iconoEditar.png' class='icono_editar' alt=Editar tarea'></a></p></div>";    }
-  })
+    if (arrayDatosConsulta.length===0) {
+      contenedorDatos.innerHTML ="<h1> No hay ninguna tarea </h1>";
+     }else{
+            for (let i = 0; i < arrayDatosConsulta.length; i++) {
+              const tarea = arrayDatosConsulta[i];
+              contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3>"+ "<BR>"+ "<h2 class='detalle'>" +tarea.descripcion +"</h2>" + "<p>INICIO: "
+                                        + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
+                                        + "<BR>"+"FIN: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
+                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ " <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono_eliminar' alt='Eliminar tarea'></a> <a href='"+ tarea.id +"'><img src='./img/iconoEditar.png' class='icono_editar' alt=Editar tarea'></a></p></div>";    }
+          }
+    })
   .catch(error => contenedorDatos.innerHTML =error);
 
