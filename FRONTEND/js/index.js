@@ -53,3 +53,9 @@ fetch("http://localhost:3500/api/v1/leer")
                                   + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ " <a href='"+ tarea.id +"'><img src='./img/iconoEliminar.png' class='icono_eliminar' alt='Eliminar tarea'></a> <a href='"+ tarea.id +"'><img src='./img/iconoEditar.png' class='icono_editar' alt=Editar tarea'></a></p></div>";    }
   })
   .catch(error => contenedorDatos.innerHTML =error);
+
+//cruD(borrar)
+const botonEliminar = document.querySelector("");// donde esta el btn de eliminar? dentro del contenedor de datos?
+botonEliminar.addEventListener("click", => {
+  if 
+})
