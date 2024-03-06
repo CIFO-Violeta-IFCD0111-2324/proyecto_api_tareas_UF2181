@@ -1,3 +1,5 @@
+import resetForms from "./functions.js";
+
 // get elementos
 const bodyRespuesta = document.getElementById("bodyRespuesta");
 const modalCrearRespuesta = document.getElementById("modalCrearRespuesta");
@@ -102,18 +104,13 @@ function editarDatoFuncion() {
   // When the user clicks on <span> (x), close the modal
   editarSpan.onclick = function () {
     editarMODAL.style.display = "none";
-  }
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == editarMODAL) {
-      editarMODAL.style.display = "none";
-    }
+    resetForms();
   }
 
   // DETECTAR SI HA HABIDO CAMBIO EN EL FORM DE EDITAR, SI HUBO EDITA EL DATO EN SERVIDOR
-  const editarForm = document.querySelectorAll("form")[1];
+  // const editarForm = document.querySelectorAll("form")[1];
   editarBTNform.addEventListener("click", () => {
-    editarForm.addEventListener("change", () => {
+    // editarForm.addEventListener("change", () => {
       fetch("http://localhost:3000/api/v1/editar", {
         method: "put",
         headers: { "Content-Type": "application/json" },
@@ -125,13 +122,13 @@ function editarDatoFuncion() {
         .then(res => res.json())
         .then(msg => {
           modalEditarRespuesta.innerHTML = msg.mensaje;
-          // setTimeout(() => {
-          //   location.reload(); // refresca página
-          // }, 2000);
+          setTimeout(() => {
+            location.reload(); // refresca página
+          }, 2000);
         })
         .catch(error => modalEditarRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
     });
     const modalEditarRespuesta = document.getElementById("modalEditarRespuesta");
     modalEditarRespuesta.innerHTML = "<h3 class='error'>Añade un cambio en el dato!</h3>";
-  });
+  // });
 }

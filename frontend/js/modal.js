@@ -1,3 +1,5 @@
+import resetForms from "./functions.js";
+
 // crear Modal
 const crearMODAL = document.getElementById("crearMODAL");
 // Get the button that opens the modal
@@ -11,12 +13,8 @@ crearBTN.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 crearSpan.onclick = function() {
   crearMODAL.style.display = "none";
+  resetForms();
 }
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == crearMODAL) {
-    crearMODAL.style.display = "none";
-  }
-}
+
 // ------------------------------------------------------------
 // editar Modal (IMPORTANTE! se añade en app.js ya que en primera instancia no se han creado las cajas de dato)

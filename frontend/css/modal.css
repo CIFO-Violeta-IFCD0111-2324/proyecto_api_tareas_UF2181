@@ -19,6 +19,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 60%; /* Could be more or less, depending on screen size */
+  box-shadow: 2px 2px 2px #555;
 }
 
 /* The Close Button */

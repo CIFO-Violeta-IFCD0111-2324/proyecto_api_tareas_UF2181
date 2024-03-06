@@ -74,21 +74,22 @@ router.delete("/borrar", (req, res) => {
 router.put("/editar", (req, res) => {
   const dato = req.body.dato;
   const id = req.body.id;
-  res.json(id)
-  // const sql = "update datos set dato = ? where id = ?";
-  // conexionMySQL.query(sql, [dato,id], error => {
-  //   if (error) {
-  //     res.json({
-  //       "status": 500,
-  //       "mensaje": "<span class='error'>Error en la edición del dato.  Error:" + error + "</span>"
-  //     });
-  //   } else {
-  //     res.json({
-  //       "status": 200,
-  //       "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
-  //     });
-  //   }
-  // });
+  // encriptamos el dato
+  const datoEncriptado = CryptoJS.AES.encrypt(dato, 'miTextoSecreto').toString();
+  const sql = "update dato set dato = ? where id = ?";
+  conexionMySQL.query(sql, [datoEncriptado,id], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en la edición del dato. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
 });
 
 module.exports = router;
