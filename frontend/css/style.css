@@ -13,7 +13,8 @@ html, body {
   
 body {
     background-color: #aec3b0;
-    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom, #537a53, #cad2c5);
+    font-family: "Libre Franklin", sans-serif;
 }
 
 
@@ -26,13 +27,14 @@ body {
 #caja-1{
     padding: 35px;
     width: 60%;
-    background-color: #304D30;
+    background-color: #043522d7;
     color: #cad2c5;
     font-family: "Libre Franklin", sans-serif;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 #label-descrip {
@@ -46,8 +48,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background-color: #005B41;
-   
+    background-color: #0d131185;
     border-radius: 15px;
 }
 
@@ -58,6 +59,7 @@ body {
     width: 30%;
     border-radius: 10px;
     padding: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .addTarea {

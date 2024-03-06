@@ -35,10 +35,10 @@
 
 /* Modal Content */
 .modal-content {
-  background-color: #A3B763;
+  background-color: #3b4931;
   margin: auto;
   padding: 20px;
-  border: 1px solid #598392;
+  border: 1px solid #000000;
   width: 50%;
   color: rgb(220, 220, 208);
 }
