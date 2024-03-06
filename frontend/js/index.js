@@ -1,10 +1,13 @@
+// get elementos
 const nombre_tarea = document.querySelector("#nombre_tarea");
 const fecha_inicio = document.querySelector("#fecha_inicio");
 const fecha_fin = document.querySelector("#fecha_fin");
 const descripcion = document.querySelector("#descripcion");
+
+// FALTA MODAL EN VARIAS PARTES
+
+// Crud (crear)
 const boton = document.querySelector("#validar");
-
-
 boton.addEventListener("click", () => {
   if (nombre_tarea.value.length === 0) {
     alert("El campo esta vacio.");
@@ -49,6 +52,15 @@ fetch("http://localhost:3333/api/v1/leer")
     const cajaResultados = document.querySelector("#cajaResultados");
     console.log(test.resultado);
     const arrayDatosConsulta = test.resultado;
+
+    if (arrayDatosConsulta.length === 0) {
+      bodyRespuesta.innerHTML = "Todavía no hay datos guardados";
+      return;
+    }
+
+
+
+
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
       cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].nombre_tarea+ "</h3>"
       cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_inicio+ "</h3>"

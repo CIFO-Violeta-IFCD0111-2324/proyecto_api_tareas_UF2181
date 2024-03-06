@@ -43,7 +43,8 @@ input {
   color: white;
   font-size: large;
   cursor: pointer;
-  position: 50%;
+  /* position: 50%; 
+  text-align: center; */
 }
 
 #crearBTN:hover {
