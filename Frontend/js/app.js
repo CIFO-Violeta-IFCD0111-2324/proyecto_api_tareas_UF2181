@@ -59,23 +59,23 @@ function borrar() {
     buttons2[i].addEventListener("click", e => {
   
       if (confirm("Estás seguro que quieres eliminar el dato?")) {
-        fetch("http://localhost:3000/api/v1/borrar", {
+        fetch("http://localhost:3001/api/v1/borrar", {
           method: "delete",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            "titulo": e.target.titulo,
-            "descripcion": e.target.descripcion,
-            "fechainicio": e.target.fechainicio,
-            "fechafinal": e.target.fechafinal
+            "id": e.target.id
+            //"descripcion": e.target.descripcion,
+            //"fechainicio": e.target.fechainicio,
+            //"fechafinal": e.target.fechafinal
 
           })
         })
           .then(res => res.json())
           .then(msg => {
-            bodyRespuesta.innerHTML += msg.mensaje;
+            mensajes.innerHTML = "eliminado";
             setTimeout(() => {
               location.reload(); // refresca página
-            }, 2000);
+            }, 1000);
           })
           .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
       }
