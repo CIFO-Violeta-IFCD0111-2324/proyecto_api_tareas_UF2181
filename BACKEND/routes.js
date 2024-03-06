@@ -59,9 +59,10 @@ router.put("/actualizarTarea", (req, res) => {
  
 });
 */
-router.delete("/borrarTarea", (req, res) => {
-  const id = req.body.id;
-  conexionMySQL.query("delete from tareas where id ="+id, err => {
+router.delete("/borrarTarea/:id", (req, res) => {
+  const idTarea = req.params.id;
+  const sql = "DELETE FROM tareas WHERE id = ?";
+  conexionMySQL.query(sql, [idTarea], err => {
     if (err) {
       res.json({
         "status": 500,
@@ -76,6 +77,8 @@ router.delete("/borrarTarea", (req, res) => {
   });
 });
 
+
+  
 ////*******Esta línea siempre al final para recoger todo lo ejecutado antes en el mismo archivo ********** */
 
 module.exports = router;
