@@ -59,7 +59,7 @@ router.put("/actualizarTarea", (req, res) => {
  
 });
 */
-router.delete("/borrarTarea/:id", (req, res) => {
+/*router.delete("/borrarTarea/:id", (req, res) => {
   const idTarea = req.params.id;
   const sql = "DELETE FROM tareas WHERE id = ?";
   conexionMySQL.query(sql, [idTarea], err => {
@@ -75,7 +75,7 @@ router.delete("/borrarTarea/:id", (req, res) => {
       });
     }
   });
-});
+});*/
 
 
   

@@ -54,8 +54,3 @@ fetch("http://localhost:3500/api/v1/leer")
   })
   .catch(error => contenedorDatos.innerHTML =error);
 
-//cruD(borrar)
-const botonEliminar = document.querySelector("");// donde esta el btn de eliminar? dentro del contenedor de datos?
-botonEliminar.addEventListener("click", => {
-  if 
-})
