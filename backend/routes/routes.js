@@ -168,8 +168,45 @@ router.get("/read", (req, res) => {
 });
 
 
-
-
+/**
+ * @swagger
+ * /delete:
+ *   delete:
+ *     summary: Eliminar una tarea
+ *     description: Eliminar una tarea de la base de datos.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 description: ID de la tarea a eliminar
+ *                 example: 1
+ *     responses:
+ *       200:
+ *         description: Tarea eliminada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensaje:
+ *                   type: string
+ *                   description: Mensaje de éxito
+ *       400:
+ *         description: Error en el proceso de eliminación
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensaje:
+ *                   type: string
+ *                   description: Mensaje de error
+ */
 router.delete("/delete", (req, res) => {
   const dato = req.body.id;
   const query = "delete from tasks where id=?;"

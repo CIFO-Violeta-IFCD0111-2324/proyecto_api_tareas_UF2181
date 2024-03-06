@@ -103,6 +103,8 @@ fetch("http://localhost:3000/api/read")
             papelera.classList.add("fa-solid");
             papelera.classList.add("fa-trash");
             papelera.setAttribute("id", tarea.id);
+
+            // cruD Delete 
             papelera.addEventListener("click", e => {
                 if (confirm("Estás seguro que quieres eliminar la tarea?")) {
                     fetch("http://localhost:3000/api/delete", {
