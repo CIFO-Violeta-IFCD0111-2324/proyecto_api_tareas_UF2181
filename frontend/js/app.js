@@ -66,6 +66,9 @@ fetch("http://localhost:3000/api/read")
     .then(datos => {
         const cajaTareas = document.getElementById("caja-de-tareas");
         const tareasOut = datos.resultado;
+        if (tareasOut.length == 0) {
+            cajaTareas.innerHTML = "Todavia no hay tareas"
+        }
         tareasOut.forEach(tarea => {
             const divTarea = document.createElement("div");
 
@@ -92,7 +95,7 @@ fetch("http://localhost:3000/api/read")
             const textFechaFin = document.createTextNode(tarea.fecha_fin.substring(0, 10));
             fechaFinElm.appendChild(textFechaFin);
             divTarea.appendChild(fechaFinElm);
-
+            
             // Append caja al html
             cajaTareas.appendChild(divTarea);
         });
