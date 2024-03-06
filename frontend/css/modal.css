@@ -35,6 +35,7 @@
 
 /* Modal Content */
 .modal-content {
+  background-color: #0a0a0a2c;
   background-color: #000000cb;
   margin: auto;
   padding: 20px;
