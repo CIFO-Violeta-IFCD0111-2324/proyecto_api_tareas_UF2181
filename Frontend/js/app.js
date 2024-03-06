@@ -33,7 +33,7 @@ fetch("http://localhost:3001/api/v1/leer")
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
       cajaResultados.innerHTML += `
         <div id="resultado">
-        <button class="borrar">borrar</button>
+        <button class="borrar" id="${arrayDatosConsulta[i].id}">borrar</button>
         <h2 id="encabezados">ID</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].id}</h3>
         <h2 id="encabezados">Titulo</h2>
@@ -57,7 +57,6 @@ function borrar() {
   const buttons2 = document.getElementsByClassName("borrar");
   for (let i = 0; i < buttons2.length; i++) {
     buttons2[i].addEventListener("click", e => {
-  
       if (confirm("Estás seguro que quieres eliminar el dato?")) {
         fetch("http://localhost:3001/api/v1/borrar", {
           method: "delete",
@@ -77,7 +76,7 @@ function borrar() {
               location.reload(); // refresca página
             }, 1000);
           })
-          .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+          .catch(error => cajaResultados.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
       }
     });
   }
