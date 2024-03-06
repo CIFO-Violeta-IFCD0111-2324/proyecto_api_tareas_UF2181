@@ -54,9 +54,9 @@ router.get("/leer", (req, res) => {
 });
 
 router.delete("/borrar", (req, res) => {
-  const tabla = req.body.tabla;
+  const idTarea = req.body.id;
   const sql = "delete from tabla where id=?";
-  conexionMySQL.query(sql, [tabla], error => {
+  conexionMySQL.query(sql, [idTarea], error => {
     if (error) {
       res.json({
         "status": 500,
