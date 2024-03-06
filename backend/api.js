@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const port = 3000;
-
+  
 const api = express();
 
 // configuracion
-api.use(express.json());
+api.use(express.json()); 
 api.use(cors());
 
 // importar las rutas

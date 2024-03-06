@@ -9,19 +9,26 @@
   <script src="./js/modal.js" defer></script>
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/modal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <div id="cajaResultados"></div>
-  <!-- Crud Crear -->
-  <button id="crearBTN">Crear Dato</button>
+  <header class="header-top">
+    <h2><span>APP web/desktop</span> que consume una <span>API REST CRUD NodeJS/MySQL</span> realizado en el curso <span>IFCD0111</span></h2>
+  </header>
+  <header class="header-bottom">
+    <button id="crearBTN"><b>GUARDAR DATO <i class="fa-solid fa-square-plus"></i></b></button>
+  </header>
+  <div id="bodyRespuesta"></div>
   <!-- Crear Modal -->
   <div id="crearMODAL" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
       <form>
+        <h3>Guardar un dato en la app</h3>
         <input type="text" id="crearINPUT">
         <button type="button" id="crearBTNform">Crear!</button>
+        <div id="modalCrearRespuesta"></div>
       </form>
     </div>
   </div>

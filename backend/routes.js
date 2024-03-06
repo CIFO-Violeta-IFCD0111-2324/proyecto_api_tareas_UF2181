@@ -10,12 +10,12 @@ router.post("/crear", (req, res) => {
     if (error) {
       res.json({
         "status": 500,
-        "mensaje": "Error en la inserción del dato. Error:" + error
+        "mensaje": "<span class='error'>Error en la inserción del dato.  Error:" + error + "</span>"
       });
     } else {
       res.json({
         "status": 200,
-        "mensaje": "Dato insertado correctamente!"
+        "mensaje": "<span class='correcto'>Dato insertado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
       });
     }
   });
@@ -27,7 +27,7 @@ router.get("/leer", (req, res) => {
     if (error) {
       res.json({
         "status": 500,
-        "mensaje": "Error en la inserción del dato. Error:" + error
+        "mensaje": "<span class='error'>Error en la lectura de los dato. Error:" + error + "</span>"
       });
     } else {
       res.json({
@@ -38,5 +38,23 @@ router.get("/leer", (req, res) => {
   });
 });
 
+// BORRAR
+router.delete("/borrar", (req, res) => {
+  const dato = req.body.dato;
+  const sql = "delete from dato where id=?";
+  conexionMySQL.query(sql, [dato], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en el borrado del dato. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Dato borrado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
+});
 
 module.exports = router;
