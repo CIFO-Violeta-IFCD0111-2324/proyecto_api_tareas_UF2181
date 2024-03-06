@@ -12,8 +12,8 @@ html, body {
 }
   
 body {
-    background-color: #aec3b0;
-    background: linear-gradient(to bottom, #537a53, #cad2c5);
+    background-color: #161515;
+    background: linear-gradient(to bottom, #2c2e2c, #e1e3df);
     font-family: "Libre Franklin", sans-serif;
 }
 
@@ -27,7 +27,7 @@ body {
 #caja-1{
     padding: 35px;
     width: 60%;
-    background-color: #043522d7;
+    background-color: #2d2f2ed7;
     color: #cad2c5;
     font-family: "Libre Franklin", sans-serif;
     border-radius: 15px;
@@ -53,7 +53,7 @@ body {
 }
 
 #caja-de-tareas > div{
-    background-color: #527853;
+    background-color: #2a2b2a;
     color: #cad2c5;
     margin: 10px;
     width: 30%;
