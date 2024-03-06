@@ -37,6 +37,9 @@ fetch("http://localhost:3001/api/v1/leer")
     
         
         <div id="resultado">
+        
+        <h2 id="encabezados">ID</h2>
+        <h3 id="contenido">${arrayDatosConsulta[i].id}</h3>
         <h2 id="encabezados">Titulo</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].titulo}</h3>
         <h2 id="encabezados" >Descripcion</h2>
