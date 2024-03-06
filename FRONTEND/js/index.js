@@ -28,7 +28,6 @@ botonGuardar.addEventListener("click", () => {
             })
         })
         .then(res => res.json())
-        //.then(mensaje => mensajes.innerHTML = mensaje)
         .then(mensaje => {
             mensajes.innerHTML = "<h1 class='titulo'> Tarea, <b>¡¡¡Insertada!!!</b></h1>";
             setTimeout(() => {
@@ -53,7 +52,9 @@ fetch("http://localhost:3500/api/v1/leer")
               contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3>"+ "<BR>"+ "<h2 class='detalle'>" +tarea.descripcion +"</h2>" + "<p>INICIO: "
                                         + (tarea.fecha_inicio ? tarea.fecha_inicio : "N/A") 
                                         + "<BR>"+"FIN: " + (tarea.fecha_fin ? tarea.fecha_fin : "N/A")
-                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ "<div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></p></div>";    }
+                                        + "<BR>"+ "<BR>"+ " ESTADO: " + tarea.Estado_tarea + "<BR>"+ "<BR>"+ "<div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></p></div>";
+                                          }
+            borrarFuncion();
           }
     })
   .catch(error => contenedorDatos.innerHTML =error);
@@ -61,6 +62,7 @@ fetch("http://localhost:3500/api/v1/leer")
   // cruD (borrar)
 function borrarFuncion() {
   const papeleras = document.querySelectorAll(".fa-trash-can");
+  console.log(papeleras);
   for (let i = 0; i < papeleras.length; i++) {
     papeleras[i].addEventListener("click", e => {
       if (confirm("Estás seguro que quieres eliminar la tarea?")) {
@@ -72,13 +74,13 @@ function borrarFuncion() {
           })
         })
           .then(res => res.json())
-          .then(msg => {
-            bodyRespuesta.innerHTML += msg.mensaje;
+          .then(mensaje => {
+            mensajes.innerHTML = "eliminado";
             setTimeout(() => {
               location.reload(); // refresca página
-            }, 2000);
+            }, 1000);
           })
-          .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+          .catch(error => mensajes.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
       }
     });
   }
