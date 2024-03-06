@@ -1,8 +1,6 @@
-
 const button = document.querySelector("button");
 
 button.addEventListener("click", () => {
-
   const titulo = document.getElementById("titulo")
   const descripcion = document.getElementById("descripcion")
   const fechainicio = document.getElementById("inicio")
@@ -20,10 +18,9 @@ button.addEventListener("click", () => {
     })
 
   })
-
     .then(res => res.json())
     .then(mensaje => {
-      document.querySelector("div").innerHTML = mensaje;
+      document.querySelector("div").innerHTML = mensaje.mensaje;
     })
 
 });
@@ -35,10 +32,8 @@ fetch("http://localhost:3001/api/v1/leer")
     const arrayDatosConsulta = basedatos.resultado;
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
       cajaResultados.innerHTML += `
-    
-        
         <div id="resultado">
-        <button id="borrar">borrar</button>
+        <button class="borrar">borrar</button>
         <h2 id="encabezados">ID</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].id}</h3>
         <h2 id="encabezados">Titulo</h2>
@@ -53,36 +48,41 @@ fetch("http://localhost:3001/api/v1/leer")
         </div>   
       `;
     }
+    borrar()
   })
   .catch(error => alert(error))
 
 
-const button2 = document.getElementById("borrar");
-for (let i = 0; i < button2.length; i++) {
-  button2[i].addEventListener("click", e => {
-    if (confirm("Estás seguro que quieres eliminar el dato?")) {
-      fetch("http://localhost:3000/api/v1/borrar", {
-        method: "delete",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          "titulo": e.target.titulo,
-          "descripcion": e.target.descripcion,
-          "fechainicio": e.target.fechainicio,
-          "fechafinal": e.target.fechafinal
+function borrar() {
+  const buttons2 = document.getElementsByClassName("borrar");
+  for (let i = 0; i < buttons2.length; i++) {
+    buttons2[i].addEventListener("click", e => {
+  
+      if (confirm("Estás seguro que quieres eliminar el dato?")) {
+        fetch("http://localhost:3000/api/v1/borrar", {
+          method: "delete",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "titulo": e.target.titulo,
+            "descripcion": e.target.descripcion,
+            "fechainicio": e.target.fechainicio,
+            "fechafinal": e.target.fechafinal
 
+          })
         })
-      })
-        .then(res => res.json())
-        .then(msg => {
-          bodyRespuesta.innerHTML += msg.mensaje;
-          setTimeout(() => {
-            location.reload(); // refresca página
-          }, 2000);
-        })
-        .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
-    }
-  });
+          .then(res => res.json())
+          .then(msg => {
+            bodyRespuesta.innerHTML += msg.mensaje;
+            setTimeout(() => {
+              location.reload(); // refresca página
+            }, 2000);
+          })
+          .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+      }
+    });
+  }
 }
+
 
 
 

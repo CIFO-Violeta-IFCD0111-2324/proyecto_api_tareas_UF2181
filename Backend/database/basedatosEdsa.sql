@@ -6,5 +6,4 @@ titulo varchar(255),
 descripcion varchar(255),
 fechainicio date,
 fechafinal date
-
 );

@@ -8,45 +8,29 @@
   <script src="./js/app.js" defer></script>
   <script src="./js/modal.js" defer></script>
   <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/modal.css">
-
+  <!-- <link rel="stylesheet" href="./css/modal.css"> -->
 </head>
-<header>
-  <form>
-    <button id="crearBTN">Crear Dato</button>
-    <label for="">Titulo</label>
-    <input type="text" placeholder="Titulo" id="titulo">
-    <label for="">Descripcion</label>
-    <input type="text" placeholder="Descripcion" id="descripcion">
-
-    <div id="fechas">
-      <label for="">Fecha inicio</label>
-      <input type="date" placeholder="Fecha inicio" id="inicio">
-      <label for="">Fecha final</label>
-      <input type="date" placeholder="Fecha final" id="fin">
-    </div>
-
-    <button type="button">Guardar Tarea!</button>
-    <div></div>
-  </form>
-</header>
 
 <body>
-  
-    <div id="cajaResultados">
+  <header>
+    <form>
+      <button type="button" id="crearBTN">Crear Dato</button>
+      <label for="">Titulo</label>
+      <input type="text" placeholder="Titulo" id="titulo">
+      <label for="">Descripcion</label>
+      <input type="text" placeholder="Descripcion" id="descripcion">
+      <div id="fechas">
+        <label for="">Fecha inicio</label>
+        <input type="date" placeholder="Fecha inicio" id="inicio">
+        <label for="">Fecha final</label>
+        <input type="date" placeholder="Fecha final" id="fin">
+      </div>
+      <button type="button">Guardar Tarea!</button>
+      <div></div>
+    </form>
+  </header>
+  <div id="cajaResultados"></div>
 
-    </div>
-  
-
-  
-  <div id="crearMODAL" class="modal"></div>
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    
-      
-    
-  </div>
-  </div>
 </body>
 
 </html>
