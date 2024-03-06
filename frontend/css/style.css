@@ -5,18 +5,23 @@
     margin: 0;
     box-sizing: border-box;
 }
-  
-html, body {
+
+html,
+body {
     height: 100%;
     width: 100%;
 }
-  
+
 body {
-    background-color: #aec3b0;
-    background: linear-gradient(to bottom, #537a53, #cad2c5);
     font-family: "Libre Franklin", sans-serif;
+    display: flex;
 }
 
+main {
+    background: rgb(97, 102, 96);
+    background: linear-gradient(180deg, rgba(97, 102, 96, 1) 0%, rgba(187, 187, 230, 1) 72%, rgba(236, 252, 255, 1) 100%);
+    flex: 1;
+}
 
 .close-caja {
     display: flex;
@@ -24,7 +29,7 @@ body {
 }
 
 
-#caja-1{
+#caja-1 {
     padding: 35px;
     width: 60%;
     background-color: #043522d7;
@@ -34,7 +39,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 #label-descrip {
@@ -46,24 +50,19 @@ body {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: #0d131185;
     border-radius: 15px;
 }
 
-#caja-de-tareas > div{
-    background-color: #527853;
-    color: #cad2c5;
+#caja-de-tareas>div {
+    color: #000000;
     margin: 10px;
     width: 30%;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .addTarea {
-    margin: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,4 +75,46 @@ body {
 .fa-trash:hover {
     color: #7a7a7a;
     cursor: pointer;
+}
+
+.nota-azul {
+    background-image: url("./imagenes/nota_azul.png");
+    background-size: cover;
+    padding: 50px;
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
+
+.nota-lila {
+    background-image: url("./imagenes/nota_lila.png");
+    background-size: cover;
+    padding: 50px;
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
+
+.nota-naranja {
+    background-image: url("./imagenes/nota_naranja.png");
+    background-size: cover;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
+
+.nota-roja {
+    background-image: url("./imagenes/nota_roja.png");
+    background-size: cover;
+    padding: 50px;
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
+
+.nota-turquesa {
+    background-image: url("./imagenes/nota_turquesa.png");
+    background-size: cover;
+    padding: 50px;
+    padding-top: 100px;
+    padding-left: 80px;
+    padding-bottom: 120px;
 }

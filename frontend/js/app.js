@@ -72,7 +72,7 @@ fetch("http://localhost:3000/api/read")
         }
         tareasOut.forEach(tarea => {
             const divTarea = document.createElement("div");
-            
+            divTarea.classList.add(setNota())
             // Elemento del nombre
             const nombreElm = document.createElement("h3");
             const textNombre = document.createTextNode(tarea.nombre);
@@ -118,7 +118,7 @@ fetch("http://localhost:3000/api/read")
                         .then(msg => {
                             divRespuestas.innerHTML += msg.mensaje;
                             setTimeout(() => {
-                                location.reload(); 
+                                location.reload();
                             }, 1000)
                         })
                         .catch(error => divRespuestas.innerHTML = error);
@@ -138,5 +138,12 @@ function deleteTask() {
 }
 
 
+function setNota() {
+    const notasArray = ["nota-azul", "nota-lila", "nota-naranja", "nota-roja", "nota-turquesa"]
 
+    const randomNum = Math.floor(Math.random()*notasArray.length)
 
+    return notasArray[randomNum]
+}
+
+console.log(setNota())
