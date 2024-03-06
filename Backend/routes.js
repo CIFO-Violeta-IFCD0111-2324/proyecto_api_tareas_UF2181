@@ -52,5 +52,22 @@ router.get("/leer", (req, res) => {
   });
 });
 
+router.delete("/borrar", (req, res) => {
+  const tabla = req.body.tabla;
+  const sql = "delete from tabla where id=?";
+  conexionMySQL.query(sql, [tabla], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en el borrado del dato. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Dato borrado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
+});
 
   module.exports = router;
