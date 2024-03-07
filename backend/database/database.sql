@@ -4,7 +4,8 @@ use datos;
 
 create table dato (
   id varchar(255) primary key,
-  dato varchar(255) 
+  dato varchar(255),
+  posicion_dato int
 );
 
 select * from dato;

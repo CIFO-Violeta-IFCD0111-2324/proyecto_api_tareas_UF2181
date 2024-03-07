@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const util = require("util"); 
 
 const conexionMySQL = mysql.createConnection({
   host: 'localhost',
@@ -6,6 +7,9 @@ const conexionMySQL = mysql.createConnection({
   password: '',
   database: 'datos',
 });
+
+// promise wrapper to enable async await with MYSQL
+conexionMySQL.query = util.promisify(conexionMySQL.query).bind(conexionMySQL);
 
 conexionMySQL.connect(err => {
   if (err) {

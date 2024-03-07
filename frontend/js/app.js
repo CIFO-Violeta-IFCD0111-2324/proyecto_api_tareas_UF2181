@@ -1,34 +1,78 @@
 import resetForms from "./functions.js";
-
-// get elementos
+// get elementos de mensaje de respuesta
 const bodyRespuesta = document.getElementById("bodyRespuesta");
 const modalCrearRespuesta = document.getElementById("modalCrearRespuesta");
-const crearBTNform = document.getElementById("crearBTNform");
-const editarBTNform = document.getElementById("editarBTNform");
+
+// codigo optimizado con funcion que gestiona los fetchings a la API, mostrar mensajes y recargar página en la primera ruta (CREAR)
+// TODO: Optimizar las que faltan
+
+const apiUrl = "http://localhost:3000/api/v1/";
+
+function fetchData(url, method, bodyData) {
+  return fetch(url, {
+    method: method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(bodyData)
+  })
+  .then(response => response.json())
+  .catch(error => console.error("Error en servidor:", error));
+}
+
+function showMessage(message, container) {
+  container.innerHTML = message;
+}
+
+function reloadPage() {
+  setTimeout(() => {
+    location.reload(); // refresca página
+  }, 2000);
+}
 
 // Crud (crear)
+const crearBTNform = document.getElementById("crearBTNform");
+const crearINPUT = document.getElementById("crearINPUT");
+
 crearBTNform.addEventListener("click", () => {
-  const crearINPUT = document.getElementById("crearINPUT");
   if (crearINPUT.value.length === 0) {
     alert("Añade un dato!");
     return;
   }
-  fetch("http://localhost:3000/api/v1/crear", {
-    method: "post",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      "dato": crearINPUT.value
-    })
-  })
-    .then(res => res.json())
-    .then(msg => {
-      modalCrearRespuesta.innerHTML = msg.mensaje;
-      setTimeout(() => {
-        location.reload(); // refresca página
-      }, 2000);
-    })
-    .catch(error => modalCrearRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+ 
+  fetchData(apiUrl + "crear", "post", { dato: crearINPUT.value })
+      .then(msg => {
+        showMessage(msg.mensaje, modalCrearRespuesta);
+        reloadPage();
+      })
+      .catch(error => showMessage("<h3 class='error'>Error en servidor!</h3>", modalCrearRespuesta));
+
 });
+
+// version "old"
+
+// // Crud (crear)
+// crearBTNform.addEventListener("click", () => {
+//   const crearBTNform = document.getElementById("crearBTNform");
+//   const crearINPUT = document.getElementById("crearINPUT");
+//   if (crearINPUT.value.length === 0) {
+//     alert("Añade un dato!");
+//     return;
+//   }
+//   fetch("http://localhost:3000/api/v1/crear", {
+//     method: "post",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       "dato": crearINPUT.value
+//     })
+//   })
+//     .then(res => res.json())
+//     .then(msg => {
+//       modalCrearRespuesta.innerHTML = msg.mensaje;
+//       setTimeout(() => {
+//         location.reload(); // refresca página
+//       }, 2000);
+//     })
+//     .catch(error => modalCrearRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+// });
 
 // cRud (leer)
 fetch("http://localhost:3000/api/v1/leer")
@@ -42,7 +86,7 @@ fetch("http://localhost:3000/api/v1/leer")
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
       bodyRespuesta.innerHTML += `
         <div class="caja-dato">
-          <h4>Dato ${i+1}</h4><hr>
+          <h4>Dato ${arrayDatosConsulta[i].posicion_dato}</h4><hr>
           <h3>${arrayDatosConsulta[i].dato}</h3><hr>
           <i class="fa-solid fa-pen-to-square editarBTN" datoEditarAtributo="${arrayDatosConsulta[i].id}"></i>
           <i class="fa-solid fa-trash" datoBorrarAtributo="${arrayDatosConsulta[i].id}"></i>
@@ -106,29 +150,41 @@ function editarDatoFuncion() {
     editarMODAL.style.display = "none";
     resetForms();
   }
-
   // DETECTAR SI HA HABIDO CAMBIO EN EL FORM DE EDITAR, SI HUBO EDITA EL DATO EN SERVIDOR
-  // const editarForm = document.querySelectorAll("form")[1];
+  const editarBTNform = document.getElementById("editarBTNform");
+  const editarForm = document.querySelectorAll("form")[1];
+  // Gestiona si ha habido cambios en el form
+  let cambioForm = false;
+  editarForm.addEventListener("change", () => {
+    cambioForm = true;
+  })
+
   editarBTNform.addEventListener("click", () => {
-    // editarForm.addEventListener("change", () => {
-      fetch("http://localhost:3000/api/v1/editar", {
-        method: "put",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          "dato": editarINPUT.value,
-          "id": id
-        })
+    if (!cambioForm) {
+      alert("Modifica el dato!");
+      return;
+    }
+    
+    if (editarINPUT.value.length === 0) {
+      alert("Añade un dato!");
+      return;
+    }
+    fetch("http://localhost:3000/api/v1/editar", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        "dato": editarINPUT.value,
+        "id": id
       })
-        .then(res => res.json())
-        .then(msg => {
-          modalEditarRespuesta.innerHTML = msg.mensaje;
-          setTimeout(() => {
-            location.reload(); // refresca página
-          }, 2000);
-        })
-        .catch(error => modalEditarRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
-    });
-    const modalEditarRespuesta = document.getElementById("modalEditarRespuesta");
-    modalEditarRespuesta.innerHTML = "<h3 class='error'>Añade un cambio en el dato!</h3>";
-  // });
+    })
+      .then(res => res.json())
+      .then(msg => {
+        modalEditarRespuesta.innerHTML = msg.mensaje;
+        setTimeout(() => {
+          location.reload(); // refresca página
+        }, 2000);
+      })
+      .catch(error => modalEditarRespuesta.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+  });
+  const modalEditarRespuesta = document.getElementById("modalEditarRespuesta");
 }
