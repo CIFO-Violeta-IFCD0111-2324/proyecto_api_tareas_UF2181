@@ -11,5 +11,3 @@ create table tasks(
 );
 
 select * from tasks;
-
-
