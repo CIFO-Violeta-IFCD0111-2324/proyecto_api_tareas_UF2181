@@ -143,5 +143,3 @@ function setNota(id) {
     const index = id % notasArray.length;
     return notasArray[index];
 }
-
-console.log(setNota())
