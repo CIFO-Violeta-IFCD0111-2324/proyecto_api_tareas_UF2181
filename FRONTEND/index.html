@@ -40,13 +40,14 @@
           <div class="modal-content">
             <div class="row">
               <div class="col-50">
-                <h3>Descripción de la tarea</h3>
+                <h3 id="titulo_tarea">Descripción de la tarea</h3>
               </div>
               <div class="col-50"><span class="close">&times;</span></div>              
             </div>
             <div class="row">
               <div class="col-100">
-                <textarea id="descripcion" cols="50" rows="5"></textarea>
+                <textarea id="descripcion" cols="50" rows="5" maxlength="30"></textarea>
+                <span style="font-size: xx-small;"> Máximo 30 Carácteres</span>
               </div>
             </div>
             <div class="row">

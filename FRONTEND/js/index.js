@@ -3,12 +3,16 @@ const botonGuardar = document.querySelector("#GuardarTarea");
 const mensajes = document.querySelector("#mensajes");
 
 botonGuardar.addEventListener("click", () => {
+    // campos del formulario
     const campoDescripcion = document.querySelector("#descripcion");
     const campoFecha_inicio = document.querySelector("#fecha_inicio");
     const campoFecha_final = document.querySelector("#fecha_final");
     const campoEstadoTarea = document.querySelector("#estadoTarea");
 
-    
+    // variable del total de caracteres que aceptaremos
+    const caracteresMax = 20;
+
+    //este if comprueba que los datos que llegan no estén vacíos
     if (campoDescripcion.value.length === 0 ||
         campoFecha_inicio.value.length === 0 || 
         campoFecha_final.value.length === 0 || 
@@ -16,6 +20,11 @@ botonGuardar.addEventListener("click", () => {
             mensajes.innerHTML = "Campos vacios!";
             return;
         }
+    
+    if (campoDescripcion.value.length >= caracteresMax){
+      mensajes.innerHTML = "La descripción es demasiado larga";
+      return;
+    }    
     const url = "http://localhost:3500/api/v1/crearTarea";
     fetch(url, {
         method: "post",
@@ -49,7 +58,16 @@ fetch("http://localhost:3500/api/v1/leer")
      }else{
             for (let i = 0; i < arrayDatosConsulta.length; i++) {
               const tarea = arrayDatosConsulta[i];
-              contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3><h2 class='detalle'>" + tarea.descripcion + "</h2><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
+                                // Obtener la descripción y dividirla en fragmentos de 10 caracteres
+                                const descripcion = tarea.descripcion;
+                                const fragmentos = [];
+                                for (let j = 0; j < descripcion.length; j += 15) {
+                                    fragmentos.push(descripcion.substring(j, j + 15));
+                                }
+                                // Unir los fragmentos con saltos de línea o <br>
+                                const descripcionConSaltos = fragmentos.join("<br>");
+
+                contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3><h2 class='detalle'>" + descripcionConSaltos + "</h2><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
                 }
             borrarFuncion();
           }
