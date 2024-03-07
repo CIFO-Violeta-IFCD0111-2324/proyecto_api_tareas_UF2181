@@ -12,6 +12,7 @@ botonGuardar.addEventListener("click", () => {
     // variable del total de caracteres que aceptaremos
     const caracteresMax = 20;
 
+
     //este if comprueba que los datos que llegan no estén vacíos
     if (campoDescripcion.value.length === 0 ||
         campoFecha_inicio.value.length === 0 || 
@@ -38,13 +39,12 @@ botonGuardar.addEventListener("click", () => {
         })
         .then(res => res.json())
         .then(mensaje => {
-            mensajes.innerHTML = "<h1 class='titulo'> Tarea, <b>¡¡¡Insertada!!!</b></h1>";
-            setTimeout(() => {
-              location.reload(); // refresca página
+            mensajes.innerHTML = "<h1 class='titulo'> Tarea: " + campoDescripcion.value + " <b>¡¡¡Insertada!!!</b></h1>";
+            setTimeout(() => {// refresca página
+              location.reload(); 
             }, 1000);
           })
-        .catch(error => alert(error))
-        
+        .catch(error => contenedorDatos.innerHTML =error);
 });
 
 // cRud (leer)
