@@ -51,6 +51,10 @@ main {
     font-weight: 600;
 }
 
+#myBtn{
+    background-color: #5e5d5d;
+    color: black;
+}
 #label-descrip {
     font-weight: 600;
 }
