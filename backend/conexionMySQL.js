@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const util = require("util"); 
 
 // const conexionMySQL = mysql.createConnection({
@@ -10,7 +10,7 @@ const util = require("util");
 
 // railway
 
-const conexionMySQL = mysql.createConnection({
+const conexionMySQL = mysql.createPool({
   host: 'monorail.proxy.rlwy.net',
   user: 'root',
   password: 'F5aFEHgECaHGeFB4Hd3Ag5C64b6g625C',
@@ -20,11 +20,11 @@ const conexionMySQL = mysql.createConnection({
 // promise wrapper to enable async await with MYSQL
 conexionMySQL.query = util.promisify(conexionMySQL.query).bind(conexionMySQL);
 
-conexionMySQL.connect(err => {
-  if (err) {
-    console.log('Error en la conexión MySQL:', err);
-  }
-  console.log('Base de datos MySQL conectada!');
-});
+// conexionMySQL.connect(err => {
+//   if (err) {
+//     console.log('Error en la conexión MySQL:', err);
+//   }
+//   console.log('Base de datos MySQL conectada!');
+// });
 
 module.exports = conexionMySQL;
