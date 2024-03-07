@@ -31,7 +31,7 @@ main {
 #caja-1 {
     padding: 35px;
     width: 60%;
-    color: #cad2c5;
+    color: #000;
     font-family: "Libre Franklin", sans-serif;
     border-radius: 15px;
     display: flex;
@@ -39,6 +39,10 @@ main {
     align-items: center;
 }
 
+#myBtn{
+    background-color: #5e5d5d;
+    color: black;
+}
 #label-descrip {
     font-weight: 600;
 }
