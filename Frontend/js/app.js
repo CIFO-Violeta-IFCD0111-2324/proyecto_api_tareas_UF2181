@@ -1,4 +1,4 @@
-const button = document.querySelector("button");
+const button = document.getElementById("crearBTN");
 
 button.addEventListener("click", () => {
   const titulo = document.getElementById("titulo")
@@ -89,6 +89,18 @@ function borrar() {
     });
   }
 }
+
+const subir = document.getElementById('subir');
+subir.addEventListener('click', () => {
+  window.scrollTo(0,0);
+})
+const bajar = document.getElementById('bajar');
+bajar.addEventListener('click', () => {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+})
+})
+
 
 
 
