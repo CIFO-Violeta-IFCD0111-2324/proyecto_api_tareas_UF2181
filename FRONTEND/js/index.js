@@ -39,7 +39,7 @@ botonGuardar.addEventListener("click", () => {
         })
         .then(res => res.json())
         .then(mensaje => {
-            mensajes.innerHTML = "<h1 class='titulo'> Tarea: " + campoDescripcion.value + " <b>¡¡¡Insertada!!!</b></h1>";
+            mensajes.innerHTML = "<h1 class='titulo'> Tarea <b>¡¡¡Insertada!!!</b></h1>";
             setTimeout(() => {// refresca página
               location.reload(); 
             }, 1000);
@@ -77,25 +77,24 @@ fetch("http://localhost:3500/api/v1/leer")
   // cruD (borrar)
 function borrarFuncion() {
   const papeleras = document.querySelectorAll(".fa-trash-can");
-  console.log(papeleras);
   for (let i = 0; i < papeleras.length; i++) {
-    papeleras[i].addEventListener("click", e => {
+    papeleras[i].addEventListener("click", papelerita => {
       if (confirm("Estás seguro que quieres eliminar la tarea?")) {
         fetch("http://localhost:3500/api/v1/borrar", {
           method: "delete",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            "id": e.target.id
+            "id": papelerita.target.id
           })
         })
           .then(res => res.json())
           .then(mensaje => {
-            mensajes.innerHTML = "eliminado";
+            alert("Tarea eliminada, buen trabajo");
             setTimeout(() => {
               location.reload(); // refresca página
             }, 1000);
           })
-          .catch(error => mensajes.innerHTML = "<h3 class='error'>Error en servidor!</h3>");
+          .catch(error => mensajes.innerHTML = "<h3>Error en servidor!</h3>");
       }
     });
   }
