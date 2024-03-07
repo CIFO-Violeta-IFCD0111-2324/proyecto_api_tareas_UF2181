@@ -224,7 +224,7 @@ router.delete("/delete", (req, res) => {
       });
     } else {
       res.status(200).json({
-        "mensaje": "Dato borrado correctamente"
+        "mensaje": "<span class='correcto'>Dato borrado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
       });
     }
   })

@@ -19,7 +19,9 @@
 
 <body>
   <header>
+    <div>
 
+    </div>
   </header>
 
   <main>
@@ -31,19 +33,19 @@
     </div>
 
     <!-- Div del contenedor de tareas -->
-    <div class="container">
+    <div class="container d-flex justify-content-center">
       <div id="caja-de-tareas">
       </div>
     </div>
 
     <!-- contenedor de respuestas -->
-    <div class="respuestas">
-      <div class="fa-0.1x">
-        <i class="fas fa-sync fa-spin"></i>
-      </div>
-    </div>
   </main>
 
+  <div id="caja-respuestas">
+    <!-- <div class="fa-0.1x">
+      <i class="fas fa-sync fa-spin"></i>
+    </div> -->
+  </div>
 
   <!-- Modal content -->
   <div id="myModal" class="modal">
@@ -84,7 +86,7 @@
           Introduzca la descripcion
         </div>
       </div>
-      <div>
+      <div class="divBotton">
         <button type="button" class="btn btn-light">Añadir Tarea</button>
       </div>
     </form>

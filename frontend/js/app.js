@@ -65,14 +65,14 @@ fetch("http://localhost:3000/api/read")
     .then(res => res.json())
     .then(datos => {
         const cajaTareas = document.getElementById("caja-de-tareas");
-        const divRespuestas = document.getElementsByClassName("respuestas");
+        const divRespuestas = document.querySelector("div#caja-respuestas");
         const tareasOut = datos.resultado;
         if (tareasOut.length == 0) {
             cajaTareas.innerHTML = "Todavia no hay tareas"
         }
         tareasOut.forEach(tarea => {
             const divTarea = document.createElement("div");
-            divTarea.classList.add(setNota())
+            divTarea.classList.add(setNota(tarea.id))
             // Elemento del nombre
             const nombreElm = document.createElement("h3");
             const textNombre = document.createTextNode(tarea.nombre);
@@ -116,12 +116,12 @@ fetch("http://localhost:3000/api/read")
                     })
                         .then(res => res.json())
                         .then(msg => {
-                            divRespuestas.innerHTML += msg.mensaje;
+                            divRespuestas.innerHTML = msg.mensaje;
                             setTimeout(() => {
                                 location.reload();
-                            }, 1000)
+                            }, 3000)
                         })
-                        .catch(error => divRespuestas.innerHTML = error);
+                        .catch(error => divRespuestas.innerHTML = error.mensaje);
                 }
             });
             divTarea.appendChild(papelera);
@@ -138,12 +138,10 @@ function deleteTask() {
 }
 
 
-function setNota() {
+function setNota(id) {
     const notasArray = ["nota-azul", "nota-lila", "nota-naranja", "nota-roja", "nota-turquesa"]
-
-    const randomNum = Math.floor(Math.random()*notasArray.length)
-
-    return notasArray[randomNum]
+    const index = id % notasArray.length;
+    return notasArray[index];
 }
 
 console.log(setNota())
