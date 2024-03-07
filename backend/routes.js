@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const CryptoJS = require("crypto-js");
-const { uuid } = require('uuidv4');
 
 const conexionMySQL = require('./conexion_mysql.js');
 // CREAR
@@ -10,14 +8,9 @@ router.post("/crear", (req, res) => {
   let fecha_inicio = req.body.fecha_inicio;
   let fecha_fin = req.body.fecha_fin;
   let descripcion = req.body.descripcion;
-  let id = uuid();
-// encriptamos los datos
-const datoEncriptadoN = CryptoJS.AES.encrypt(nombre_tarea, 'textoSecreto').toString();
-const datosEncriptadoFI = CryptoJS.AES.encrypt(fecha_inicio, 'textoSecreto').toString();
-const datosEncriptadoFF = CryptoJS.AES.encrypt(fecha_fin, 'textoSecreto').toString();
-const datosEncriptadoD = CryptoJS.AES.encrypt(descripcion, 'textoSecreto').toString();
-  const sql = "insert into tareas values (?, ?, ?, ?, ?)";
-  conexionMySQL.query(sql, [id, datoEncriptadoN, datosEncriptadoFI, datosEncriptadoFF, datosEncriptadoD ], error => {
+
+  const sql = "insert into tareas values (default, ?, ?, ?, ?)";
+  conexionMySQL.query(sql, [nombre_tarea, fecha_inicio, fecha_fin, descripcion ], error => {
     if (error) {
       res.json({
         "status": 500,
@@ -32,8 +25,6 @@ const datosEncriptadoD = CryptoJS.AES.encrypt(descripcion, 'textoSecreto').toStr
   });
 });
 
-
-
 //LEER 
 router.get("/leer", (req, res) => {
   const sql = "select * from tareas;";
@@ -41,7 +32,7 @@ router.get("/leer", (req, res) => {
     if (error) {
       res.json({
         "status": 500,
-        "mensaje": "Error en la inserción del dato. Error" + error
+        "mensaje": "Error en la lectura de los datos. Error" + error
       });
     } else {
       // desencriptar datos
