@@ -11,7 +11,7 @@ const util = require("util");
 // railway
 
 const conexionMySQL = mysql.createConnection({
-  host: 'https://monorail.proxy.rlwy.net',
+  host: 'monorail.proxy.rlwy.net',
   user: 'root',
   password: 'F5aFEHgECaHGeFB4Hd3Ag5C64b6g625C',
   database: 'railway',
