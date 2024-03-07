@@ -53,12 +53,9 @@ router.get("/leer", (req, res) => {
 });
 
 
-/*
 
-router.put("/actualizarTarea", (req, res) => {
- 
-});
-*/
+//router.put("/actualizarTarea", (req, res) => {});
+
 // BORRAR
 router.delete("/borrar", (req, res) => {
   const idTarea = req.body.id;

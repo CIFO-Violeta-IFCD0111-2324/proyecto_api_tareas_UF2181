@@ -44,7 +44,7 @@ botonGuardar.addEventListener("click", () => {
         })
         .then(res => res.json())
         .then(mensaje => {
-            mensajes.innerHTML = "<h1 class='titulo'> Tarea <b>¡¡¡Insertada!!!</b></h1>";
+            mensajes.innerHTML = "Tarea <b>¡¡¡Insertada!!!</b>";
             setTimeout(() => {// refresca página
               location.reload(); 
             }, 1000);
@@ -99,7 +99,7 @@ function borrarFuncion() {
               location.reload(); // refresca página
             }, 1000);
           })
-          .catch(error => mensajes.innerHTML = "<h3>Error en servidor!</h3>");
+          .catch(error => mensajes.innerHTML = "Error en servidor!");
       }
     });
   }
