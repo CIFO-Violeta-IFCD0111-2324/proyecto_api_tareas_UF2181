@@ -17,8 +17,6 @@ body {
     font-family: "Libre Franklin", sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
     background-size: cover;
     background-image: url("./imagenes/ladrillo4.jpg");
 }
@@ -33,18 +31,21 @@ header>div:nth-of-type(1) {
     text-transform: uppercase;  
 }
 
-.logo>img{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;  
-    border: 2px solid #333; 
-    transition: transform 0.3s ease; 
+.logo myBtn {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
 }
-.logo>img:hover {
-    transform: scale(1.1); 
-}
-main {
     
+.logo img {
+    width: 100px; 
+    height: auto; 
+    display: block; 
+
+}
+
+main {
     flex: 1;
 }
 
@@ -66,19 +67,11 @@ main {
     font-weight: 600;
 }
 
-#myBtn {
-    background-color: #ababab;
-    color: black;
-    transition: 300ms;
-}
 
-#myBtn:hover {
-    background-color: #e2e2e2;
-}
+.btn-primary {} 
 
-#myBtn:active {
-    background-color: #2c2c2c;
-}
+
+
 
 #label-descrip {
     font-weight: 600;
@@ -103,7 +96,8 @@ main {
     border-image: url("./imagenes/madera2.jpg") 20;
     border-image-width: 18px;
     border-image-outset: 18px;
-    overflow-y: scroll;
+    overflow-y: scroll;  
+    box-shadow: 3px 30000px 100px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -141,6 +135,7 @@ main {
 
 #caja-de-tareas>div>h4 {
 
+    text-align: center;
     font-size: 1.5em;
     text-transform: uppercase;
     font-weight: bold;
@@ -158,14 +153,14 @@ main {
     font-weight: 400;
     font-style: normal;
     font-size: 1em;
-
+    text-align:center;
 
 }
 #caja-de-tareas>div span {
     font-size: 14px;
     font-weight: 600;
     font-family: "Indie Flower", cursive;
-
+    text-align:center;
 }
 
 #caja-de-tareas>div span:nth-of-type(1) {
