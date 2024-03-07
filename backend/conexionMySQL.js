@@ -1,11 +1,20 @@
 const mysql = require('mysql');
 const util = require("util"); 
 
+// const conexionMySQL = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   database: 'datos',
+// });
+
+// railway
+
 const conexionMySQL = mysql.createConnection({
-  host: 'localhost',
+  host: 'https://monorail.proxy.rlwy.net',
   user: 'root',
-  password: '',
-  database: 'datos',
+  password: 'F5aFEHgECaHGeFB4Hd3Ag5C64b6g625C',
+  database: 'railway',
 });
 
 // promise wrapper to enable async await with MYSQL
