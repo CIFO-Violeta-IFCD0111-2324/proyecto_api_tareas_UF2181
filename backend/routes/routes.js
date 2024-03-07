@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const router = express.Router();
 const cors = require("cors");
 
+const conexionDB = require("../conexionMySQL");
 
 // Utilidades
 router.use(cors());
@@ -75,30 +76,15 @@ router.use(express.json());
  */
 router.post("/insert", (req, res) => {
   //Importar conexion DB:
-  const conexionDB = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "task_db",
-  });
-
   const tarea = req.body;
-  conexionDB.connect((err) => {
+  const query = 'insert into tasks values (default,?,?,?,?)';
+  conexionDB.query(query, [tarea.nombre, tarea.descripcion, tarea.fecha_inicio, tarea.fecha_fin], (err) => {
     if (err) {
-      res.status(500).json("Error en la conexion MySQL: " + err);
+      res.status(400).json("Error en la insercion de la tarea: " + err);
     } else {
-
-      const query = 'insert into tasks values (default,?,?,?,?)';
-      conexionDB.query(query, [tarea.nombre,tarea.descripcion,tarea.fecha_inicio,tarea.fecha_fin],  (err) => {
-        if (err) {
-          res.status(400).json("Error en la insercion de la tarea: " + err);
-        } else {
-          res.status(200).json("Tarea insertada correctamente!");
-        }
-      });
+      res.status(200).json("Tarea insertada correctamente!");
     }
   });
-
 });
 
 /**
@@ -146,12 +132,6 @@ router.post("/insert", (req, res) => {
  *                   description: Mensaje de error
  */
 router.get("/read", (req, res) => {
-  const conexionDB = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "task_db",
-  });
 
   const query = "select * from tasks";
   conexionDB.query(query, (error, result) => {
@@ -210,15 +190,9 @@ router.get("/read", (req, res) => {
 router.delete("/delete", (req, res) => {
   const dato = req.body.id;
   const query = "delete from tasks where id=?;"
-  const conexionDB = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "task_db",
-  });
 
   conexionDB.query(query, [dato], error => {
-    if(error) {
+    if (error) {
       res.status(400).json({
         "mensaje": "Error en el borrado del dato" + error
       });
