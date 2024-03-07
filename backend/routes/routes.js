@@ -3,6 +3,9 @@ const express = require("express");
 const mysql = require("mysql");
 const router = express.Router();
 const cors = require("cors");
+const CryptoJS = require("crypto-js");
+const { v4: uuid_v4 } = require('uuid');
+
 
 const conexionDB = require("../conexionMySQL");
 
@@ -205,7 +208,29 @@ router.delete("/delete", (req, res) => {
 });
 
 
-
+router.put("/editar", (req, res) => {
+  const nombre = req.body.nombre;
+  const desc = req.body.descripcion;
+  const fechaIn = req.body.fecha_inicio;
+  const id = req.body.id;
+  // encriptamos el dato
+  const nombreCrypt = CryptoJS.AES.encrypt(nombre, 'miTextoSecreto').toString();
+  const descCrypt = CryptoJS.AES.encrypt(desc, 'miTextoSecreto').toString();
+  const sql = "update dato set nombre = ?,descripcion=?,fecha_inicio=?,fecha_fin=? where id = ?";
+  conexionMySQL.query(sql, [nombreCrypt,descCrypt, id], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en la edición del dato. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
+});
 
 
 
