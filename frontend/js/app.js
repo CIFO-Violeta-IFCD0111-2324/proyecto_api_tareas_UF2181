@@ -142,6 +142,5 @@ function setNota(id) {
     const notasArray = ["nota-azul", "nota-lila", "nota-naranja", "nota-roja", "nota-turquesa"]
     const index = id % notasArray.length;
     return notasArray[index];
-}
+};
 
-console.log(setNota())
