@@ -55,7 +55,7 @@ fetch("http://localhost:3500/api/v1/leer")
               contenedorDatos.innerHTML += "<div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div>";
               contenedorDatos.innerHTML += "<div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div>";
               contenedorDatos.innerHTML += "<div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
-                                          }
+                }
             borrarFuncion();
           }
     })
