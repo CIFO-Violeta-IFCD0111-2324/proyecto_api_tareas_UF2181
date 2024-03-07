@@ -1,7 +1,8 @@
+
 body {
-    padding: 100px;
+    padding: 20px;
     text-align: center;
-    background-color: rgba(3, 73, 61, 0.486);
+    background: linear-gradient(70deg, rgb(255, 0, 0), rgba(51, 0, 255, 0.305));
 
 
 }
@@ -10,6 +11,12 @@ body {
     height:10px;
     justify-content: center;
     align-items: center;
+}
+
+.borrar:hover{
+    
+    cursor: pointer;
+    background-color: aqua;
 }
 
 input {
@@ -42,6 +49,12 @@ button {
     margin-top: 2px;
     padding: 20px;
     border-radius: 30px;
+}
+
+button:hover{
+    
+    cursor: pointer;
+    background-color: aqua;
 }
 
 h3 {
@@ -79,8 +92,9 @@ h2 {
 }
 
 #resultado {
+    margin: 4px;
     display: flex;
-    background-color: aquamarine;
+    background: linear-gradient(70deg, rgb(255, 0, 0), rgba(51, 0, 255, 0.305));
     padding: 10px;
     border-radius: 10px;
     border: solid 5px black;
@@ -90,8 +104,8 @@ h2 {
 
 
     text-align: left;
-    font-size: medium;
-    background-color: aquamarine;
+    font-size: x-large;
+    background: linear-gradient(70deg, rgb(255, 0, 0), rgba(51, 0, 255, 0.305));
     border-color: black;
     border-width: 5px;
     
