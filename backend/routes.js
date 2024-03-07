@@ -83,7 +83,7 @@ router.get("/leer", (req, res) => {
     if (error) {
       res.json({
         "status": 500,
-        "mensaje": "<span class='error'>Error en la lectura de los dato. Error:" + error + "</span>"
+        "mensaje": "<span class='error'>Error en la lectura de los datos. Error:" + error + "</span>"
       });
     } else {
       // desencriptar el dato
