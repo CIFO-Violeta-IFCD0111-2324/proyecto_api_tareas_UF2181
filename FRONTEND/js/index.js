@@ -10,7 +10,7 @@ botonGuardar.addEventListener("click", () => {
     const campoEstadoTarea = document.querySelector("#estadoTarea");
 
     // variable del total de caracteres que aceptaremos
-    const caracteresMax = 30;
+    const caracteresMax = 20;
 
     //este if comprueba que los datos que llegan no estén vacíos
     if (campoDescripcion.value.length === 0 ||
@@ -61,8 +61,8 @@ fetch("http://localhost:3500/api/v1/leer")
                                 // Obtener la descripción y dividirla en fragmentos de 10 caracteres
                                 const descripcion = tarea.descripcion;
                                 const fragmentos = [];
-                                for (let j = 0; j < descripcion.length; j += 10) {
-                                    fragmentos.push(descripcion.substring(j, j + 10));
+                                for (let j = 0; j < descripcion.length; j += 15) {
+                                    fragmentos.push(descripcion.substring(j, j + 15));
                                 }
                                 // Unir los fragmentos con saltos de línea o <br>
                                 const descripcionConSaltos = fragmentos.join("<br>");
