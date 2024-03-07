@@ -89,6 +89,7 @@ main {
     background-size: cover;
     border-image: url("./imagenes/madera2.jpg") 30;
     border-image-width: 18px;
+    border-image-outset: 18px;
     overflow-y: scroll;
 }
 
