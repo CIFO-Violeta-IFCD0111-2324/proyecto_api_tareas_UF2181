@@ -6,6 +6,7 @@ const conexionMySQL = mysql.createConnection({
   "user": "root",
   "password": "",
   "database": "basedatos"
+  
 });
 conexionMySQL.connect(err => {
   if (err) {

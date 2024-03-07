@@ -5,6 +5,8 @@ button.addEventListener("click", () => {
   const descripcion = document.getElementById("descripcion")
   const fechainicio = document.getElementById("inicio")
   const fechafinal = document.getElementById("fin")
+  const portada = document.getElementById("portada")
+
 
   const url = "http://localhost:3001/api/v1/insertar";
   fetch(url, {
@@ -14,7 +16,8 @@ button.addEventListener("click", () => {
       "titulo": titulo.value,
       "descripcion": descripcion.value,
       "fechainicio": fechainicio.value,
-      "fechafinal": fechafinal.value
+      "fechafinal": fechafinal.value,
+      "portada":portada.value
     })
 
   })
@@ -43,11 +46,13 @@ fetch("http://localhost:3001/api/v1/leer")
         <h3 id="contenido">${arrayDatosConsulta[i].titulo}</h3>
         <h2 id="encabezados" >Descripcion</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].descripcion}  </h3>
+        <h2 id="encabezados">portada</h2>
+        <h3 id="contenido">${arrayDatosConsulta[i].portada} </h3>   
         <h2 id="encabezados" >FechaInicio</h2>
-        <h3 id="contenido">${arrayDatosConsulta[i].fechainicio} </h3>
+        <h3 id="contenido">${arrayDatosConsulta[i].fechainicio.substring(0,10)} </h3>
         <h2 id="encabezados">FechaFinal</h2>
-        <h3 id="contenido">${arrayDatosConsulta[i].fechafinal}
-        </h3>
+        <h3 id="contenido">${arrayDatosConsulta[i].fechafinal.substring(0,10)} </h3>
+        
         </div>   
       `;
     }

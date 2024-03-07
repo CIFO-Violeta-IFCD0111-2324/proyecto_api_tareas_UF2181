@@ -16,9 +16,10 @@ router.post("/insertar", (req, res) => {
   const descripcion = req.body.descripcion;
   const fechainicio = req.body.fechainicio;
   const fechafinal = req.body.fechafinal;
+  const portada = req.body.portada;
 
 
-  const sql = `insert into tabla values (default, "${titulo}","${descripcion}"  ,"${fechainicio}","${fechafinal}" )`;
+  const sql = `insert into tabla values (default, "${titulo}","${descripcion}" ,"${portada}","${fechainicio}","${fechafinal}" )`;
   conexionMySQL.query(sql, err => {
     if (err) {
         res.json({

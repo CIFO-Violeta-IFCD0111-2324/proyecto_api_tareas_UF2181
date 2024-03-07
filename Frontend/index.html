@@ -13,24 +13,29 @@
 
 <body>
   <header>
+    <div id="alertas"></div>
     <form>
-      <button type="button" id="crearBTN">Crear Dato</button>
+      
       <label for="">Titulo</label>
       <input type="text" placeholder="Titulo" id="titulo">
       <label for="">Descripcion</label>
       <input type="text" placeholder="Descripcion" id="descripcion">
+      <label for="">Portada</label>
+      <input type="text" placeholder="portada" id="portada">
+      
       <div id="fechas">
         <label for="">Fecha inicio</label>
         <input type="date" placeholder="Fecha inicio" id="inicio">
         <label for="">Fecha final</label>
         <input type="date" placeholder="Fecha final" id="fin">
       </div>
-      <button type="button">Guardar Tarea!</button>
-      <div></div>
+      <button type="button" id="crearBTN">Crear Dato</button>
+      <!--<button type="button">Guardar Tarea!</button>-->
+      
     </form>
   </header>
   <div id="cajaResultados"></div>
-
+  <button type="button" id="Subir">Subir</button>
 </body>
 
 </html>
