@@ -22,6 +22,11 @@ botonGuardar.addEventListener("click", () => {
             return;
         }
     
+    if (campoFecha_inicio.value > campoFecha_final.value) {
+              mensajes.innerHTML = "La fecha de inicio no puede ser posterior a la fecha final!";
+              return;
+          }
+    
     if (campoDescripcion.value.length >= caracteresMax){
       mensajes.innerHTML = "La descripción es demasiado larga";
       return;
