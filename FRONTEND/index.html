@@ -42,34 +42,32 @@
               <div class="col-50">
                 <h3>Descripción de la tarea</h3>
               </div>
-              <div class="col-50"><span class="close">&times;</span></div>
-              
+              <div class="col-50"><span class="close">&times;</span></div>              
             </div>
             <div class="row">
               <div class="col-100">
                 <textarea id="descripcion" cols="50" rows="5"></textarea>
               </div>
             </div>
-
             <div class="row">
               <div class="col-30">
-                <input type="date" name="" id="fecha_inicio" />
+                <input type="date" name="" id="fecha_inicio" placeholder="inicio" />
               </div>
               <div class="col-30">
                 <input type="date" name="" id="fecha_final" />
               </div>
               <div class="col-30">
                 <select name="" id="estadoTarea">
-                  <option value="Vacio"></option>
+                  <option value="selecciona">SELECCIONA</option>
                   <option value="Inicio">Inicio</option>
                   <option value="Pendiente">Pendiente</option>
                   <option value="Finalizada">Finalizada</option>
                 </select>
               </div>
-            </div>
-
+             
+            </div> <div id="mensajes"></div>
             <button type="button" id="GuardarTarea">Guardar Tarea!</button>
-            <div id="mensajes"></div>
+            
           </div>
         </div>
         <div id="contenedorDatos"></div>
