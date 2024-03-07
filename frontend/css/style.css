@@ -17,6 +17,17 @@ body {
     flex-direction: column;
 }
 
+header>div:nth-of-type(1) {
+    color: rgb(233, 255, 228);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    background-color: #144552;
+}
+
 main {
     background: #ffffff;
     flex: 1;
@@ -28,26 +39,31 @@ main {
 }
 
 .addTarea {
+    color: #161616;
+    font-family: "Libre Franklin", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
-#caja-1 {
-    color: #cad2c5;
-    font-family: "Libre Franklin", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.addTarea button {
+    font-weight: 600;
 }
 
 #label-descrip {
     font-weight: 600;
 }
 
+.contenedor-tareas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #caja-de-tareas {
-    width: 100%;
+    width: 70%;
     height: 700px;
     display: flex;
     flex-wrap: wrap;
@@ -64,6 +80,35 @@ main {
     color: #000000;
     margin: 10px;
     width: 30%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-wrap: break-word;
+}
+
+#caja-de-tareas>div>h4 {
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.477);
+    border-radius: 5px;
+    padding: 10px
+}
+
+#caja-de-tareas>div>p {
+    overflow: scroll;
+    scrollbar-width: none;
+    font-weight: normal;
+}
+
+#caja-de-tareas>div span {
+    font-size: 13px;
+}
+
+#caja-de-tareas>div span:nth-of-type(1) {
+    margin-right: 7px;
 }
 
 .fa-trash {
@@ -78,43 +123,51 @@ main {
 .nota-azul {
     background-image: url("./imagenes/nota_azul.png");
     background-size: cover;
-    padding: 50px;
-    padding-top: 80px;
-    padding-bottom: 120px;
+    padding: 40px 20px 20px 20px;
+}
+
+.nota-azul>* {
+    transform: rotate(4deg);
 }
 
 .nota-lila {
     background-image: url("./imagenes/nota_lila.png");
     background-size: cover;
-    padding: 50px;
-    padding-top: 80px;
-    padding-bottom: 120px;
+    padding: 30px 18px 25px 20px;
+}
+
+.nota-lila>* {
+    transform: rotate(2deg);
 }
 
 .nota-naranja {
     background-image: url("./imagenes/nota_naranja.png");
     background-size: cover;
-    padding-right: 100px;
-    padding-left: 100px;
-    padding-top: 80px;
-    padding-bottom: 120px;
+    padding: 57px 55px 40px 45px;
+}
+
+.nota-naranja>* {
+    transform: rotate(-5deg);
 }
 
 .nota-roja {
     background-image: url("./imagenes/nota_roja.png");
     background-size: cover;
-    padding: 50px;
-    padding-top: 80px;
-    padding-bottom: 120px;
+    padding: 20px 5px 20px 26px;
+}
+
+.nota-roja>* {
+    transform: rotate(3deg);
 }
 
 .nota-turquesa {
     background-image: url("./imagenes/nota_turquesa.png");
     background-size: cover;
-    padding: 50px;
-    padding-top: 100px;
-    padding-left: 80px;
-    padding-bottom: 120px;
+    padding: 54px 25px 40px 45px;
+}
+
+.nota-turquesa>* {
+    transform: rotate(-5deg);
 }
 
 textarea {

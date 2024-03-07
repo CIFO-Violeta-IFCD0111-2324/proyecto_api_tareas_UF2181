@@ -74,29 +74,33 @@ fetch("http://localhost:3000/api/read")
             const divTarea = document.createElement("div");
             divTarea.classList.add(setNota(tarea.id))
             // Elemento del nombre
-            const nombreElm = document.createElement("h3");
+            const nombreElm = document.createElement("h4");
             const textNombre = document.createTextNode(tarea.nombre);
             nombreElm.appendChild(textNombre);
             divTarea.appendChild(nombreElm);
 
             // Elemento de la descripcion
-            const descElm = document.createElement("h5");
+            const descElm = document.createElement("p");
             const textDesc = document.createTextNode(tarea.descripcion);
             descElm.appendChild(textDesc);
             divTarea.appendChild(descElm);
 
+            // Contenedor de las fechas
+            const divFechas = document.createElement("div");
+            divFechas.classList.add("caja-fechas")
+
             // Elemento de la fecha-in
-            const fechaInElm = document.createElement("h6");
-            const textFechaIn = document.createTextNode(tarea.fecha_inicio.substring(0, 10));
+            const fechaInElm = document.createElement("span");
+            const textFechaIn = document.createTextNode("Inicio: " + tarea.fecha_inicio.substring(0, 10));
             fechaInElm.appendChild(textFechaIn);
-            divTarea.appendChild(fechaInElm);
+            divFechas.appendChild(fechaInElm);
 
             // Elemento de la fecha-fin
-            const fechaFinElm = document.createElement("h6");
-            const textFechaFin = document.createTextNode(tarea.fecha_fin.substring(0, 10));
+            const fechaFinElm = document.createElement("span");
+            const textFechaFin = document.createTextNode("Final: " + tarea.fecha_fin.substring(0, 10));
             fechaFinElm.appendChild(textFechaFin);
-            divTarea.appendChild(fechaFinElm);
-
+            divFechas.appendChild(fechaFinElm);
+            divTarea.appendChild(divFechas)
 
             // Papelera
             const papelera = document.createElement("i");
@@ -130,12 +134,8 @@ fetch("http://localhost:3000/api/read")
             cajaTareas.appendChild(divTarea);
         });
     })
-    .catch(error => alert(error))
+    .catch(error => alert(error));
 
-
-function deleteTask() {
-
-}
 
 
 function setNota(id) {
