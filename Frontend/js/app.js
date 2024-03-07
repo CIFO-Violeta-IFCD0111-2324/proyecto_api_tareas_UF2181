@@ -20,6 +20,9 @@ button.addEventListener("click", () => {
   })
     .then(res => res.json())
     .then(mensaje => {
+      setTimeout(() => {
+        location.reload(); // refresca página
+      }, 1000);
       document.querySelector("div").innerHTML = mensaje.mensaje;
     })
 
@@ -70,8 +73,8 @@ function borrar() {
           })
         })
           .then(res => res.json())
-          .then(msg => {
-            mensajes.innerHTML = "eliminado";
+          .then(mensaje => {
+            document.querySelector("div").innerHTML = mensaje.mensaje;
             setTimeout(() => {
               location.reload(); // refresca página
             }, 1000);
