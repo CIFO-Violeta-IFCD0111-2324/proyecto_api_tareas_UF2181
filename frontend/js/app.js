@@ -65,7 +65,7 @@ fetch("http://localhost:3000/api/read")
     .then(res => res.json())
     .then(datos => {
         const cajaTareas = document.getElementById("caja-de-tareas");
-        const divRespuestas = document.getElementsByClassName("respuestas");
+        const divRespuestas = document.querySelector("div#caja-respuestas");
         const tareasOut = datos.resultado;
         if (tareasOut.length == 0) {
             cajaTareas.innerHTML = "Todavia no hay tareas"
@@ -116,10 +116,10 @@ fetch("http://localhost:3000/api/read")
                     })
                         .then(res => res.json())
                         .then(msg => {
-                            divRespuestas.innerHTML += msg.mensaje;
+                            divRespuestas.innerHTML = msg.mensaje;
                             setTimeout(() => {
                                 location.reload();
-                            }, 100000)
+                            }, 3000)
                         })
                         .catch(error => divRespuestas.innerHTML = error.mensaje);
                 }
