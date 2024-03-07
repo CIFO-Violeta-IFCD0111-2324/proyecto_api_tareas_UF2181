@@ -1,19 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
+body, html{
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font: weight 400;
+  font-style:normal;
   width: 100%;
-  height:100%;
+  height:100vh;
   background: linear-gradient(180deg, rgba(255,255,255,1) 15%, rgba(245,194,143,1) 100%);
 }
 header {
@@ -27,9 +28,8 @@ header {
 
 }
 nav {
- 
+  height: 100%;
   width: 75%;
-  height: 150px;
   display: flex;
   justify-content: space-between;
 
@@ -37,7 +37,6 @@ nav {
 }
 
 .cabecera {
-  height: 150px;
   display: flex;
 
   
@@ -68,7 +67,7 @@ nav {
 #iconosPosit {
   width: 100%;
   text-align: right;
-  margin-top: 30px;
+  padding: 40px 15px 0px 0px;
   font-size: 20px;
   
 }
@@ -76,14 +75,16 @@ nav {
   color: #f35810;
   cursor: pointer;
   margin-left: 20px;
- 
-  
-
+}
+.fa-regular.fa-trash-can:hover {
+  color: #ecc091;
 }
 .fa-pen-to-square {
-  color: #086792;
+  color: #085d92;
   cursor: pointer;
-
+}
+.fa-pen-to-square:hover {
+  color: #b4c6ed;
 }
 #contenedor {
   width: 80%;
@@ -102,6 +103,7 @@ nav {
   border-radius: 10px;
   border: solid 2px rgb(238, 235, 235);
   background-color: #b4c6ed;
+  
 }
 
 #contenedorDatos {
@@ -109,6 +111,7 @@ nav {
   display: flex;
   height: auto;
   justify-content: space-around;
+  
 }
 .indiv {
   display: flex;
@@ -118,12 +121,15 @@ nav {
   background-image: url("../img/post-it.png");
   background-size: contain;
   background-repeat: no-repeat;
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font: weight 400;
+  font-style:normal;
   font-size: 14px;
-  padding: 50px 30px 30px 30px;
+  padding: 50px 30px 30px 50px;
   color: rgb(6, 69, 73);
   margin-top: 40px;
+  
 
 }
 #mensajes {
@@ -148,8 +154,10 @@ button {
   padding: 15px 10px;
   align-items: center;
   justify-content: center;
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font: weight 400;
+  font-style:normal;
   color: rgb(255, 255, 255);
   font-size: 20px;
   cursor: pointer;
@@ -164,17 +172,33 @@ button:hover {
 .titulo {
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 18px;
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
-  color: brown;
-  text-align: center;
+  color: rgb(170, 6, 6);
+ 
+
+}
+#titulo_tarea {
+  font-family: "Montserrat", sans-serif;
+  font: weight 100;
+  font-size: 20px;
+  color: #f35810;
+  padding-top: 0px;
+  padding-left: 30px;
+
+}
+span.close {
+  font-family: "Montserrat", sans-serif;
+  font: weight 100;
+  font-size: 40px;
+  color: #f35810;
+  padding-top: 30px;
 }
 .detalle {
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font: weight 100;
+  font-style:normal;
   font-size: 18px;
-  color: brown;
+  color:  #cf6f15
+
 }
 .row {
   width: 100%;
@@ -201,7 +225,7 @@ button:hover {
   padding: 10px;
 }
 .col-25 {
-  width: 25%;
+  width: 30%;
 }
 #descripcion, #fecha_inicio, #fecha_final, #estadoTarea {
   border: solid 1px rgb(248, 245, 245);
@@ -210,4 +234,3 @@ button:hover {
   resize:none;
   outline: 0;
   }
-
