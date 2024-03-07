@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Ojuju:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Permanent+Marker&display=swap');
 
 * {
     margin: 0;
@@ -124,20 +126,27 @@ main {
 }
 
 #caja-de-tareas>div>h4 {
-    font-size: 1em;
+
+    font-size: 2em;
     text-transform: uppercase;
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0.477);
     border-radius: 5px;
-    padding: 10px
+    padding: 10px;
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
 }
 
 #caja-de-tareas>div>p {
     overflow: scroll;
     scrollbar-width: none;
-    font-weight: normal;
-}
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
 
+
+}
 #caja-de-tareas>div span {
     font-size: 8px;
     font-weight: 600;
