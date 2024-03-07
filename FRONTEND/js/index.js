@@ -72,7 +72,7 @@ fetch("http://localhost:3500/api/v1/leer")
                                 // Unir los fragmentos con saltos de línea o <br>
                                 const descripcionConSaltos = fragmentos.join("<br>");
 
-                contenedorDatos.innerHTML += "<div class='indiv'><h3 class='titulo'>TAREA: " + tarea.id +"</h3><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
+                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
                 }
             borrarFuncion();
           }
