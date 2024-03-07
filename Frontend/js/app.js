@@ -40,18 +40,30 @@ fetch("http://localhost:3001/api/v1/leer")
       cajaResultados.innerHTML += `
         <div id="resultado">
         <button class="borrar" id="${arrayDatosConsulta[i].id}">borrar</button>
-        <h2 id="encabezados">ID</h2>
+        <div id="cuadro1">
+        <h2 id="encabezados">ID</h2> 
         <h3 id="contenido">${arrayDatosConsulta[i].id}</h3>
-        <h2 id="encabezados">Titulo</h2>
+        </div>
+        <div id="cuadro2">
+        <h2 id="encabezados" >Titulo</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].titulo}</h3>
-        <h2 id="encabezados" >Descripcion</h2>
+        </div>
+        <div id="cuadro2">
+        <h2 id="encabezados">Descripcion</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].descripcion}  </h3>
+        </div>
+        <div id="cuadro2">
         <h2 id="encabezados">portada</h2>
-        <h3 id="contenido">${arrayDatosConsulta[i].portada} </h3>   
+        <h3 id="contenido">${arrayDatosConsulta[i].portada} </h3> 
+        </div>
+        <div id="cuadro3">
         <h2 id="encabezados" >FechaInicio</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].fechainicio.substring(0,10)} </h3>
+        </div>
+        <div id="cuadro3">
         <h2 id="encabezados">FechaFinal</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].fechafinal.substring(0,10)} </h3>
+        </div>
         
         </div>   
       `;

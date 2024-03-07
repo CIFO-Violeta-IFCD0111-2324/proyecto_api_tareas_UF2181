@@ -1,24 +1,31 @@
-body{
+body {
     padding: 100px;
     text-align: center;
     background-color: rgba(3, 73, 61, 0.486);
-    
-    
+
+
+}
+.borrar{
+    display: flex;
+    height:10px;
+    justify-content: center;
+    align-items: center;
 }
 
-input{
-    
-    background-color:  rgba(6, 255, 214, 0.385);;
-    border-color:  rgb(7, 158, 133);
-    width: auto; 
+input {
+
+    background-color: rgba(6, 255, 214, 0.385);
+    ;
+    border-color: rgb(7, 158, 133);
+    width: auto;
     padding: 3px;
     color: black;
     height: 15px;
     padding: 10px;
 }
 
-label{  
- 
+label {
+
     font-weight: bold;
     text-align: left;
     margin-bottom: 6px;
@@ -29,22 +36,26 @@ label{
 
 }
 
-button{
+button {
     color: black;
     background-color: rgba(6, 255, 214, 0.671);
     margin-top: 2px;
     padding: 20px;
     border-radius: 30px;
 }
-h3{
-    
+
+h3 {
+    display: flex;
+
     background-color: antiquewhite;
     border: 10px;
     width: 35%;
     border-radius: 15%;
     text-align: center;
 }
-h2{
+
+h2 {
+    display: flex;
     background-color: green;
     font-size: medium;
     border-style: dotted;
@@ -55,31 +66,47 @@ h2{
     border-width: 15px;
     text-align: center;
 }
-#cajaResultados{
+
+#cajaResultados {
     display: inline;
-    
+
     background-color: white;
-    
+
     width: 25%;
-    text-align: left;  
+    text-align: left;
     border-radius: 10%;
-    
+
 }
-#resultado{
-   
-        display: flex;
-        background-color:aquamarine;
-        
-        padding: 10px;
-        border-radius: 10px;
-        border: solid 5px black;
+
+#resultado {
+    display: flex;
+    background-color: aquamarine;
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 5px black;
 }
-#encabezados{
-   
-    
+
+#encabezados {
+
+
     text-align: left;
     font-size: medium;
-    background-color: yellow;
+    background-color: aquamarine;
+    border-color: black;
+    border-width: 5px;
+    
+    width: auto;
+    height: auto;
+    border-radius: 10%;
+    padding: 15px;
+    justify-content: space-around;
+}
+
+#contenido {
+margin: 1px;
+    text-align: justify;
+    font-size: medium;
+    background-color: green;
     border-color: black;
     border-width: 5px;
     border-style: double;
@@ -87,46 +114,41 @@ h2{
     height: auto;
     border-radius: 10%;
     padding: 15px;
-    justify-content: space-around;
 }
-#contenido{
-   
-    text-align: left;
-    font-size: medium;
-    background-color: green;
-    border-color: black;
-    border-width: 5px;
-    border-style: double;
-    width:auto;
-    height: auto;
-    border-radius: 10%;
-    padding: 15px;
-}
-form{
+
+form {
     display: flex;
     flex-direction: row;
     padding: 20px;
     text-align: center;
     background-color: rgba(3, 73, 61, 0.486);
     height: auto;
-    width:auto;
+    width: auto;
     border-radius: 15px;
     justify-content: space-between;
     border: solid 5px black;
-    
+
 }
-#fechas{
+
+#fechas {
     display: flex;
 }
-header{
-    
+
+header {
+
     margin-bottom: 25px;
 }
-#alertas{
+
+#alertas {
     margin-bottom: 20px;
     font-size: 30px;
 }
-
-
-
-
+#cuadro1{
+    width: 5%;
+}
+#cuadro2{
+    width: 35%;
+}
+#cuadro3{
+    width: 10%;
+}
