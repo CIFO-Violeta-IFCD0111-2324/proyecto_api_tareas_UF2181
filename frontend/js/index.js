@@ -36,9 +36,9 @@ boton.addEventListener("click", () => {
     .then(res => res.json())
     .then(msg => {
       alert(msg.mensaje);
-      setTimeout(() => {
-        location.reload(); // refrescar
-      }, 3000); // son 3mil milisegundos = 3 seg.
+      // setTimeout(() => {
+      //   location.reload(); // refrescar
+      // }, 3000); // son 3mil milisegundos = 3 seg.
     })
     .catch(error => alert(error))
 });
@@ -62,10 +62,10 @@ fetch("http://localhost:3333/api/v1/leer")
 
 
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].nombre_tarea+ "</h3>"
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_inicio+ "</h3>"
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_fin+ "</h3>"
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].descripcion+ "</h3>"
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].nombre_tarea + "</h3>"
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_inicio + "</h3>"
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_fin + "</h3>"
+      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].descripcion + "</h3>"
     }
   })
   .catch(error => alert(error));
