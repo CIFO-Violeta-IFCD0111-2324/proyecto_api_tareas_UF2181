@@ -63,7 +63,7 @@ fetch("http://localhost:3500/api/v1/leer")
      }else{
             for (let i = 0; i < arrayDatosConsulta.length; i++) {
               const tarea = arrayDatosConsulta[i];
-                                // Obtener la descripción y dividirla en fragmentos de 10 caracteres
+                                // Obtener la descripción y dividirla en fragmentos de 15 caracteres
                                 const descripcion = tarea.descripcion;
                                 const fragmentos = [];
                                 for (let j = 0; j < descripcion.length; j += 15) {
