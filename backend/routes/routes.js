@@ -212,12 +212,16 @@ router.put("/editar", (req, res) => {
   const nombre = req.body.nombre;
   const desc = req.body.descripcion;
   const fechaIn = req.body.fecha_inicio;
+  const fechaFin = req.body.fecha_final;
   const id = req.body.id;
+  
   // encriptamos el dato
   const nombreCrypt = CryptoJS.AES.encrypt(nombre, 'miTextoSecreto').toString();
   const descCrypt = CryptoJS.AES.encrypt(desc, 'miTextoSecreto').toString();
+  const fechaInCrypt = CryptoJS.AES.encrypt(fechaIn, 'miTextoSecreto').toString();
+  const fechaFinCrypt = CryptoJS.AES.encrypt(fechaFin, 'miTextoSecreto').toString();
   const sql = "update dato set nombre = ?,descripcion=?,fecha_inicio=?,fecha_fin=? where id = ?";
-  conexionMySQL.query(sql, [nombreCrypt,descCrypt, id], error => {
+  conexionMySQL.query(sql, [nombreCrypt,descCrypt,fechaInCrypt,fechaFinCrypt, id], error => {
     if (error) {
       res.json({
         "status": 500,

@@ -102,6 +102,10 @@ fetch("http://localhost:3000/api/read")
             divFechas.appendChild(fechaFinElm);
             divTarea.appendChild(divFechas)
 
+            // Div Papelera y edit
+            const divPE = document.createElement("div");
+            divPE.classList.add("divPE");
+
             // Papelera
             const papelera = document.createElement("i");
             papelera.classList.add("fa-solid");
@@ -128,8 +132,14 @@ fetch("http://localhost:3000/api/read")
                         .catch(error => divRespuestas.innerHTML = error.mensaje);
                 }
             });
-            divTarea.appendChild(papelera);
+            divPE.appendChild(papelera);
+            
+            const btnEdit = document.createElement("i");
+            btnEdit.classList.add("fa-solid", "fa-pen-to-square");
+            btnEdit.setAttribute("id", tarea.id);
+            divPE.appendChild(btnEdit)
 
+            divTarea.appendChild(divPE);
             // Append caja al html
             cajaTareas.appendChild(divTarea);
         });
