@@ -50,8 +50,7 @@ La operación de creación permite a los usuarios agregar nuevas tareas a la lis
 
 Ejemplo de código Node.js-Express para manejar la solicitud de creación de una tarea:
 
-```
- // CREAR, Crud
+''' // CREAR, Crud
 router.post("/crearTarea", (req, res) => {
   const Descripcion = req.body.Descripcion;
   const FechaInicio = req.body.FechaInicio;
@@ -72,8 +71,7 @@ router.post("/crearTarea", (req, res) => {
       });
     }
   });
-});
-```
+});'''
 
 
 # PASOS
