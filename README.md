@@ -49,8 +49,7 @@ En esta sección, detallaremos cada una de las operaciones CRUD (Crear, Leer, Ac
 La operación de creación permite a los usuarios agregar nuevas tareas a la lista. Cuando un usuario desea agregar una nueva tarea, se envía una solicitud al servidor que contiene los detalles de la tarea, como la descripción, la fecha de creación, la fecha de vencimiento y el estado inicial. El servidor procesa esta solicitud y agrega la nueva tarea a la base de datos.
 
 Ejemplo de código Node.js-Express para manejar la solicitud de creación de una tarea:
-
-''' // CREAR, Crud
+´´´// CREAR, Crud
 router.post("/crearTarea", (req, res) => {
   const Descripcion = req.body.Descripcion;
   const FechaInicio = req.body.FechaInicio;
@@ -71,7 +70,7 @@ router.post("/crearTarea", (req, res) => {
       });
     }
   });
-});'''
+});´´´
 
 
 # PASOS
