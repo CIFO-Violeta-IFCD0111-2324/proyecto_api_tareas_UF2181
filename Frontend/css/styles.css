@@ -98,7 +98,7 @@ h2 {
 #resultado {
     margin: 4px;
     display: flex;
-    background: linear-gradient(70deg, rgb(255, 0, 0), rgba(51, 0, 255, 0.305));
+    
     padding: 10px;
     border-radius: 10px;
     border: solid 5px black;
@@ -109,7 +109,7 @@ h2 {
 
     text-align: left;
     font-size: x-large;
-    background: linear-gradient(70deg, rgb(255, 0, 0), rgba(51, 0, 255, 0.305));
+    
     border-color: black;
     border-width: 5px;
     
