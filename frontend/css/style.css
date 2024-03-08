@@ -18,11 +18,8 @@ body {
     display: flex;
     flex-direction: column;
     background-size: cover;
-<<<<<<< HEAD
-    background-image: url("./imagenes/istockphoto-1312314989-612x612.jpg");
-=======
     background-image: url("./imagenes/ladrillo4.jpg");
->>>>>>> 35ee9ba398a38ed28d8b806f960534d76e86cd7a
+
 }
 
 header>div:nth-of-type(1) {

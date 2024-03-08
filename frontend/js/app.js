@@ -1,4 +1,5 @@
 
+// Crud - crear
 
 async function insertSQL() {
     const nombre = document.querySelector("input#nombre");
@@ -106,7 +107,7 @@ fetch("http://localhost:3000/api/read")
             const divPE = document.createElement("div");
             divPE.classList.add("divPE");
 
-            // Papelera
+            // boton Papelera
             const papelera = document.createElement("i");
             papelera.classList.add("fa-solid");
             papelera.classList.add("fa-trash");
@@ -134,6 +135,8 @@ fetch("http://localhost:3000/api/read")
             });
             divPE.appendChild(papelera);
             
+            // boton editar 
+
             const btnEdit = document.createElement("i");
             btnEdit.classList.add("fa-solid", "fa-pen-to-square");
             btnEdit.setAttribute("id", tarea.id);
