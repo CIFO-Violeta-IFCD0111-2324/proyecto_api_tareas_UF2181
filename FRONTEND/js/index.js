@@ -2,6 +2,7 @@
 const botonGuardar = document.querySelector("#GuardarTarea");
 const mensajes = document.querySelector("#mensajes");
 
+//guardar los datos en la bbdd
 botonGuardar.addEventListener("click", () => {
     // campos del formulario
     const campoDescripcion = document.querySelector("#descripcion");

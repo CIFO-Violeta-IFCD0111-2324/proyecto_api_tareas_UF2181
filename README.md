@@ -134,24 +134,141 @@ Ejemplo de código Node.js-Express para manejar la solicitud de actualización d
 En esta sección, explicaremos cómo se implementa la interfaz de usuario (UI) para permitir a los usuarios realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. La UI proporciona una experiencia amigable e intuitiva para que los usuarios interactúen con la aplicación y gestionen sus tareas de manera eficiente.
 Este código se encuentra en la carpeta **JS/idex.html** (interacción con la parte backend y funcionalidades), **JS/modal.js** (parte visual que hace aparecer al formulario cuando el usuario indica que quiere agregar una nueva tarea, hemos partido desde este código https://www.w3schools.com/howto/howto_css_modals.asp), e **index.html y CSS/styles.css**.
 
+![Imagen de la base del documento](./base_fornt.png)
+
 ### 4.1- Crear (Create)
 Para permitir a los usuarios crear nuevas tareas, implementamos un formulario en la interfaz de usuario que solicita los detalles de la tarea, como la descripción y la fecha de vencimiento. Los usuarios pueden completar este formulario y enviarlo para agregar una nueva tarea a la lista.
 
-Ejemplo del código:
+![Formulario de insercióm de datos](./base_Formulario.png)
+
+**Ejemplo del código:**
+```
+//guardar los datos en la bbdd
+botonGuardar.addEventListener("click", () => {
+    // campos del formulario
+    const campoDescripcion = document.querySelector("#descripcion");
+    const campoFecha_inicio = document.querySelector("#fecha_inicio");
+    const campoFecha_final = document.querySelector("#fecha_final");
+    const campoEstadoTarea = document.querySelector("#estadoTarea");
+
+    // variable del total de caracteres que aceptaremos
+    const caracteresMax = 20;
+
+
+    //este if comprueba que los datos que llegan no estén vacíos
+    if (campoDescripcion.value.length === 0 ||
+        campoFecha_inicio.value.length === 0 || 
+        campoFecha_final.value.length === 0 || 
+        campoEstadoTarea.value.length === 0) {
+            mensajes.innerHTML = "Campos vacios!";
+            return;
+        }
+    
+    if (campoFecha_inicio.value > campoFecha_final.value) {
+              mensajes.innerHTML = "La fecha de inicio no puede ser posterior a la fecha final!";
+              return;
+          }
+    
+    if (campoDescripcion.value.length >= caracteresMax){
+      mensajes.innerHTML = "La descripción es demasiado larga";
+      return;
+    }    
+    const url = "http://localhost:3500/api/v1/crearTarea";
+    fetch(url, {
+        method: "post",
+        headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+               "Descripcion" : campoDescripcion.value,
+                "FechaInicio" : campoFecha_inicio.value,
+                "Fechafinal" : campoFecha_final.value,
+                "Estado" : campoEstadoTarea.value
+            })
+        })
+        .then(res => res.json())
+        .then(mensaje => {
+            mensajes.innerHTML = "Tarea <b>¡¡¡Insertada!!!</b>";
+            setTimeout(() => {// refresca página
+              location.reload(); 
+            }, 1000);
+          })
+        .catch(error => contenedorDatos.innerHTML =error);
+});
+```
 
 ### 4.2- Leer (Read)
 Para mostrar todas las tareas existentes a los usuarios, implementamos una lista o tabla en la interfaz de usuario que muestra cada tarea junto con sus detalles, como la descripción, la fecha de creación, la fecha de vencimiento y el estado. Los usuarios pueden ver fácilmente todas las tareas en una sola pantalla.
 
+![Como se mnuestran los datos](./base_fornt.png)
+
+**Codigo Ejemplo para leer:**
+```
+// cRud (leer)
+fetch("http://localhost:3500/api/v1/leer")
+  .then(res => res.json())
+  .then(datos => {
+    const contenedorDatos = document.getElementById("contenedorDatos");
+    const arrayDatosConsulta = datos.resultado;
+    if (arrayDatosConsulta.length===0) {
+      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
+     }else{
+            for (let i = 0; i < arrayDatosConsulta.length; i++) {
+              const tarea = arrayDatosConsulta[i];
+                                // Obtener la descripción y dividirla en fragmentos de 15 caracteres
+                                const descripcion = tarea.descripcion;
+                                const fragmentos = [];
+                                for (let j = 0; j < descripcion.length; j += 15) {
+                                    fragmentos.push(descripcion.substring(j, j + 15));
+                                }
+                                // Unir los fragmentos con saltos de línea o <br>
+                                const descripcionConSaltos = fragmentos.join("<br>");
+
+                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
+                }
+            borrarFuncion();
+          }
+    })
+  .catch(error => contenedorDatos.innerHTML =error);
+```
+
 ### 4.3- Eliminar (Delete)
 Para permitir a los usuarios eliminar una tarea existente, implementamos funcionalidad de eliminación en la interfaz de usuario. Esto puede incluir botones o enlaces de "Eliminar" junto a cada tarea que permiten a los usuarios eliminar la tarea seleccionada de la lista.
+**Codigo Ejemplo para leer:**
+```
+
+ // cruD (borrar)
+function borrarFuncion() {
+  const papeleras = document.querySelectorAll(".fa-trash-can");
+  for (let i = 0; i < papeleras.length; i++) {
+    papeleras[i].addEventListener("click", papelerita => {
+      if (confirm("Estás seguro que quieres eliminar la tarea?")) {
+        fetch("http://localhost:3500/api/v1/borrar", {
+          method: "delete",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "id": papelerita.target.id
+          })
+        })
+          .then(res => res.json())
+          .then(mensaje => {
+            alert("Tarea eliminada, buen trabajo");
+            setTimeout(() => {
+              location.reload(); // refresca página
+            }, 1000);
+          })
+          .catch(error => mensajes.innerHTML = "Error en servidor!");
+      }
+    });
+  }
+}
+
+
+
+```
 
 ### 4.4- Actualizar (Update)
 Para permitir a los usuarios actualizar una tarea existente, implementamos funcionalidad de edición en la interfaz de usuario. Esto puede incluir botones o enlaces de "Editar" junto a cada tarea que permiten a los usuarios modificar los detalles de la tarea, como la descripción, la fecha de vencimiento o el estado.
 
-### 4.5- Capturas de pantalla o maquetas
-Para ilustrar la interfaz de usuario y las diferentes funcionalidades de CRUD, proporcionamos capturas de pantalla o maquetas de las páginas web donde se realizan estas operaciones. Estas imágenes ayudan a los usuarios a visualizar cómo interactuar con la aplicación y qué esperar en cada paso del proceso.
-
-En resumen, la interfaz de usuario proporciona un medio intuitivo para que los usuarios gestionen sus tareas de manera efectiva, facilitando la creación, lectura, actualización y eliminación de tareas.
+![Usaremos la papelera para eliminar las tareas](./base_fornt.png)
 
 ## 5. Pruebas
 En esta sección, describiremos las pruebas realizadas para verificar el correcto funcionamiento de las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. Las pruebas son una parte fundamental del proceso de desarrollo de software, ya que nos permiten identificar y corregir errores antes de que la aplicación esté en desarrollo.
