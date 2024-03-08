@@ -17,25 +17,39 @@ body {
     font-family: "Libre Franklin", sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
     background-size: cover;
+<<<<<<< HEAD
     background-image: url("./imagenes/istockphoto-1312314989-612x612.jpg");
+=======
+    background-image: url("./imagenes/ladrillo4.jpg");
+>>>>>>> 35ee9ba398a38ed28d8b806f960534d76e86cd7a
 }
 
 header>div:nth-of-type(1) {
-    color: rgb(233, 255, 228);
+    color: rgb(7, 7, 7);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    text-transform: uppercase;
-    background-color: #144552;
+    text-transform: uppercase;  
+}
+
+.logo myBtn {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+    
+.logo img {
+    width: 100px; 
+    height: auto; 
+    display: block; 
+
 }
 
 main {
-    
     flex: 1;
 }
 
@@ -55,20 +69,6 @@ main {
 
 .addTarea button {
     font-weight: 600;
-}
-
-#myBtn {
-    background-color: #ababab;
-    color: black;
-    transition: 300ms;
-}
-
-#myBtn:hover {
-    background-color: #e2e2e2;
-}
-
-#myBtn:active {
-    background-color: #2c2c2c;
 }
 
 #label-descrip {
@@ -94,7 +94,8 @@ main {
     border-image: url("./imagenes/madera2.jpg") 20;
     border-image-width: 18px;
     border-image-outset: 18px;
-    overflow-y: scroll;
+    overflow-y: scroll;  
+    box-shadow: 3px 30000px 100px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -132,6 +133,7 @@ main {
 
 #caja-de-tareas>div>h4 {
 
+    text-align: center;
     font-size: 1.5em;
     text-transform: uppercase;
     font-weight: bold;
@@ -149,14 +151,14 @@ main {
     font-weight: 400;
     font-style: normal;
     font-size: 1em;
-
+    text-align:center;
 
 }
 #caja-de-tareas>div span {
     font-size: 14px;
     font-weight: 600;
     font-family: "Indie Flower", cursive;
-
+    text-align:center;
 }
 
 #caja-de-tareas>div span:nth-of-type(1) {

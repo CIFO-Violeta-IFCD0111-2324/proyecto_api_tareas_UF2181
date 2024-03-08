@@ -26,7 +26,6 @@
 
 #myBtn {
   padding: 10px 20px;
-  background-color: #cad2c5;
   color: black;
   border: none;
   border-radius: 5px;
@@ -35,7 +34,7 @@
 
 /* Modal Content */
 .modal-content {
-  background-color: #000000;
+  background-color: #252525;
   margin: auto;
   padding: 20px;
   border: 1px solid #000000;
