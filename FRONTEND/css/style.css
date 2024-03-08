@@ -80,7 +80,7 @@ nav {
   color: #ecc091;
 }
 .fa-pen-to-square {
-  color: #085d92;
+  color: rgb(18, 141, 172);
   cursor: pointer;
 }
 .fa-pen-to-square:hover {
@@ -170,16 +170,20 @@ button:hover {
 
 }
 .titulo {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: rgb(170, 6, 6);
+  color: rgb(18, 141, 172);
  
 
 }
 #titulo_tarea {
   font-family: "Montserrat", sans-serif;
-  font: weight 100;
+  font-weight: bold;
   font-size: 20px;
+  font-style:bold;
   color: #f35810;
   padding-top: 0px;
   padding-left: 30px;
@@ -188,7 +192,7 @@ button:hover {
 span.close {
   font-family: "Montserrat", sans-serif;
   font: weight 100;
-  font-size: 40px;
+  font-size: 30px;
   color: #f35810;
   padding-top: 0px;
 }
@@ -196,7 +200,7 @@ span.close {
   font-family: "Montserrat", sans-serif;
   font: weight 100;
   font-style:normal;
-  font-size: 18px;
+  font-size: 20px;
   color:  #cf6f15
 
 }
