@@ -44,7 +44,7 @@ botonGuardar.addEventListener("click", () => {
         })
         .then(res => res.json())
         .then(mensaje => {
-            mensajes.innerHTML = "Tarea <b>¡¡¡Insertada!!!</b>";
+            mensajes.innerHTML = "Tarea Insertada <i class='fas fa-spinner fa-spin'></i>";
             setTimeout(() => {// refresca página
               location.reload(); 
             }, 1000);

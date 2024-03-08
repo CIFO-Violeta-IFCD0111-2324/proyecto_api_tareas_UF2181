@@ -27,7 +27,7 @@ router.post("/crearTarea", (req, res) => {
     } else {
       res.json({
         "status": 200,
-        "mensaje": "Dato insertado correctamente!"
+        "mensaje": "Dato insertado correctamente! <i class='fas fa-spinner fa-spin'></i>"
       });
     }
   });
