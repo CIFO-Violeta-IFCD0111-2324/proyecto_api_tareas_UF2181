@@ -141,7 +141,7 @@ Para permitir a los usuarios crear nuevas tareas, implementamos un formulario en
 
 ![Formulario de insercióm de datos](./base_Formulario.png)
 
-**Ejemplo del código:**
+**Ejemplo del código para Crear:**
 ```
 //guardar los datos en la bbdd
 botonGuardar.addEventListener("click", () => {
@@ -232,7 +232,7 @@ fetch("http://localhost:3500/api/v1/leer")
 
 ### 4.3- Eliminar (Delete)
 Para permitir a los usuarios eliminar una tarea existente, implementamos funcionalidad de eliminación en la interfaz de usuario. Esto puede incluir botones o enlaces de "Eliminar" junto a cada tarea que permiten a los usuarios eliminar la tarea seleccionada de la lista.
-**Codigo Ejemplo para leer:**
+**Codigo Ejemplo para Eliminar:**
 ```
 
  // cruD (borrar)
@@ -270,20 +270,83 @@ Para permitir a los usuarios actualizar una tarea existente, implementamos funci
 
 ![Usaremos la papelera para eliminar las tareas](./base_fornt.png)
 
+**Codigo Ejemplo para Actualizar:**
+```
+```
+
 ## 5. Pruebas
 En esta sección, describiremos las pruebas realizadas para verificar el correcto funcionamiento de las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. Las pruebas son una parte fundamental del proceso de desarrollo de software, ya que nos permiten identificar y corregir errores antes de que la aplicación esté en desarrollo.
 
 ### 5.1.- Pruebas de Creación (Create)
-Para verificar la funcionalidad de creación, realizamos pruebas para asegurarnos de que los usuarios pueden agregar nuevas tareas correctamente a la lista. Esto incluye enviar formularios de creación con diferentes conjuntos de datos y verificar que las tareas se agreguen correctamente a la base de datos.
+Para verificar la funcionalidad de creación, realizamos pruebas para asegurarnos de que los usuarios pueden agregar nuevas tareas correctamente a la lista. Tras ver que se insertan correctamente hemos tenido que realizar validaciones: 
+1.- en las que los campos deben de estar complimentados, 
+2.-que la fecha final es mayor que la fecha inicial 
+3.- y por último limitamos el campo de descripción para que se ajuste al diseño establecido.
+
+**Codigo para validaciones antes de insertar en la bbdd:**
+```
+    // variable del total de caracteres que aceptaremos
+    const caracteresMax = 20;
+
+
+    //este if comprueba que los datos que llegan no estén vacíos
+    if (campoDescripcion.value.length === 0 ||
+        campoFecha_inicio.value.length === 0 || 
+        campoFecha_final.value.length === 0 || 
+        campoEstadoTarea.value.length === 0) {
+            mensajes.innerHTML = "Campos vacios!";
+            return;
+        }
+    
+    if (campoFecha_inicio.value > campoFecha_final.value) {
+              mensajes.innerHTML = "La fecha de inicio no puede ser posterior a la fecha final!";
+              return;
+          }
+    
+    if (campoDescripcion.value.length >= caracteresMax){
+      mensajes.innerHTML = "La descripción es demasiado larga";
+      return;
+    } 
+```
 
 ### 5.2.- Pruebas de Lectura (Read)
-Para verificar la funcionalidad de lectura, realizamos pruebas para asegurarnos de que los usuarios pueden ver todas las tareas existentes de manera precisa. Esto incluye verificar que todas las tareas se muestran correctamente en la interfaz de usuario y que los detalles de cada tarea coinciden con los datos almacenados en la base de datos.
+Para verificar la funcionalidad de lectura, realizamos pruebas para asegurarnos de que los usuarios pueden ver todas las tareas existentes de manera precisa. 
+
+**Codigo para Mostrar los datos de la bbdd**, pero lo condicionamos por si no hay datos mostrar mensaje y en caso de que haya mas de 15 caracteres en la descripción hacemos un "for" para recorrela y dividirlo para luego unirlo con "br" para que no se salga de la capa (fragmentos.join("<br>");):
+
+```
+ if (arrayDatosConsulta.length===0) {
+      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
+     }else{
+            for (let i = 0; i < arrayDatosConsulta.length; i++) {
+              const tarea = arrayDatosConsulta[i];
+                                // Obtener la descripción y dividirla en fragmentos de 15 caracteres
+                                const descripcion = tarea.descripcion;
+                                const fragmentos = [];
+                                for (let j = 0; j < descripcion.length; j += 15) {
+                                    fragmentos.push(descripcion.substring(j, j + 15));
+                                }
+                                // Unir los fragmentos con saltos de línea o <br>
+                                const descripcionConSaltos = fragmentos.join("<br>");
+
+                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
+                }
+            borrarFuncion();
+          }
+```
+
+
 
 ### 5.3.- Pruebas de Actualización (Update)
 Para verificar la funcionalidad de actualización, realizamos pruebas para asegurarnos de que los usuarios pueden modificar correctamente los detalles de una tarea existente. Esto incluye editar tareas con diferentes conjuntos de datos y verificar que los cambios se reflejen correctamente en la base de datos y en la interfaz de usuario.
 
+**Codigo para actualizar los datos**
+```
+```
+
+
 ### 5.4.- Pruebas de Eliminación (Delete)
 Para verificar la funcionalidad de eliminación, realizamos pruebas para asegurarnos de que los usuarios pueden eliminar correctamente una tarea existente de la lista. Esto incluye eliminar tareas con diferentes conjuntos de datos y verificar que las tareas se eliminen correctamente de la base de datos y de la interfaz de usuario.
-
-### 5.5.- Resultados de las pruebas
-Presentaremos los resultados de las pruebas, incluyendo cualquier error encontrado durante el proceso de prueba y las acciones tomadas para corregirlos. Es importante documentar los resultados de las pruebas para garantizar la calidad y fiabilidad de la aplicación.
+**Codigo para Eliminar los datos de la bbdd**
+```
+```
