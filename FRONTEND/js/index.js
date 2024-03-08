@@ -1,6 +1,10 @@
 const botonGuardar = document.querySelector("#GuardarTarea");
 const mensajes = document.querySelector("#mensajes");
 
+//variable de almacenaje de datos
+const almacen = [];
+
+
 //guardar los datos en la bbdd
 botonGuardar.addEventListener("click", () => {
     // campos del formulario
@@ -58,6 +62,7 @@ fetch("http://localhost:3500/api/v1/leer")
   .then(datos => {
     const contenedorDatos = document.getElementById("contenedorDatos");
     const arrayDatosConsulta = datos.resultado;
+    alamacen = arrayDatosConsulta;
     if (arrayDatosConsulta.length===0) {
       contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
      }else{
@@ -74,26 +79,30 @@ fetch("http://localhost:3500/api/v1/leer")
 
                 contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square editarBTN' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
                 }
+
             borrarFuncion();
             editarDatoFuncion();
           }
+          
     })
   .catch(error => contenedorDatos.innerHTML =error);
 
   // crUd (update)//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   function editarDatoFuncion() {
-   const botonesEditar = document.querySelectorAll(".editarBTN");
+    console.log(alamacen);
+    const botonesEditar = document.querySelectorAll(".editarBTN");
    for (let i = 0; i < botonesEditar.length; i++) {
     botonesEditar[i].addEventListener("click", lapicito => {
       editarMODAL.style.display="Block";
-      fetch("http://localhost:3500/api/v1/editar", {
-        method: "put",
-        headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            "id": lapicito.target.id,
-          })
-        });
+            const idED = lapicito.target.id;
+            const datosED = almacen.id[idED] ;
+            console.log("locos:"+datosED);
+            const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
+            const campoFecha_finalED = document.querySelector("#fecha_finalED");
+            const campoEstadoTareaED = document.querySelector("#estadoTareaED");
+
+ 
       });
     }
 }
