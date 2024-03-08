@@ -42,7 +42,7 @@
   color: rgb(255, 255, 255);
 }
 
-#titulo{
+.titulo{
     text-align: center;
     font-family: "Libre Franklin", sans-serif;
     font-size: 2em;
