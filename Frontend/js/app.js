@@ -49,7 +49,7 @@ function editar () {
   for (let i = 0; i < editarBTNS.length; i++) {
     editarBTNS[i].addEventListener("click", (e) => {
       // muestra form
-      editarFORM.style.display = "block";
+      editarFORM.style.display = "flex";
       // añadir los datos de la tarea concreta que se ha clicado, en el form de editar
       
       const tituloTareaClickada = document.querySelector(".titulo"+e.target.id).innerHTML;
