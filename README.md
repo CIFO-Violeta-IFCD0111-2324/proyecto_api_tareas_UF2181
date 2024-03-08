@@ -1,5 +1,3 @@
-https://www.w3schools.com/howto/howto_css_modals.asp
-
 # Enunciado: proyecto api tareas
 Proyecto que desarrolla una APIREST mediante NodeJS y MySQL. La api gestiona un CRUD de tareas
 
@@ -134,7 +132,7 @@ Ejemplo de código Node.js-Express para manejar la solicitud de actualización d
 ´´´
 ## 4.- Interfaz de Usuario (FRONTEND)
 En esta sección, explicaremos cómo se implementa la interfaz de usuario (UI) para permitir a los usuarios realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. La UI proporciona una experiencia amigable e intuitiva para que los usuarios interactúen con la aplicación y gestionen sus tareas de manera eficiente.
-Este código se encuentra en la carpeta JS/idex.html (interacción con la parte backend y funcionalidades), JS/modal.js (parte visual que hace aparecer al formulario cuando el usuario indica que quiere agregar una nueva tarea), e index.html y CSS/styles.css
+Este código se encuentra en la carpeta **JS/idex.html** (interacción con la parte backend y funcionalidades), **JS/modal.js** (parte visual que hace aparecer al formulario cuando el usuario indica que quiere agregar una nueva tarea, hemos partido desde este código https://www.w3schools.com/howto/howto_css_modals.asp), e **index.html y CSS/styles.css**.
 
 ### 4.1- Crear (Create)
 Para permitir a los usuarios crear nuevas tareas, implementamos un formulario en la interfaz de usuario que solicita los detalles de la tarea, como la descripción y la fecha de vencimiento. Los usuarios pueden completar este formulario y enviarlo para agregar una nueva tarea a la lista.
