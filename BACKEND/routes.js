@@ -46,7 +46,7 @@ router.get("/leer", (req, res) => {
     } else {
       res.json({
         "status": 200,
-        "resultado": resultado
+        "resultado": resultado 
       });
     }
   });
@@ -55,6 +55,33 @@ router.get("/leer", (req, res) => {
 
 
 //router.put("/actualizarTarea", (req, res) => {});
+// EDITAR
+router.put("/editar", (req, res) => {
+  const Descripcion = req.body.Descripcion;
+  const FechaInicio = req.body.FechaInicio;
+  const Fechafinal = req.body.Fechafinal;
+  const Estado = req.body.Estado;
+  const id = req.body.id;
+  // encriptamos el dato
+  //const datoEncriptado = CryptoJS.AES.encrypt(tarea, 'miTextoSecreto').toString();
+  const sql = "update tareas set descripcion = ?, fecha_inicio = ?, fecha_fin = ?, Estado_tarea = ?, where id = ?";
+  conexionMySQL.query(sql, [Descripcion, FechaInicio,  Fechafinal, Estado, id], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en la edición del dato. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
+});
+
+
+
 
 // BORRAR
 router.delete("/borrar", (req, res) => {
