@@ -71,17 +71,41 @@
           </div>
         </div>
           <!-- Editar Modal -->
-            <div id="editarMODAL" class="modal">
+            <div id="editarMODAL">
               <!-- Modal content -->
-              <div class="modal-content">
-                <span class="close">&times;</span>
-                <form>
-                  <h3>Editar dato en la app</h3>
-                  <input type="text" id="editarINPUT">
-                  <button type="button" id="editarBTNform">Modificar!</button>
-                  <div id="modalEditarRespuesta"></div>
-                </form>
+                <!-- Modal content -->
+          <div class="modal-content">
+            <div class="row">
+              <div class="col-50">
+                <h3 id="titulo_tarea">Descripción de la tarea</h3>
               </div>
+              <div class="col-50"><span class="close" id="EditarClose">&times;</span></div>              
+            </div>
+            <div class="row">
+              <div class="col-100">
+                <textarea id="descripcionED" cols="50" rows="5" placeholder="Máximo 30 Carácteres"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-30">
+                <input type="date" name="" id="fecha_inicioED" placeholder="inicio" />
+              </div>
+              <div class="col-30">
+                <input type="date" name="" id="fecha_finalED" />
+              </div>
+              <div class="col-30">
+                <select name="" id="estadoTareaED">
+                  <option value="selecciona">SELECCIONA</option>
+                  <option value="Inicio">Inicio</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Finalizada">Finalizada</option>
+                </select>
+              </div>
+             
+            </div> <div id="mensajes"></div>
+            <button type="button" id="EditarTarea">Editar Tarea!</button>
+            
+          </div>
             </div>
 
 
