@@ -95,7 +95,7 @@ h2 {
 
 }
 
-.resultado {
+#resultado {
     margin: 4px;
     display: flex;
     
@@ -104,12 +104,12 @@ h2 {
     border: solid 5px black;
 }
 
-.encabezados {
+#encabezados {
 
 
     text-align: left;
     font-size: x-large;
-    
+    background-color: white;
     border-color: black;
     border-width: 5px;
     
@@ -120,7 +120,7 @@ h2 {
     justify-content: space-around;
 }
 
-.contenido {
+#contenido {
 margin: 1px;
     text-align: justify;
     font-size: medium;
@@ -161,12 +161,12 @@ header {
     margin-bottom: 20px;
     font-size: 30px;
 }
-.cuadro1{
+#cuadro1{
     width: 5%;
 }
-.cuadro2{
+#cuadro2{
     width: 35%;
 }
-.cuadro3{
+#cuadro3{
     width: 10%;
 }
