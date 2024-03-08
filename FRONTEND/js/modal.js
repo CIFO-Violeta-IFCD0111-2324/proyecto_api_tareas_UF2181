@@ -1,5 +1,6 @@
 // Get the modal
 var modal = document.getElementById("myModal");
+var EditarClose= document.querySelector("#EditarClose")
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
@@ -15,6 +16,9 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
+}
+EditarClose.onclick = function() {
+  editarMODAL.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
