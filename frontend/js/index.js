@@ -8,6 +8,7 @@ const descripcion = document.querySelector("#descripcion");
 // Crud (crear)
 const boton = document.querySelector("#validar");
 boton.addEventListener("click", () => {
+  // VALIDACION
   if (nombre_tarea.value.length === 0 || fecha_inicio.value.length === 0 || fecha_fin.value.length === 0 || descripcion.value.length === 0) {
     alert("Rellena todos los campos!");
     return;
@@ -33,22 +34,27 @@ boton.addEventListener("click", () => {
 });
 
 // cRud (LEER)
-const bodyRespuesta = document.querySelector("#bodyRespuesta");
 fetch("http://localhost:3333/api/v1/leer")
   .then(res => res.json())
   .then(test => {
     const cajaResultados = document.querySelector("#cajaResultados");
     const arrayDatosConsulta = test.resultado;
     if (arrayDatosConsulta.length === 0) {
-      bodyRespuesta.innerHTML = "<h3 style='color:red'>Todavía no hay tareas guardadas</h3>";
+      cajaResultados.innerHTML = "<h3 style='color:red'>Todavía no hay tareas guardadas</h3>";
       return;
     }
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
-      bodyRespuesta.innerHTML += 
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].nombre_tarea + "</h3>"
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_inicio + "</h3>"
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_fin + "</h3>"
-      cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].descripcion + "</h3>"
+      cajaResultados.innerHTML += `
+        <ul>
+          <li>${arrayDatosConsulta[i].nombre_tarea}</li>
+          <li>${formatearFECHA(arrayDatosConsulta[i].fecha_inicio)}</li>
+          <li>${formatearFECHA(arrayDatosConsulta[i].fecha_fin)}</li>
+          <li>${arrayDatosConsulta[i].descripcion}</li>
+          <button>Editar</button>
+          <button id="${arrayDatosConsulta[i].id}">Borrar</button>
+        </ul>
+        <hr>
+      `;
     }
   })
   .catch(error => console.log(error));
@@ -82,4 +88,13 @@ function borrarDatos() {
     });
 
   }
+}
+
+// FUNCION QUE FORMATEA LA FECHA QUE LLEGA DE LA API 
+function formatearFECHA(fecha) {
+  let date = new Date(fecha)
+  let day = date.getDate()
+  let month = date.getMonth() + 1
+  let year = date.getFullYear()
+  return `${day}-${month}-${year}`;
 }

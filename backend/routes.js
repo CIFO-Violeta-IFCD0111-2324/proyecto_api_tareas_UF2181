@@ -35,28 +35,6 @@ router.get("/leer", (req, res) => {
         "mensaje": "Error en la lectura de los datos. Error" + error
       });
     } else {
-      //   // desencriptar datos
-      //   // let arrayNuevoResultado = [];
-      //   // for (let i = 0; i < resultado.length; i++) 
-      //   // {
-
-      //     // let bytes = CryptoJS.AES.decrypt(resultado[i].nombre_tarea, 'textoSecreto');
-      //     // let nombre_tarea = bytes.toString(CryptoJS.enc.Utf8);
-      //     // let bytes1 = CryptoJS.AES.decrypt(resultado[i].fecha_inicio, 'textoSecreto');
-      //     // let fecha_inicio = bytes1.toString(CryptoJS.enc.Utf8);
-      //     // let bytes2 = CryptoJS.AES.decrypt(resultado[i].fecha_fin, 'textoSecreto');
-      //     // let fecha_fin = bytes2.toString(CryptoJS.enc.Utf8);
-      //     // let bytes3 = CryptoJS.AES.decrypt(resultado[i].descripcion, 'textoSecreto');
-      //     // let descripcion = bytes3.toString(CryptoJS.enc.Utf8);
-
-      //     // arrayNuevoResultado.push({
-      //     //   "id": resultado[i].id,
-      //     //   "nombre_tarea": nombre_tarea,
-      //     //   "fecha_inicio": fecha_inicio,
-      //     //   "fecha_fin": fecha_fin,
-      //     //   "descripcion": descripcion
-      //     // });
-      //   }
       res.json({
         "status": 200,
         "resultado": resultado
