@@ -1,3 +1,5 @@
+// CREAR
+
 const button = document.getElementById("crearBTN");
 
 button.addEventListener("click", () => {
@@ -31,6 +33,35 @@ button.addEventListener("click", () => {
 
 });
 
+
+// EDITAR
+const button2 = document.getElementById("editarBTN");
+
+button2.addEventListener("click", () => {
+  alert()
+
+});
+
+function editar () {
+  // COGEMOS LOS BOTONES DE EDITAR TAREAS
+  const editarBTNS = document.querySelectorAll(".editar");
+  const editarFORM = document.querySelector("#editarFORM");
+  for (let i = 0; i < editarBTNS.length; i++) {
+    editarBTNS[i].addEventListener("click", (e) => {
+      // muestra form
+      editarFORM.style.display = "block";
+      // añadir los datos de la tarea concreta que se ha clicado, en el form de editar
+      
+      const tituloTareaClickada = document.querySelector(".titulo"+e.target.id).innerHTML;
+      const inputEditarForm = document.querySelector("#editarTitulo");
+      inputEditarForm.value = tituloTareaClickada;
+
+    });
+  }
+}
+
+
+// LEER
 fetch("http://localhost:3001/api/v1/leer")
   .then(res => res.json())
   .then(basedatos => {
@@ -40,13 +71,14 @@ fetch("http://localhost:3001/api/v1/leer")
       cajaResultados.innerHTML += `
         <div id="resultado">
         <button class="borrar" id="${arrayDatosConsulta[i].id}">borrar</button>
+        <button class="editar" id="${arrayDatosConsulta[i].id}">editar</button>
         <div id="cuadro1">
         <h2 id="encabezados">ID</h2> 
         <h3 id="contenido">${arrayDatosConsulta[i].id}</h3>
         </div>
         <div id="cuadro2">
         <h2 id="encabezados" >Titulo</h2>
-        <h3 id="contenido">${arrayDatosConsulta[i].titulo}</h3>
+        <h3 id="contenido" class="titulo${arrayDatosConsulta[i].id}">${arrayDatosConsulta[i].titulo}</h3>
         </div>
         <div id="cuadro2">
         <h2 id="encabezados">Descripcion</h2>
@@ -68,11 +100,12 @@ fetch("http://localhost:3001/api/v1/leer")
         </div>   
       `;
     }
-    borrar()
+    borrar();
+    editar();
   })
   .catch(error => alert(error))
 
-
+// BORRAR
 function borrar() {
   const buttons2 = document.getElementsByClassName("borrar");
   for (let i = 0; i < buttons2.length; i++) {

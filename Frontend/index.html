@@ -12,13 +12,11 @@
 </head>
 
 <body>
-
-
-
   <header>
     <div id="alertas"></div>
+    <!-- CREAR -->
     <form>
-      
+    
       <label for="">Titulo</label>
       <input type="text" placeholder="Titulo" id="titulo">
       <label for="">Descripcion</label>
@@ -34,6 +32,24 @@
       </div>
       <button type="button" id="crearBTN">Crear Dato</button>
       
+    </form>
+    <!-- EDITAR -->
+    <form id="editarFORM">
+    
+      <label for="">Titulo</label>
+      <input type="text" placeholder="Titulo" id="editarTitulo">
+      <label for="">Descripcion</label>
+      <input type="text" placeholder="Descripcion" id="editarDescripcion">
+      <label for="">Portada</label>
+      <input type="text" placeholder="portada" id="portada">
+      
+      <div id="fechas">
+        <label for="">Fecha inicio</label>
+        <input type="date" placeholder="Fecha inicio" id="inicio">
+        <label for="">Fecha final</label>
+        <input type="date" placeholder="Fecha final" id="fin">
+      </div>
+      <button type="button" id="editarBTN">Editar Dato</button>
       
     </form>
     <br>
