@@ -14,8 +14,8 @@ async function insertSQL() {
         body: JSON.stringify({
             "nombre": nombre.value,
             "descripcion": desc.value,
-            "fecha_inicio": fechaIn.value.toISOString,
-            "fecha_fin": fechaFin.value.toISOString,
+            "fecha_inicio": fechaIn.value,
+            "fecha_fin": fechaFin.value,
         })
     })
         .then(res => res.json())
@@ -51,7 +51,7 @@ async function insertSQL() {
     btnTarea.addEventListener('click', () => {
         // Evento sintetico
         const event = new Event('enviar', {
-            'bubbles': true,
+            'bubbles': false,
             'cancelable': true
         });
 
