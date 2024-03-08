@@ -44,6 +44,7 @@ fetch("http://localhost:3333/api/v1/leer")
       return;
     }
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
+      bodyRespuesta.innerHTML += 
       cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].nombre_tarea + "</h3>"
       cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_inicio + "</h3>"
       cajaResultados.innerHTML += "<h3>" + arrayDatosConsulta[i].fecha_fin + "</h3>"
@@ -51,3 +52,34 @@ fetch("http://localhost:3333/api/v1/leer")
     }
   })
   .catch(error => console.log(error));
+
+// cruD (borrar)
+function borrarDatos() {
+  const faTrashes = document.querySelectorAll(".fa-trash");
+  for (let i = 0; i < faTrashes.length; i++) {
+    faTrashes[i].addEventListener("click", e => {
+      if (confirm("Estas seguro de querer eliminar esta Tarea?")) {
+        const idDatoBorrar = e.target.getAttribute("datosBorrarAtributo");
+        fetch("http://localhost:3333/api/v1/borrar", {
+          mothod: "delete",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "nombre_tarea": idDatoBorrar,
+            "fecha_inicio": idDatoBorrar,
+            "fecha_fin": idDatoBorrar,
+            "descripcion": idDatoBorrar
+          })
+        })
+        .then(res => res.json())
+        .then(msg => {
+          bodyRespuesta.innerHTML += msg.mensaje;
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
+        })
+        .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor! </h3>");
+      }
+    });
+
+  }
+}
