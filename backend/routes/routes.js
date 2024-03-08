@@ -208,28 +208,22 @@ router.delete("/delete", (req, res) => {
 });
 
 
-router.put("/editar", (req, res) => {
+router.put("/edit", (req, res) => {
   const nombre = req.body.nombre;
   const desc = req.body.descripcion;
   const fechaIn = req.body.fecha_inicio;
-  const fechaFin = req.body.fecha_final;
+  const fechaFin = req.body.fecha_fin;
   const id = req.body.id;
-  
+
   // encriptamos el dato
-  const nombreCrypt = CryptoJS.AES.encrypt(nombre, 'miTextoSecreto').toString();
-  const descCrypt = CryptoJS.AES.encrypt(desc, 'miTextoSecreto').toString();
-  const fechaInCrypt = CryptoJS.AES.encrypt(fechaIn, 'miTextoSecreto').toString();
-  const fechaFinCrypt = CryptoJS.AES.encrypt(fechaFin, 'miTextoSecreto').toString();
-  const sql = "update dato set nombre = ?,descripcion=?,fecha_inicio=?,fecha_fin=? where id = ?";
-  conexionMySQL.query(sql, [nombreCrypt,descCrypt,fechaInCrypt,fechaFinCrypt, id], error => {
+  const query = "update tasks set nombre = ?,descripcion=?,fecha_inicio=?,fecha_fin=? where id = ?";
+  conexionDB.query(query, [nombre, desc, fechaIn, fechaFin, id], error => {
     if (error) {
-      res.json({
-        "status": 500,
+      res.status(400).json({
         "mensaje": "<span class='error'>Error en la edición del dato. Error:" + error + "</span>"
       });
     } else {
-      res.json({
-        "status": 200,
+      res.status(200).json({
         "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
       });
     }
