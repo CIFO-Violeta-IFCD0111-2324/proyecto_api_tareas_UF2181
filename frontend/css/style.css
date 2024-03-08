@@ -19,6 +19,7 @@ body {
     flex-direction: column;
     background-size: cover;
     background-image: url("./imagenes/ladrillo4.jpg");
+
 }
 
 header>div:nth-of-type(1) {

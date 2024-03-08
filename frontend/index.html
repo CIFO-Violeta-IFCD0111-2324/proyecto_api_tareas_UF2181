@@ -41,14 +41,14 @@
   <div id="caja-respuestas">
   </div>
 
-  <!-- Modal content -->
+  <!-- Modal de crear tarea -->
   <div id="myModal" class="modal">
     <form id="tareaForm" class="modal-content row g-3 needs-validation" novalidate>
       <div class="close-caja">
         <span class="close">&times;</span>
       </div>
       <p id="titulo">AÑADE UNA NUEVA TAREA </p>
-      <div class="input-group mb-3 col has-validation"">
+      <div class="input-group mb-3 col has-validation">
         <span class=" input-group-text" id="basic-addon1">Nombre de la tarea</span>
         <input id="nombre" type="text" class="form-control" aria-label="nombre de la tarea"
           aria-describedby="basic-addon1" required>
@@ -85,6 +85,53 @@
     </form>
   </div>
 
+  <!-- Modal de Editar tarea  -->
+
+  <div id="myModal" class="modal">
+
+    <!-- Modal contenido -->
+    
+    <form id="tareaForm" class="modal-content row g-3 needs-validation" novalidate>
+      <div class="close-caja">
+        <span class="close">&times;</span>
+      </div>
+      <p id="titulo">Editar la tarea </p>
+      <div class="input-group mb-3 col has-validation">
+        <span class=" input-group-text" id="basic-addon1">Nombre de la tarea</span>
+        <input id="nombre" type="text" class="form-control" aria-label="nombre de la tarea"
+          aria-describedby="basic-addon1" required>
+        <div class="invalid-feedback">
+          Introduzca el nuevo nombre de la tarea
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon2">Fecha inicio</span>
+        <input id="fecha-in" type="date" class="form-control" aria-label="Fecha inicio" aria-describedby="basic-addon2"
+          required>
+        <div class="invalid-feedback">
+          Selecciona la nueva fecha de inicio
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3">Fecha final</span>
+        <input id="fecha-fin" type="date" class="form-control" aria-label="Fecha final" aria-describedby="basic-addon3"
+          required>
+        <div class="invalid-feedback">
+          Selecciona la nueva fecha de finalización
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="descrip" class="form-label" id="label-descrip">Descripción de la tarea</label>
+        <textarea class="form-control" id="descrip" aria-label="Descripcion de la Tarea" required></textarea>
+        <div class="invalid-feedback">
+          Introduzca la nueva descripcion
+        </div>
+      </div>
+      <div class="divBotton">
+        <button type="button" class="btn btn-light">Cambiar Tarea</button>
+      </div>
+    </form>
+  </div>
 
 </body>
 
