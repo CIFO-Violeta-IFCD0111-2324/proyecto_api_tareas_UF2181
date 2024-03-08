@@ -48,7 +48,8 @@ La operación de creación permite a los usuarios agregar nuevas tareas a la lis
 
 Ejemplo de código Node.js-Express para manejar la solicitud de creación de una tarea:
 
-''' // CREAR, Crud
+```
+ // CREAR, Crud
 router.post("/crearTarea", (req, res) => {
   const Descripcion = req.body.Descripcion;
   const FechaInicio = req.body.FechaInicio;
@@ -69,13 +70,14 @@ router.post("/crearTarea", (req, res) => {
       });
     }
   });
-});'''
+});
+```
 
 ### 3.2.- Read (Leer)
 La operación de lectura permite a los usuarios ver todas las tareas existentes en la lista. Cuando un usuario accede a la página de visualización de tareas, el servidor recupera todas las tareas almacenadas en la base de datos y las envía al cliente para su visualización.
 
 Ejemplo de código Node.js-Express para recuperar todas las tareas:
-´´´
+```
 // LEER, cRud
 router.get("/leer", (req, res) => {
   const sql = "select id, descripcion, year(fecha_inicio) as anoInicio, month(fecha_inicio) as mesInicio, day(fecha_inicio) as diaInicio, year(fecha_fin) as anofin, month(fecha_fin) as mesfin, day(fecha_fin) as diafin, Estado_tarea   from tareas;";
@@ -93,14 +95,13 @@ router.get("/leer", (req, res) => {
     }
   });
 });
-
-´´´
+```
 ### 3.3.- Delete (Eliminar)
 La operación de eliminación permite a los usuarios eliminar una tarea existente de la lista. Cuando un usuario elimina una tarea, se envía una solicitud al servidor que contiene el ID de la tarea a eliminar. El servidor procesa esta solicitud y elimina la tarea correspondiente de la base de datos.
 
 Ejemplo de código Node.js-Express para manejar la solicitud de eliminación de una tarea:
 
-´´´
+```
 // Eliminar
 router.delete("/borrar", (req, res) => {
   const idTarea = req.body.id;
@@ -120,16 +121,16 @@ router.delete("/borrar", (req, res) => {
   });
 });
 
-´´´
+```
 ### 3.4.- Update (Actualizar)
 La operación de actualización permite a los usuarios modificar el estado o los detalles de una tarea existente en la lista. Cuando un usuario edita una tarea, se envía una solicitud al servidor que contiene los nuevos detalles de la tarea. El servidor procesa esta solicitud y actualiza la tarea correspondiente en la base de datos.
 
 Ejemplo de código Node.js-Express para manejar la solicitud de actualización de una tarea:
 
-´´´
+```
 
 
-´´´
+```
 ## 4.- Interfaz de Usuario (FRONTEND)
 En esta sección, explicaremos cómo se implementa la interfaz de usuario (UI) para permitir a los usuarios realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. La UI proporciona una experiencia amigable e intuitiva para que los usuarios interactúen con la aplicación y gestionen sus tareas de manera eficiente.
 Este código se encuentra en la carpeta **JS/idex.html** (interacción con la parte backend y funcionalidades), **JS/modal.js** (parte visual que hace aparecer al formulario cuando el usuario indica que quiere agregar una nueva tarea, hemos partido desde este código https://www.w3schools.com/howto/howto_css_modals.asp), e **index.html y CSS/styles.css**.
