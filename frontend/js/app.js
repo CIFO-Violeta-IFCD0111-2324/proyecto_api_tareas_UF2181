@@ -65,7 +65,6 @@ fetch("http://localhost:3000/api/read")
     .then(res => res.json())
     .then(datos => {
         const cajaTareas = document.getElementById("caja-de-tareas");
-        const divRespuestas = document.querySelector("div#caja-respuestas");
         const tareasOut = datos.resultado;
         if (tareasOut.length == 0) {
             cajaTareas.innerHTML = "Todavia no hay tareas"
@@ -113,30 +112,13 @@ fetch("http://localhost:3000/api/read")
             papelera.setAttribute("id", tarea.id);
 
             // cruD Delete 
-            papelera.addEventListener("click", e => {
-                if (confirm("Estás seguro que quieres eliminar la tarea?")) {
-                    fetch("http://localhost:3000/api/delete", {
-                        method: "delete",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            "id": e.target.id
-                        })
-                    })
-                        .then(res => res.json())
-                        .then(msg => {
-                            divRespuestas.innerHTML = msg.mensaje;
-                            setTimeout(() => {
-                                location.reload();
-                            }, 3000)
-                        })
-                        .catch(error => divRespuestas.innerHTML = error.mensaje);
-                }
-            });
+            papelera.addEventListener("click", deletePapel, false);
             divPE.appendChild(papelera);
             
             const btnEdit = document.createElement("i");
             btnEdit.classList.add("fa-solid", "fa-pen-to-square");
             btnEdit.setAttribute("id", tarea.id);
+            btnEdit.addEventListener("click", editDato,  false)
             divPE.appendChild(btnEdit)
 
             divTarea.appendChild(divPE);
@@ -153,3 +135,37 @@ function setNota(id) {
     const index = id % notasArray.length;
     return notasArray[index];
 }
+
+
+async function deletePapel (event){
+    const divRespuestas = document.querySelector("div#caja-respuestas");
+    if (confirm("Estás seguro que quieres eliminar la tarea?")) {
+       await fetch("http://localhost:3000/api/delete", {
+            method: "delete",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                "id": event.target.id
+            })
+        })
+            .then(res => res.json())
+            .then(msg => {
+                divRespuestas.innerHTML = msg.mensaje;
+                setTimeout(() => {
+                    location.reload();
+                }, 3000)
+            })
+            .catch(error => divRespuestas.innerHTML = error.mensaje);
+    }
+}
+
+
+async function editDato (event) {
+    const divRespuestas = document.querySelector("div#caja-respuestas");
+
+    event.target.id
+
+}
+
+
+
+
