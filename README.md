@@ -1,10 +1,78 @@
 https://www.w3schools.com/howto/howto_css_modals.asp
 
+# Enunciado: proyecto api tareas
+Proyecto que desarrolla una APIREST mediante NodeJS y MySQL. La api gestiona un CRUD de tareas
 
-# josepe diseño
+## 0.- Estructura e innacialización
+ Aplicación de Gestor de Tareas utilizando MySQL, Node.js-Express, JavaScript, HTML5 y CSS3. 
+ Aquí tienes una estructura para la documentación del CRUD:
 
-# proyecto_api_tareas
-Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api gestiona un CRUD de tareas
+Dentro del **package.json** veras las dependencias de nuestra aplicación(Mysql, espress, cors), una vez instaladas. E iniciado el servidor mysql puedes ejequtar nuestra api.js y crear la bbddd mediante el archivo BD/proyecto_tarea_PIJ.sql
+
+## 1.- Introducción al CRUD:
+### 1.1 ¿Qué es un CRUD?
+CRUD es un acrónimo que se utiliza para describir las cuatro operaciones básicas en la gestión de datos: Crear (Create), Leer (Read), Actualizar (Update) y Eliminar (Delete). Estas operaciones son fundamentales en el desarrollo de aplicaciones web y permiten interactuar con una base de datos para almacenar, recuperar, actualizar y eliminar información.
+
+#### 1.2 Importancia del CRUD en la aplicación de Gestor de Tareas
+En el contexto de nuestra aplicación de Gestor de Tareas, el CRUD desempeña un papel crucial en la manipulación de las tareas almacenadas en la base de datos. A través de estas operaciones, los usuarios pueden agregar nuevas tareas, ver las tareas existentes, actualizar el estado de una tarea y eliminar tareas obsoletas.
+
+El CRUD proporciona una interfaz intuitiva para que los usuarios gestionen sus tareas de manera eficiente y efectiva. Sin estas operaciones básicas, la aplicación carecería de la funcionalidad necesaria para ser útil en un entorno real de gestión de tareas.
+
+En los siguientes apartados, detallaremos los requisitos específicos del CRUD para nuestra aplicación de Gestor de Tareas, así como su implementación utilizando las tecnologías MySQL, Node.js-Express, JavaScript, HTML5 y CSS3.
+
+## 2.- Requisitos del CRUD:
+### 2.1 Operaciones CRUD necesarias
+Para la aplicación de Gestor de Tareas, necesitamos implementar las siguientes operaciones CRUD:
+
+**Crear (Create)**: Permite a los usuarios agregar nuevas tareas a la lista.
+**Leer (Read):** Permite a los usuarios ver todas las tareas existentes.
+**Actualizar (Update):** Permite a los usuarios modificar el estado o los detalles de una tarea existente.
+**Eliminar (Delete):** Permite a los usuarios eliminar una tarea de la lista.
+
+### 2.2 Especificaciones de los datos
+Para cada tarea, almacenaremos la siguiente información en la base de datos (proyecto_tarea_PIJ):
+
+La tabla se llama "tareas" con los campos: 
+**ID:** Identificador único de la tarea (clave primaria).
+**Descripción:** Detalles de la tarea.
+**Fecha de creación:** Fecha en la que se creó la tarea.
+**Fecha de vencimiento:** Fecha límite para completar la tarea.
+**Estado:** Estado actual de la tarea (por ejemplo: pendiente, en progreso, completada).
+Estos campos nos permitirán realizar operaciones CRUD completas y proporcionar una funcionalidad robusta para la gestión de tareas en nuestra aplicación.
+
+En los siguientes apartados, detallaremos el diseño de la base de datos y la implementación de cada operación CRUD utilizando las tecnologías mencionadas.
+
+## 3.- Operaciones CRUD
+En esta sección, detallaremos cada una de las operaciones CRUD (Crear, Leer, Actualizar y Eliminar) necesarias para la gestión de tareas en nuestra aplicación de Gestor de Tareas.
+
+### 3.1.- Create (Crear)
+La operación de creación permite a los usuarios agregar nuevas tareas a la lista. Cuando un usuario desea agregar una nueva tarea, se envía una solicitud al servidor que contiene los detalles de la tarea, como la descripción, la fecha de creación, la fecha de vencimiento y el estado inicial. El servidor procesa esta solicitud y agrega la nueva tarea a la base de datos.
+
+Ejemplo de código Node.js-Express para manejar la solicitud de creación de una tarea:
+
+''' // CREAR, Crud
+router.post("/crearTarea", (req, res) => {
+  const Descripcion = req.body.Descripcion;
+  const FechaInicio = req.body.FechaInicio;
+  const Fechafinal = req.body.Fechafinal;
+  const Estado = req.body.Estado;
+
+  const sql = "insert into tareas values (default, ?, ?, ?, ? );";
+  conexionMySQL.query(sql, [Descripcion, FechaInicio,  Fechafinal, Estado], err => {
+    if (err) {
+      res.json({
+        "status": 500,
+        "mensaje": "Error en la inserción del dato. Error:" + err
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "Dato insertado correctamente!"
+      });
+    }
+  });
+});'''
+
 
 # PASOS
 
