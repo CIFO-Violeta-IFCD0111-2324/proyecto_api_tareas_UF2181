@@ -73,7 +73,7 @@ fetch("http://localhost:3500/api/v1/leer")
                                 // Unir los fragmentos con saltos de línea o <br>
                                 const descripcionConSaltos = fragmentos.join("<br>");
 
-                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
+                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square editarBTN' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
                 }
             borrarFuncion();
            // editarDatoFuncion()
@@ -92,13 +92,18 @@ fetch("http://localhost:3500/api/v1/leer")
     // Get the <span> element that closes the modal
     const editarSpan = document.getElementsByClassName("close")[1];
     // When the user clicks on the button, open the modal
-    // GETION DE AÑADIR DATO CORRESPONDIENTE AL MODAL
+
+    // GESTION DE AÑADIR DATO CORRESPONDIENTE AL MODAL
     for (let i = 0; i < editarBTNs.length; i++) {
       editarBTNs[i].onclick = function (e) {
         editarMODAL.style.display = "block";
         const dato = e.target.previousSibling.previousSibling.previousSibling.innerHTML; // para recoger el valor del h3
-        const editarINPUT = document.getElementById("editarINPUT");
-        editarINPUT.value = dato;
+    // campos del formulario Editar
+        const campoDescripcionED = document.querySelector("#descripcionED");
+        const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
+        const campoFecha_finalED = document.querySelector("#fecha_finalED");
+        const campoEstadoTareaED = document.querySelector("#estadoTareaED");
+      editarINPUT.value = datos;
         id = e.target.getAttribute("datoEditarAtributo");
       }
     }
@@ -109,7 +114,11 @@ fetch("http://localhost:3500/api/v1/leer")
     }
     // DETECTAR SI HA HABIDO CAMBIO EN EL FORM DE EDITAR, SI HUBO EDITA EL DATO EN SERVIDOR
     const editarBTNform = document.getElementById("editarBTNform");
-    const editarForm = document.querySelectorAll("form")[1];
+    // campos del formulario Editar
+        const campoDescripcionED = document.querySelector("#descripcionED");
+        const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
+        const campoFecha_finalED = document.querySelector("#fecha_finalED");
+        const campoEstadoTareaED = document.querySelector("#estadoTareaED");
     // Gestiona si ha habido cambios en el form
     let cambioForm = false;
     editarForm.addEventListener("change", () => {
@@ -122,7 +131,10 @@ fetch("http://localhost:3500/api/v1/leer")
         return;
       }
       
-      if (editarINPUT.value.length === 0) {
+      if (campoDescripcionED.value.length === 0 ||
+        campoFecha_inicioED.value.length === 0 || 
+        campoFecha_finalED.value.length === 0 || 
+        campoEstadoTareaED.value.length === 0) {
         alert("Añade un dato!");
         return;
       }
@@ -130,8 +142,11 @@ fetch("http://localhost:3500/api/v1/leer")
         method: "put",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          "dato": editarINPUT.value,
-          "id": id
+           "id": id,
+           "Descripcion" : campoDescripcionED.value,
+           "FechaInicio" : campoFecha_inicioED.value,
+           "Fechafinal" : campoFecha_finalED.value,
+           "Estado" : campoEstadoTareaED.value
         })
       })
         .then(res => res.json())
