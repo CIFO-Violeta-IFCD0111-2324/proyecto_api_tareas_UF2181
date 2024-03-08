@@ -2,22 +2,22 @@
 const mysql = require('mysql2');
 const util = require("util"); 
 
-// const conexionMySQL = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: 'datos',
-// });
+const conexionMySQL = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'datos',
+});
 
 // railway
 
-const conexionMySQL = mysql.createConnection({
-  host: 'monorail.proxy.rlwy.net',
-  user: 'root',
-  password: 'F5aFEHgECaHGeFB4Hd3Ag5C64b6g625C',
-  database: 'railway',
-  port: 18798
-});
+// const conexionMySQL = mysql.createConnection({
+//   host: 'monorail.proxy.rlwy.net',
+//   user: 'root',
+//   password: 'F5aFEHgECaHGeFB4Hd3Ag5C64b6g625C',
+//   database: 'railway',
+//   port: 18798
+// });
 
 // promise wrapper to enable async await with MYSQL
 conexionMySQL.query = util.promisify(conexionMySQL.query).bind(conexionMySQL);

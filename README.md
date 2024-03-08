@@ -16,6 +16,12 @@ Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api ges
 - Comprobar mediante Postman
 - En la maquetación insertar la tarea en el "body" de htm5
 
+## 3- Recurso que elimina las tareas (cruD):
+- Documentar el recurso que elimina las tareas 
+- Comprobar mediante Postman
+
+
+
 - Ejemplo documentación API creada con chatgpt:
 
 ```

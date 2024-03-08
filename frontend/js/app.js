@@ -6,8 +6,8 @@ const modalCrearRespuesta = document.getElementById("modalCrearRespuesta");
 // codigo optimizado con funcion que gestiona los fetchings a la API, mostrar mensajes y recargar página en la primera ruta (CREAR)
 // TODO: Optimizar las que faltan
 
-// const apiUrl = "http://localhost:3000/api/v1/";
-const apiUrl ="https://proyecto-api-tareas-uf2181-2.onrender.com/api/v1/";
+const apiUrl = "http://localhost:3000/api/v1/";
+// const apiUrl ="https://proyecto-api-tareas-uf2181-2.onrender.com/api/v1/";
 
 function fetchData(url, method, bodyData) {
   return fetch(url, {
@@ -76,8 +76,8 @@ crearBTNform.addEventListener("click", () => {
 // });
 
 // cRud (leer)
-fetch(`https://proyecto-api-tareas-uf2181-2.onrender.com/api/v1/leer`)
-// fetch("http://localhost:3000/api/v1/leer")
+// fetch(`https://proyecto-api-tareas-uf2181-2.onrender.com/api/v1/leer`)
+fetch("http://localhost:3000/api/v1/leer")
   .then(res => res.json())
   .then(datos => {
     const arrayDatosConsulta = datos.resultado;
