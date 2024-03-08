@@ -14,8 +14,8 @@ async function insertSQL() {
         body: JSON.stringify({
             "nombre": nombre.value,
             "descripcion": desc.value,
-            "fecha_inicio": fechaIn.value,
-            "fecha_fin": fechaFin.value,
+            "fecha_inicio": fechaIn.value.toISOString,
+            "fecha_fin": fechaFin.value.toISOString,
         })
     })
         .then(res => res.json())
@@ -91,13 +91,13 @@ fetch("http://localhost:3000/api/read")
 
             // Elemento de la fecha-in
             const fechaInElm = document.createElement("span");
-            const textFechaIn = document.createTextNode("Inicio: " + tarea.fecha_inicio.substring(0, 10));
+            const textFechaIn = document.createTextNode("Inicio: " + tarea.fecha_inicio.split("T")[0]);
             fechaInElm.appendChild(textFechaIn);
             divFechas.appendChild(fechaInElm);
 
             // Elemento de la fecha-fin
             const fechaFinElm = document.createElement("span");
-            const textFechaFin = document.createTextNode("Final: " + tarea.fecha_fin.substring(0, 10));
+            const textFechaFin = document.createTextNode("Final: " + tarea.fecha_fin.split("T")[0]);
             fechaFinElm.appendChild(textFechaFin);
             divFechas.appendChild(fechaFinElm);
             divTarea.appendChild(divFechas)
