@@ -1,222 +1,353 @@
-https://www.w3schools.com/howto/howto_css_modals.asp
+# Enunciado: proyecto api tareas
+Proyecto que desarrolla una APIREST mediante NodeJS y MySQL. La api gestiona un CRUD de tareas
 
+## 0.- Estructura e innicialización
+ Aplicación de Gestor de Tareas utilizando MySQL, Node.js-Express, JavaScript, HTML5 y CSS3. 
+ Aquí tienes una estructura para la documentación del CRUD:
 
-# josepe diseño
+Dentro del **package.json** veras las dependencias de nuestra aplicación(Mysql, espress, cors), una vez instaladas. E iniciado el servidor mysql puedes ejequtar nuestra api.js y crear la bbddd mediante el archivo BD/proyecto_tarea_PIJ.sql
 
-# proyecto_api_tareas
-Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api gestiona un CRUD de tareas
+## 1.- Introducción al CRUD:
+### 1.1 ¿Qué es un CRUD?
+CRUD es un acrónimo que se utiliza para describir las cuatro operaciones básicas en la gestión de datos: Crear (Create), Leer (Read), Actualizar (Update) y Eliminar (Delete). Estas operaciones son fundamentales en el desarrollo de aplicaciones web y permiten interactuar con una base de datos para almacenar, recuperar, actualizar y eliminar información.
 
-# PASOS
+#### 1.2 Importancia del CRUD en la aplicación de Gestor de Tareas
+En el contexto de nuestra aplicación de Gestor de Tareas, el CRUD desempeña un papel crucial en la manipulación de las tareas almacenadas en la base de datos. A través de estas operaciones, los usuarios pueden agregar nuevas tareas, ver las tareas existentes, actualizar el estado de una tarea y eliminar tareas obsoletas.
 
-## 1- Crear API REST con el recurso que crea una tarea (Crud):
-- Documentar el recurso que crea la tarea 
-- La tarea tendrá mínimo 4 campos
-- Base de datos MySQL
-- Comprobar mediante Postman
-- Extra: Iniciar maquetacion de la webapp con HTML, CSS
-- Ejemplo documentación API creada con chatgpt:
+El CRUD proporciona una interfaz intuitiva para que los usuarios gestionen sus tareas de manera eficiente y efectiva. Sin estas operaciones básicas, la aplicación carecería de la funcionalidad necesaria para ser útil en un entorno real de gestión de tareas.
 
-```
-info:
-  version: "1.0.0"
-  title: "API de Tareas"
-  description: "API para administrar tareas"
-basePath: "/api/v1"
-schemes:
-  - "http"
-consumes:
-  - "application/json"
-produces:
-  - "application/json"
+En los siguientes apartados, detallaremos los requisitos específicos del CRUD para nuestra aplicación de Gestor de Tareas, así como su implementación utilizando las tecnologías MySQL, Node.js-Express, JavaScript, HTML5 y CSS3.
 
-paths:
-  /tareas:
-    post:
-      summary: "Crear una nueva tarea"
-      description: "Crea una nueva tarea con los datos proporcionados"
-      parameters:
-        - in: "body"
-          name: "dato"
-          description: "Datos de la tarea a crear"
-          required: true
-          schema:
-            type: "object"
-            properties:
-              titulo:
-                type: "string"
-                example: "Completar informe"
-              descripcion:
-                type: "string"
-                example: "Completar el informe mensual para el departamento de ventas."
-              fecha_limite:
-                type: "string"
-                format: "date"
-                example: "2024-03-15"
-              prioridad:
-                type: "string"
-                enum: ["alta", "media", "baja"]
-                example: "alta"
-      responses:
-        200:
-          description: "Tarea creada exitosamente"
-          schema:
-            type: "object"
-            properties:
-              id:
-                type: "integer"
-                example: 1
-              mensaje:
-                type: "string"
-                example: "Tarea creada correctamente"
-        400:
-          description: "Parámetros inválidos"
-        500:
-          description: "Error del servidor"
+## 2.- Requisitos del CRUD:
+### 2.1 Operaciones CRUD necesarias
+Para la aplicación de Gestor de Tareas, necesitamos implementar las siguientes operaciones CRUD:
+
+**Crear (Create)**: Permite a los usuarios agregar nuevas tareas a la lista.
+**Leer (Read):** Permite a los usuarios ver todas las tareas existentes.
+**Actualizar (Update):** Permite a los usuarios modificar el estado o los detalles de una tarea existente.
+**Eliminar (Delete):** Permite a los usuarios eliminar una tarea de la lista.
+
+### 2.2 Especificaciones de los datos
+Para cada tarea, almacenaremos la siguiente información en la base de datos (proyecto_tarea_PIJ):
+
+La tabla se llama "tareas" con los campos: 
+**ID:** Identificador único de la tarea (clave primaria).
+**Descripción:** Detalles de la tarea.
+**Fecha de creación:** Fecha en la que se creó la tarea.
+**Fecha de vencimiento:** Fecha límite para completar la tarea.
+**Estado:** Estado actual de la tarea (por ejemplo: pendiente, en progreso, completada).
+Estos campos nos permitirán realizar operaciones CRUD completas y proporcionar una funcionalidad robusta para la gestión de tareas en nuestra aplicación.
+
+En los siguientes apartados, detallaremos el diseño de la base de datos y la implementación de cada operación CRUD utilizando las tecnologías mencionadas.
+
+## 3.- Operaciones CRUD (BACKEND)
+En esta sección, detallaremos cada una de las operaciones CRUD (Crear, Leer, Actualizar y Eliminar) necesarias para la gestión de tareas en nuestra aplicación de Gestor de Tareas. Se encuentran en el archivo **Routes.js**
+
+### 3.1.- Create (Crear)
+La operación de creación permite a los usuarios agregar nuevas tareas a la lista. Cuando un usuario desea agregar una nueva tarea, se envía una solicitud al servidor que contiene los detalles de la tarea, como la descripción, la fecha de creación, la fecha de vencimiento y el estado inicial. El servidor procesa esta solicitud y agrega la nueva tarea a la base de datos.
+
+Ejemplo de código Node.js-Express para manejar la solicitud de creación de una tarea:
 
 ```
+ // CREAR, Crud
+router.post("/crearTarea", (req, res) => {
+  const Descripcion = req.body.Descripcion;
+  const FechaInicio = req.body.FechaInicio;
+  const Fechafinal = req.body.Fechafinal;
+  const Estado = req.body.Estado;
 
-# API REST
+  const sql = "insert into tareas values (default, ?, ?, ?, ? );";
+  conexionMySQL.query(sql, [Descripcion, FechaInicio,  Fechafinal, Estado], err => {
+    if (err) {
+      res.json({
+        "status": 500,
+        "mensaje": "Error en la inserción del dato. Error:" + err
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "Dato insertado correctamente!"
+      });
+    }
+  });
+});
+```
 
-¿Qué es API RESTful?
-La API RESTful es una interfaz que dos sistemas de computación utilizan para intercambiar información de manera segura a través de Internet. La mayoría de las aplicaciones para empresas deben comunicarse con otras aplicaciones internas o de terceros para llevar a cabo varias tareas. Por ejemplo, para generar nóminas mensuales, su sistema interno de cuentas debe compartir datos con el sistema bancario de su cliente para automatizar la facturación y comunicarse con una aplicación interna de planillas de horarios. Las API RESTful admiten este intercambio de información porque siguen estándares de comunicación de software seguros, confiables y eficientes.
+### 3.2.- Read (Leer)
+La operación de lectura permite a los usuarios ver todas las tareas existentes en la lista. Cuando un usuario accede a la página de visualización de tareas, el servidor recupera todas las tareas almacenadas en la base de datos y las envía al cliente para su visualización.
 
-¿Qué es una API?
-Una interfaz de programa de aplicación (API) define las reglas que se deben seguir para comunicarse con otros sistemas de software. Los desarrolladores exponen o crean API para que otras aplicaciones puedan comunicarse con sus aplicaciones mediante programación. Por ejemplo, la aplicación de planilla de horarios expone una API que solicita el nombre completo de un empleado y un rango de fechas. Cuando recibe esta información, procesa internamente la planilla de horarios del empleado y devuelve la cantidad de horas trabajadas en ese rango de fechas.
+Ejemplo de código Node.js-Express para recuperar todas las tareas:
+```
+// LEER, cRud
+router.get("/leer", (req, res) => {
+  const sql = "select id, descripcion, year(fecha_inicio) as anoInicio, month(fecha_inicio) as mesInicio, day(fecha_inicio) as diaInicio, year(fecha_fin) as anofin, month(fecha_fin) as mesfin, day(fecha_fin) as diafin, Estado_tarea   from tareas;";
+  conexionMySQL.query(sql, (error, resultado) => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "Error en la inserción del dato. Error:" + error
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "resultado": resultado
+      });
+    }
+  });
+});
+```
+### 3.3.- Delete (Eliminar)
+La operación de eliminación permite a los usuarios eliminar una tarea existente de la lista. Cuando un usuario elimina una tarea, se envía una solicitud al servidor que contiene el ID de la tarea a eliminar. El servidor procesa esta solicitud y elimina la tarea correspondiente de la base de datos.
 
-Se puede pensar en una API web como una puerta de enlace entre los clientes y los recursos de la Web.
+Ejemplo de código Node.js-Express para manejar la solicitud de eliminación de una tarea:
 
-Clientes
-Los clientes son usuarios que desean acceder a información desde la Web. El cliente puede ser una persona o un sistema de software que utiliza la API. Por ejemplo, los desarrolladores pueden escribir programas que accedan a los datos del tiempo desde un sistema de clima. También se puede acceder a los mismos datos desde el navegador cuando se visita directamente el sitio web de clima.
+```
+// Eliminar
+router.delete("/borrar", (req, res) => {
+  const idTarea = req.body.id;
+  const sql = "delete from tareas where id=?";
+  conexionMySQL.query(sql, [idTarea], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en el borrado de la tarea. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Tarea eliminada correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
+});
 
-Recursos
-Los recursos son la información que diferentes aplicaciones proporcionan a sus clientes. Los recursos pueden ser imágenes, videos, texto, números o cualquier tipo de datos. La máquina encargada de entregar el recurso al cliente también recibe el nombre de servidor. Las organizaciones utilizan las API para compartir recursos y proporcionar servicios web, a la vez que mantienen la seguridad, el control y la autenticación. Además, las API las ayudan a determinar qué clientes obtienen acceso a recursos internos específicos.
+```
+### 3.4.- Update (Actualizar)
+La operación de actualización permite a los usuarios modificar el estado o los detalles de una tarea existente en la lista. Cuando un usuario edita una tarea, se envía una solicitud al servidor que contiene los nuevos detalles de la tarea. El servidor procesa esta solicitud y actualiza la tarea correspondiente en la base de datos.
 
-¿Qué es REST?
-La transferencia de estado representacional (REST) es una arquitectura de software que impone condiciones sobre cómo debe funcionar una API. En un principio, REST se creó como una guía para administrar la comunicación en una red compleja como Internet. Es posible utilizar una arquitectura basada en REST para admitir comunicaciones confiables y de alto rendimiento a escala. Puede implementarla y modificarla fácilmente, lo que brinda visibilidad y portabilidad entre plataformas a cualquier sistema de API.
+Ejemplo de código Node.js-Express para manejar la solicitud de actualización de una tarea:
 
-Los desarrolladores de API pueden diseñar API por medio de varias arquitecturas diferentes. Las API que siguen el estilo arquitectónico de REST se llaman API REST. Los servicios web que implementan una arquitectura de REST son llamados servicios web RESTful. El término API RESTful suele referirse a las API web RESTful. Sin embargo, los términos API REST y API RESTful se pueden utilizar de forma intercambiable.
+```
 
-A continuación, se presentan algunos de los principios del estilo arquitectónico de REST:
 
-Interfaz uniforme
-La interfaz uniforme es fundamental para el diseño de cualquier servicio web RESTful. Ella indica que el servidor transfiere información en un formato estándar. El recurso formateado se denomina representación en REST. Este formato puede ser diferente de la representación interna del recurso en la aplicación del servidor. Por ejemplo, el servidor puede almacenar los datos como texto, pero enviarlos en un formato de representación HTML.
+```
+## 4.- Interfaz de Usuario (FRONTEND)
+En esta sección, explicaremos cómo se implementa la interfaz de usuario (UI) para permitir a los usuarios realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. La UI proporciona una experiencia amigable e intuitiva para que los usuarios interactúen con la aplicación y gestionen sus tareas de manera eficiente.
+Este código se encuentra en la carpeta **JS/idex.html** (interacción con la parte backend y funcionalidades), **JS/modal.js** (parte visual que hace aparecer al formulario cuando el usuario indica que quiere agregar una nueva tarea, hemos partido desde este código https://www.w3schools.com/howto/howto_css_modals.asp), e **index.html y CSS/styles.css**.
 
-La interfaz uniforme impone cuatro limitaciones de arquitectura:
+![Imagen de la base del documento](./base_fornt.png)
 
-Las solicitudes deben identificar los recursos. Lo hacen mediante el uso de un identificador uniforme de recursos.
-Los clientes tienen información suficiente en la representación del recurso como para modificarlo o eliminarlo si lo desean. El servidor cumple esta condición por medio del envío de los metadatos que describen el recurso con mayor detalle.
-Los clientes reciben información sobre cómo seguir procesando la representación. El servidor logra esto enviando mensajes autodescriptivos que contienen metadatos sobre cómo el cliente puede utilizarlos de mejor manera.
-Los clientes reciben información sobre todos los demás recursos relacionados que necesitan para completar una tarea. El servidor logra esto enviando hipervínculos en la representación para que los clientes puedan descubrir dinámicamente más recursos.
-Tecnología sin estado
-En la arquitectura de REST, la tecnología sin estado se refiere a un método de comunicación en el cual el servidor completa todas las solicitudes del cliente independientemente de todas las solicitudes anteriores. Los clientes pueden solicitar recursos en cualquier orden, y todas las solicitudes son sin estado o están aisladas del resto. Esta limitación del diseño de la API REST implica que el servidor puede comprender y cumplir por completo la solicitud todas las veces. 
+### 4.1- Crear (Create)
+Para permitir a los usuarios crear nuevas tareas, implementamos un formulario en la interfaz de usuario que solicita los detalles de la tarea, como la descripción y la fecha de vencimiento. Los usuarios pueden completar este formulario y enviarlo para agregar una nueva tarea a la lista.
 
-Sistema por capas
-En una arquitectura de sistema por capas, el cliente puede conectarse con otros intermediarios autorizados entre el cliente y el servidor y todavía recibirá respuestas del servidor. Los servidores también pueden pasar las solicitudes a otros servidores. Es posible diseñar el servicio web RESTful para que se ejecute en varios servidores con múltiples capas, como la seguridad, la aplicación y la lógica empresarial, que trabajan juntas para cumplir las solicitudes de los clientes. Estas capas se mantienen invisibles para el cliente.
+![Formulario de insercióm de datos](./base_Formulario.png)
 
-Almacenamiento en caché
-Los servicios web RESTful admiten el almacenamiento en caché, que es el proceso de almacenar algunas respuestas en la memoria caché del cliente o de un intermediario para mejorar el tiempo de respuesta del servidor. Por ejemplo, suponga que visita un sitio web que tiene imágenes comunes en el encabezado y el pie de página en todas las páginas. Cada vez que visita una nueva página del sitio web, el servidor debe volver a enviar las mismas imágenes. Para evitar esto, el cliente guarda en la memoria caché o almacena estas imágenes después de la primera respuesta y, luego, utiliza las imágenes directamente desde la memoria caché. Los servicios web RESTful controlan el almacenamiento en caché mediante el uso de respuestas de la API que se pueden guardar en la memoria caché o no.
+**Ejemplo del código para Crear:**
+```
+//guardar los datos en la bbdd
+botonGuardar.addEventListener("click", () => {
+    // campos del formulario
+    const campoDescripcion = document.querySelector("#descripcion");
+    const campoFecha_inicio = document.querySelector("#fecha_inicio");
+    const campoFecha_final = document.querySelector("#fecha_final");
+    const campoEstadoTarea = document.querySelector("#estadoTarea");
 
-Código bajo demanda
-En el estilo de arquitectura de REST, los servidores pueden extender o personalizar temporalmente la funcionalidad del cliente transfiriendo a este el código de programación del software. Por ejemplo, cuando completa un formulario de inscripción en cualquier sitio web, su navegador resalta de inmediato cualquier error que usted comete, como un número de teléfono incorrecto. El navegador puede hacer esto gracias al código enviado por el servidor.
+    // variable del total de caracteres que aceptaremos
+    const caracteresMax = 20;
 
-¿Qué beneficios ofrecen las API RESTful?
-Las API RESTful incluyen los siguientes beneficios:
 
-Escalabilidad
-Los sistemas que implementan API REST pueden escalar de forma eficiente porque REST optimiza las interacciones entre el cliente y el servidor. La tecnología sin estado elimina la carga del servidor porque este no debe retener la información de solicitudes pasadas del cliente. El almacenamiento en caché bien administrado elimina de forma parcial o total algunas interacciones entre el cliente y el servidor. Todas estas características admiten la escalabilidad, sin provocar cuellos de botella en la comunicación que reduzcan el rendimiento.
+    //este if comprueba que los datos que llegan no estén vacíos
+    if (campoDescripcion.value.length === 0 ||
+        campoFecha_inicio.value.length === 0 || 
+        campoFecha_final.value.length === 0 || 
+        campoEstadoTarea.value.length === 0) {
+            mensajes.innerHTML = "Campos vacios!";
+            return;
+        }
+    
+    if (campoFecha_inicio.value > campoFecha_final.value) {
+              mensajes.innerHTML = "La fecha de inicio no puede ser posterior a la fecha final!";
+              return;
+          }
+    
+    if (campoDescripcion.value.length >= caracteresMax){
+      mensajes.innerHTML = "La descripción es demasiado larga";
+      return;
+    }    
+    const url = "http://localhost:3500/api/v1/crearTarea";
+    fetch(url, {
+        method: "post",
+        headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+               "Descripcion" : campoDescripcion.value,
+                "FechaInicio" : campoFecha_inicio.value,
+                "Fechafinal" : campoFecha_final.value,
+                "Estado" : campoEstadoTarea.value
+            })
+        })
+        .then(res => res.json())
+        .then(mensaje => {
+            mensajes.innerHTML = "Tarea <b>¡¡¡Insertada!!!</b>";
+            setTimeout(() => {// refresca página
+              location.reload(); 
+            }, 1000);
+          })
+        .catch(error => contenedorDatos.innerHTML =error);
+});
+```
 
-Flexibilidad
-Los servicios web RESTful admiten una separación total entre el cliente y el servidor. Simplifican y desacoplan varios componentes del servidor, de manera que cada parte pueda evolucionar de manera independiente. Los cambios de la plataforma o la tecnología en la aplicación del servidor no afectan la aplicación del cliente. La capacidad de ordenar en capas las funciones de la aplicación aumenta la flexibilidad aún más. Por ejemplo, los desarrolladores pueden efectuar cambios en la capa de la base de datos sin tener que volver a escribir la lógica de la aplicación.
+### 4.2- Leer (Read)
+Para mostrar todas las tareas existentes a los usuarios, implementamos una lista o tabla en la interfaz de usuario que muestra cada tarea junto con sus detalles, como la descripción, la fecha de creación, la fecha de vencimiento y el estado. Los usuarios pueden ver fácilmente todas las tareas en una sola pantalla.
 
-Independencia
-Las API REST son independientes de la tecnología que se utiliza. Puede escribir aplicaciones del lado del cliente y del servidor en diversos lenguajes de programación, sin afectar el diseño de la API. También puede cambiar la tecnología subyacente en cualquiera de los lados sin que se vea afectada la comunicación.
+![Como se mnuestran los datos](./base_fornt.png)
 
-¿Cómo funcionan las API RESTful?
-La función básica de una API RESTful es la misma que navegar por Internet. Cuando requiere un recurso, el cliente se pone en contacto con el servidor mediante la API. Los desarrolladores de API explican cómo el cliente debe utilizar la API REST en la documentación de la API de la aplicación del servidor. A continuación, se indican los pasos generales para cualquier llamada a la API REST:
+**Codigo Ejemplo para leer:**
+```
+// cRud (leer)
+fetch("http://localhost:3500/api/v1/leer")
+  .then(res => res.json())
+  .then(datos => {
+    const contenedorDatos = document.getElementById("contenedorDatos");
+    const arrayDatosConsulta = datos.resultado;
+    if (arrayDatosConsulta.length===0) {
+      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
+     }else{
+            for (let i = 0; i < arrayDatosConsulta.length; i++) {
+              const tarea = arrayDatosConsulta[i];
+                                // Obtener la descripción y dividirla en fragmentos de 15 caracteres
+                                const descripcion = tarea.descripcion;
+                                const fragmentos = [];
+                                for (let j = 0; j < descripcion.length; j += 15) {
+                                    fragmentos.push(descripcion.substring(j, j + 15));
+                                }
+                                // Unir los fragmentos con saltos de línea o <br>
+                                const descripcionConSaltos = fragmentos.join("<br>");
 
-El cliente envía una solicitud al servidor. El cliente sigue la documentación de la API para dar formato a la solicitud de una manera que el servidor comprenda.
-El servidor autentica al cliente y confirma que este tiene el derecho de hacer dicha solicitud.
-El servidor recibe la solicitud y la procesa internamente.
-Luego, devuelve una respuesta al cliente. Esta respuesta contiene información que dice al cliente si la solicitud se procesó de manera correcta. La respuesta también incluye cualquier información que el cliente haya solicitado.
-Los detalles de la solicitud y la respuesta de la API REST varían un poco en función de cómo los desarrolladores de la API la hayan diseñado.
+                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
+                }
+            borrarFuncion();
+          }
+    })
+  .catch(error => contenedorDatos.innerHTML =error);
+```
 
-¿Qué contiene la solicitud del cliente de la API RESTful?
-Las API RESTful requieren que las solicitudes contengan los siguientes componentes principales:
+### 4.3- Eliminar (Delete)
+Para permitir a los usuarios eliminar una tarea existente, implementamos funcionalidad de eliminación en la interfaz de usuario. Esto puede incluir botones o enlaces de "Eliminar" junto a cada tarea que permiten a los usuarios eliminar la tarea seleccionada de la lista.
+**Codigo Ejemplo para Eliminar:**
+```
 
-Identificador único de recursos
-El servidor identifica cada recurso con identificadores únicos de recursos. En los servicios REST, el servidor por lo general identifica los recursos mediante el uso de un localizador uniforme de recursos (URL). El URL especifica la ruta hacia el recurso. Un URL es similar a la dirección de un sitio web que se ingresa al navegador para visitar cualquier página web. El URL también se denomina punto de conexión de la solicitud y especifica con claridad al servidor qué requiere el cliente.
+ // cruD (borrar)
+function borrarFuncion() {
+  const papeleras = document.querySelectorAll(".fa-trash-can");
+  for (let i = 0; i < papeleras.length; i++) {
+    papeleras[i].addEventListener("click", papelerita => {
+      if (confirm("Estás seguro que quieres eliminar la tarea?")) {
+        fetch("http://localhost:3500/api/v1/borrar", {
+          method: "delete",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "id": papelerita.target.id
+          })
+        })
+          .then(res => res.json())
+          .then(mensaje => {
+            alert("Tarea eliminada, buen trabajo");
+            setTimeout(() => {
+              location.reload(); // refresca página
+            }, 1000);
+          })
+          .catch(error => mensajes.innerHTML = "Error en servidor!");
+      }
+    });
+  }
+}
 
-Método
-Los desarrolladores a menudo implementan API RESTful mediante el uso del protocolo de transferencia de hipertexto (HTTP). Un método de HTTP informa al servidor lo que debe hacer con el recurso. A continuación, se indican cuatro métodos de HTTP comunes:
 
-GET
 
-Los clientes utilizan GET para acceder a los recursos que están ubicados en el URL especificado en el servidor. Pueden almacenar en caché las solicitudes GET y enviar parámetros en la solicitud de la API RESTful para indicar al servidor que filtre los datos antes de enviarlos.
+```
 
-POST
+### 4.4- Actualizar (Update)
+Para permitir a los usuarios actualizar una tarea existente, implementamos funcionalidad de edición en la interfaz de usuario. Esto puede incluir botones o enlaces de "Editar" junto a cada tarea que permiten a los usuarios modificar los detalles de la tarea, como la descripción, la fecha de vencimiento o el estado.
 
-Los clientes usan POST para enviar datos al servidor. Incluyen la representación de los datos con la solicitud. Enviar la misma solicitud POST varias veces produce el efecto secundario de crear el mismo recurso varias veces.
+![Usaremos la papelera para eliminar las tareas](./base_fornt.png)
 
-PUT
+**Codigo Ejemplo para Actualizar:**
+```
+```
 
-Los clientes utilizan PUT para actualizar los recursos existentes en el servidor. A diferencia de POST, el envío de la misma solicitud PUT varias veces en un servicio web RESTful da el mismo resultado.
+## 5. Pruebas
+En esta sección, describiremos las pruebas realizadas para verificar el correcto funcionamiento de las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. Las pruebas son una parte fundamental del proceso de desarrollo de software, ya que nos permiten identificar y corregir errores antes de que la aplicación esté en desarrollo.
 
-DELETE
+### 5.1.- Pruebas de Creación (Create)
+Para verificar la funcionalidad de creación, realizamos pruebas para asegurarnos de que los usuarios pueden agregar nuevas tareas correctamente a la lista. Tras ver que se insertan correctamente hemos tenido que realizar validaciones: 
+1.- en las que los campos deben de estar complimentados, 
+2.-que la fecha final es mayor que la fecha inicial 
+3.- y por último limitamos el campo de descripción para que se ajuste al diseño establecido.
 
-Los clientes utilizan la solicitud DELETE para eliminar el recurso. Una solicitud DELETE puede cambiar el estado del servidor. Sin embargo, si el usuario no cuenta con la autenticación adecuada, la solicitud fallará.
+**Codigo para validaciones antes de insertar en la bbdd:**
+```
+    // variable del total de caracteres que aceptaremos
+    const caracteresMax = 20;
 
-Encabezados de HTTP
-Los encabezados de solicitudes son los metadatos que se intercambian entre el cliente y el servidor. Por ejemplo, el encabezado de la solicitud indica el formato de la solicitud y la respuesta, proporciona información sobre el estado de la solicitud, etc.
 
-Datos
+    //este if comprueba que los datos que llegan no estén vacíos
+    if (campoDescripcion.value.length === 0 ||
+        campoFecha_inicio.value.length === 0 || 
+        campoFecha_final.value.length === 0 || 
+        campoEstadoTarea.value.length === 0) {
+            mensajes.innerHTML = "Campos vacios!";
+            return;
+        }
+    
+    if (campoFecha_inicio.value > campoFecha_final.value) {
+              mensajes.innerHTML = "La fecha de inicio no puede ser posterior a la fecha final!";
+              return;
+          }
+    
+    if (campoDescripcion.value.length >= caracteresMax){
+      mensajes.innerHTML = "La descripción es demasiado larga";
+      return;
+    } 
+```
 
-Las solicitudes de la API REST pueden incluir datos para que los métodos POST, PUT y otros métodos HTTP funcionen de manera correcta.
+### 5.2.- Pruebas de Lectura (Read)
+Para verificar la funcionalidad de lectura, realizamos pruebas para asegurarnos de que los usuarios pueden ver todas las tareas existentes de manera precisa. 
 
-Parámetros
+**Codigo para Mostrar los datos de la bbdd**, pero lo condicionamos por si no hay datos mostrar mensaje y en caso de que haya mas de 15 caracteres en la descripción hacemos un "for" para recorrela y dividirlo para luego unirlo con "br" para que no se salga de la capa (fragmentos.join("<br>");):
 
-Las solicitudes de la API RESTful pueden incluir parámetros que brindan al servidor más detalles sobre lo que se debe hacer. A continuación, se indican algunos tipos de parámetros diferentes:
+```
+ if (arrayDatosConsulta.length===0) {
+      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
+     }else{
+            for (let i = 0; i < arrayDatosConsulta.length; i++) {
+              const tarea = arrayDatosConsulta[i];
+                                // Obtener la descripción y dividirla en fragmentos de 15 caracteres
+                                const descripcion = tarea.descripcion;
+                                const fragmentos = [];
+                                for (let j = 0; j < descripcion.length; j += 15) {
+                                    fragmentos.push(descripcion.substring(j, j + 15));
+                                }
+                                // Unir los fragmentos con saltos de línea o <br>
+                                const descripcionConSaltos = fragmentos.join("<br>");
 
-Los parámetros de ruta especifican los detalles del URL.
-Los parámetros de consulta solicitan más información acerca del recurso.
-Los parámetros de cookie autentican a los clientes con rapidez.
-¿Qué son los métodos de autenticación de la API RESTful?
-Un servicio web RESTful debe autenticar las solicitudes antes de poder enviar una respuesta. La autenticación es el proceso de verificar una identidad. Por ejemplo, puede demostrar su identidad mostrando una tarjeta de identificación o una licencia de conducir. De forma similar, los clientes de los servicios RESTful deben demostrar su identidad al servidor para establecer confianza.
+                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
+                }
+            borrarFuncion();
+          }
+```
 
-La API RESTful tiene cuatro métodos comunes de autenticación:
 
-Autenticación HTTP
-HTTP define algunos esquemas de autenticación que se pueden utilizar directamente cuando se implementa la API REST. A continuación, se indican dos de estos esquemas:
 
-Autenticación básica
+### 5.3.- Pruebas de Actualización (Update)
+Para verificar la funcionalidad de actualización, realizamos pruebas para asegurarnos de que los usuarios pueden modificar correctamente los detalles de una tarea existente. Esto incluye editar tareas con diferentes conjuntos de datos y verificar que los cambios se reflejen correctamente en la base de datos y en la interfaz de usuario.
 
-En la autenticación básica, el cliente envía el nombre y la contraseña del usuario en el encabezado de la solicitud. Los codifica con base64, que es una técnica de codificación que convierte el par en un conjunto de 64 caracteres para su transmisión segura.
+**Codigo para actualizar los datos**
+```
+```
 
-Autenticación del portador
 
-El término autenticación del portador se refiere al proceso de brindar el control de acceso al portador del token. El token del portador suele ser una cadena de caracteres cifrada que genera el servidor como respuesta a una solicitud de inicio de sesión. El cliente envía el token en los encabezados de la solicitud para acceder a los recursos.
-
-Claves de la API
-Las claves de la API son otra opción para la autenticación de la API REST. En este enfoque, el servidor asigna un valor único generado a un cliente por primera vez. Cada vez que el cliente intenta acceder a los recursos, utiliza la clave de API única para su verificación. Las claves de API son menos seguras debido a que el cliente debe transmitir la clave, lo que la vuelve vulnerable al robo de red.
-
-OAuth
-OAuth combina contraseñas y tokens para el acceso de inicio de sesión de alta seguridad a cualquier sistema. El servidor primero solicita una contraseña y luego solicita un token adicional para completar el proceso de autorización. Puede verificar el token en cualquier momento y, también, a lo largo del tiempo, con un alcance y duración específicos.
-
-¿Qué contiene la respuesta del servidor de la API RESTful?
-Los principios de REST requieren que la respuesta del servidor contenga los siguientes componentes principales:
-
-Línea de estado
-La línea de estado contiene un código de estado de tres dígitos que comunica si la solicitud se procesó de manera correcta o dio error. Por ejemplo, los códigos 2XX indican el procesamiento correcto, pero los códigos 4XX y 5XX indican errores. Los códigos 3XX indican la redirección de URL.
-
-A continuación, se enumeran algunos códigos de estado comunes:
-
-200: respuesta genérica de procesamiento correcto
-201: respuesta de procesamiento correcto del método POST
-400: respuesta incorrecta que el servidor no puede procesar
-404: recurso no encontrado
-Cuerpo del mensaje
-El cuerpo de la respuesta contiene la representación del recurso. El servidor selecciona un formato de representación adecuado en función de lo que contienen los encabezados de la solicitud. Los clientes pueden solicitar información en los formatos XML o JSON, lo que define cómo se escriben los datos en texto sin formato. Por ejemplo, si el cliente solicita el nombre y la edad de una persona llamada John, el servidor devuelve una representación JSON como la siguiente:
-
-'{"name":"John", "age":30}'
-
-Encabezados
-La respuesta también contiene encabezados o metadatos acerca de la respuesta. Estos brindan más contexto sobre la respuesta e incluyen información como el servidor, la codificación, la fecha y el tipo de contenido.
+### 5.4.- Pruebas de Eliminación (Delete)
+Para verificar la funcionalidad de eliminación, realizamos pruebas para asegurarnos de que los usuarios pueden eliminar correctamente una tarea existente de la lista. Esto incluye eliminar tareas con diferentes conjuntos de datos y verificar que las tareas se eliminen correctamente de la base de datos y de la interfaz de usuario.
+**Codigo para Eliminar los datos de la bbdd**
+```
+```
