@@ -123,6 +123,34 @@ fetch("http://localhost:3500/api/v1/leer")
               campoFecha_inicioED.value = `${tareaEditada.diafin}/${tareaEditada.mesfin}/${tareaEditada.anofin}`;
               campoFecha_finalED.value = `${tareaEditada.diafin}/${tareaEditada.mesfin}/${tareaEditada.anofin}`;
               campoEstadoTareaED.value = tareaEditada.Estado_tarea;
+              
+              // Agrega un evento al botón de editar
+                const editarBoton = document.querySelector("#EditarTarea");
+                editarBoton.addEventListener("click", () => {
+                    const url = "http://localhost:3500/api/v1/editar";
+                    fetch(url, {
+                        method: "PUT",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            id: tareaEditada.id,
+                            descripcion: campoDescripcionED.value,
+                            anoInicio: tareaEditada.anoInicio,
+                            mesInicio: tareaEditada.mesInicio,
+                            diaInicio: tareaEditada.diaInicio,
+                            anofin: tareaEditada.anofin,
+                            mesfin: tareaEditada.mesfin,
+                            diafin: tareaEditada.diafin,
+                            Estado_tarea: campoEstadoTareaED.value
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(mensaje => {
+                        console.log("Tarea Editada:", mensaje);
+                        // Puedes realizar alguna acción adicional después de editar la tarea, como recargar la página
+                        location.reload();
+                    })
+                    .catch(error => console.error("Error al editar la tarea:", error));
+                });
 
           } else {
               console.log("No se encontró ninguna tarea con el ID proporcionado.");
