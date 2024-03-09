@@ -2,7 +2,7 @@ const botonGuardar = document.querySelector("#GuardarTarea");
 const mensajes = document.querySelector("#mensajes");
 
 //variable de almacenaje de datos
-const almacen = [];
+let almacen = [];
 
 
 //guardar los datos en la bbdd
@@ -62,7 +62,8 @@ fetch("http://localhost:3500/api/v1/leer")
   .then(datos => {
     const contenedorDatos = document.getElementById("contenedorDatos");
     const arrayDatosConsulta = datos.resultado;
-    alamacen = arrayDatosConsulta;
+    almacen = arrayDatosConsulta;
+    console.log("al declarar "+ [almacen]);
     if (arrayDatosConsulta.length===0) {
       contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
      }else{
@@ -90,25 +91,48 @@ fetch("http://localhost:3500/api/v1/leer")
   // crUd (update)//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   function editarDatoFuncion() {
-    console.log(alamacen);
+    console.log(almacen );
     const botonesEditar = document.querySelectorAll(".editarBTN");
-   for (let i = 0; i < botonesEditar.length; i++) {
-    botonesEditar[i].addEventListener("click", lapicito => {
-      editarMODAL.style.display="Block";
-            const idED = lapicito.target.id;
-            const datosED = almacen.id[idED] ;
-            console.log("locos:"+datosED);
-            const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
-            const campoFecha_finalED = document.querySelector("#fecha_finalED");
-            const campoEstadoTareaED = document.querySelector("#estadoTareaED");
+    for (let i = 0; i < botonesEditar.length; i++) {
+        botonesEditar[i].addEventListener("click", lapicito => {
+            editarMODAL.style.display = "Block";
+            const idED = lapicito.target.id.toString();
+            console.log(idED);
 
- 
-      });
+            // Encuentra el elemento en el array `almacen` con el ID correspondiente
+            function encontrarTareaPorId(id) {
+              for (let i = 0; i < almacen.length; i++) {
+                  if (almacen[i].id.toString() === id) {
+                      return almacen[i];
+                  }
+              }
+              return null; // Retorna null si no se encuentra la tarea con el ID proporcionado
+          }
+          
+          const tareaEditada = encontrarTareaPorId(idED);
+
+            if (tareaEditada) {
+              // Si se encuentra el elemento, puedes acceder a sus propiedades
+              const campoDescripcionED = document.querySelector("#descripcionED");
+              const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
+              const campoFecha_finalED = document.querySelector("#fecha_finalED");
+              const campoEstadoTareaED = document.querySelector("#estadoTareaED");
+
+              // Llena los campos del formulario con los valores del elemento encontrado
+              campoDescripcionED.value = tareaEditada.descripcion;
+              campoFecha_inicioED.value = `${tareaEditada.diafin}/${tareaEditada.mesfin}/${tareaEditada.anofin}`;
+              campoFecha_finalED.value = `${tareaEditada.diafin}/${tareaEditada.mesfin}/${tareaEditada.anofin}`;
+              campoEstadoTareaED.value = tareaEditada.Estado_tarea;
+
+          } else {
+              console.log("No se encontró ninguna tarea con el ID proporcionado.");
+          }
+        });
     }
 }
 
 
-// crUd (update)//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FIN crUd (update)//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
