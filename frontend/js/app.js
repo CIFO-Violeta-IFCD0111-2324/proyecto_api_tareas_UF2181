@@ -77,6 +77,9 @@ crearBTNform.addEventListener("click", () => {
 
 // cRud (leer)
 // fetch(`https://proyecto-api-tareas-uf2181-2.onrender.com/api/v1/leer`)
+
+
+
 fetch("http://localhost:3000/api/v1/leer")
   .then(res => res.json())
   .then(datos => {
@@ -139,19 +142,19 @@ function editarDatoFuncion() {
   // When the user clicks on the button, open the modal
   // GETION DE AÑADIR DATO CORRESPONDIENTE AL MODAL
   for (let i = 0; i < editarBTNs.length; i++) {
-    editarBTNs[i].onclick = function (e) {
+    editarBTNs[i].addEventListener("click", () => {
       editarMODAL.style.display = "block";
       const dato = e.target.previousSibling.previousSibling.previousSibling.innerHTML; // para recoger el valor del h3
       const editarINPUT = document.getElementById("editarINPUT");
       editarINPUT.value = dato;
       id = e.target.getAttribute("datoEditarAtributo");
-    }
+    });
   }
   // When the user clicks on <span> (x), close the modal
-  editarSpan.onclick = function () {
+  editarSpan.addEventListener("click", () => {
     editarMODAL.style.display = "none";
     resetForms();
-  }
+  });
   // DETECTAR SI HA HABIDO CAMBIO EN EL FORM DE EDITAR, SI HUBO EDITA EL DATO EN SERVIDOR
   const editarBTNform = document.getElementById("editarBTNform");
   const editarForm = document.querySelectorAll("form")[1];

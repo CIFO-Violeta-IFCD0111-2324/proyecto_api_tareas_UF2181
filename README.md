@@ -9,18 +9,25 @@ Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api ges
 - Documentar el recurso que crea la tarea 
 - La tarea tendrá mínimo 4 campos
 - Comprobar mediante Postman
-- En la maquetación insertar el form en un "modal"
+- En la maquetación, insertar el form en un "modal"
 
 ## 2- Recurso que lee las tareas (cRud):
 - Documentar el recurso que lea las tareas 
 - Comprobar mediante Postman
-- En la maquetación insertar la tarea en el "body" de htm5
+- En la maquetación, insertar la tarea en el "body" de htm5
 
 ## 3- Recurso que elimina las tareas (cruD):
 - Documentar el recurso que elimina las tareas 
 - Comprobar mediante Postman
+- En la maquetación, refrescar el "body" de htm5
 
+## 4- Recurso que actualiza las tareas (crUd):
+- Documentar el recurso que actualiza las tareas 
+- Se actualiza cualquier campo de la tarea 
+- Comprobar mediante Postman
+- En la maquetación, refrescar el "body" de htm5
 
+## 5- Despligue en servidor remoto:
 
 - Ejemplo documentación API creada con chatgpt:
 
