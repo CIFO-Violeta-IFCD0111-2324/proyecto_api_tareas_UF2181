@@ -132,7 +132,7 @@ nav {
   
 
 }
-#mensajes {
+#mensajes, #mensajesEdicion {
   color: #ed6246;
   font-size: 20px;
 }
@@ -231,7 +231,7 @@ span.close {
 .col-25 {
   width: 30%;
 }
-#descripcion, #fecha_inicio, #fecha_final, #estadoTarea {
+#descripcion, #descripcionED, #fecha_inicio,#fecha_inicioED, #fecha_final,#fecha_finalED, #estadoTarea, #estadoTareaED {
   border: solid 1px rgb(248, 245, 245);
   border-radius: 16px;
   width: 100%;
