@@ -53,7 +53,7 @@ botonGuardar.addEventListener("click", () => {
             mensajes.innerHTML = "Tarea Insertada correctamente ... <i class='fa-regular fa-pen-to-square fa-spin'></i>";
             setTimeout(() => {// refresca página<i class="fc"></i>
               location.reload(); 
-            }, 2000);
+            }, 3000);
           })
         .catch(error => contenedorDatos.innerHTML =error);
 });
@@ -142,8 +142,22 @@ fetch("http://localhost:3500/api/v1/leer")
               console.log("----Llena los campos del formulario con los valores del elemento encontrado");
 
               campoDescripcionED.value = tareaEditada.descripcion;
-              campoFecha_inicioED.value = tareaEditada.FechaInicio;
-              campoFecha_finalED.value = `${tareaEditada.diafin}/${tareaEditada.mesfin}/${tareaEditada.anofin}`;
+              campoDescripcionED.value = tareaEditada.descripcion;
+
+// Crear objetos Date con las fechas de inicio y finalización
+var fechaInicio = new Date(tareaEditada.anoInicio, tareaEditada.mesInicio - 1, tareaEditada.diaInicio);
+var fechaFinalizacion = new Date(tareaEditada.anofin, tareaEditada.mesfin - 1, tareaEditada.diafin);
+
+// Formatear las fechas en formato "yyyy-MM-dd"
+var fechaInicioFormateada = fechaInicio.toISOString().split('T')[0];
+var fechaFinalizacionFormateada = fechaFinalizacion.toISOString().split('T')[0];
+
+// Asignar las fechas formateadas a los campos de entrada de fecha
+campoFecha_inicioED.value = fechaInicioFormateada;
+campoFecha_finalED.value = fechaFinalizacionFormateada;
+
+campoEstadoTareaED.value = tareaEditada.Estado_tarea;
+
               campoEstadoTareaED.value = tareaEditada.Estado_tarea;
 
               // Verifica los valores actuales de los campos
