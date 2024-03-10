@@ -124,7 +124,7 @@ fetch("http://localhost:3500/api/v1/leer")
           console.log("Fecha final editada:", tareaEditada.diafin, tareaEditada.mesfin, tareaEditada.anofin);
           console.log("Estado editado:", tareaEditada.Estado_tarea);
 
-            if (tareaEditada) {
+            if (confirm("¿Desea editar esta tarea?") && tareaEditada) {
               // Si se encuentra el elemento, puedes acceder a sus propiedades
               const campoDescripcionED = document.querySelector("#descripcionED");
               const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
