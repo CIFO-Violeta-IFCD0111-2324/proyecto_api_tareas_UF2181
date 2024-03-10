@@ -64,8 +64,8 @@ router.put("/editar", (req, res) => {
   const id = req.body.id;
   // encriptamos el dato
   //const datoEncriptado = CryptoJS.AES.encrypt(tarea, 'miTextoSecreto').toString();
-  const sql = "update tareas set descripcion = ?, Estado_tarea = ? where id = ?";
-  conexionMySQL.query(sql, [Descripcion,Estado, id], error => {
+  const sql = "update tareas set descripcion = ?,fecha_inicio = ?, fecha_fin = ?, Estado_tarea = ? where id = ?";
+  conexionMySQL.query(sql, [Descripcion, FechaInicio, Fechafinal, Estado, id], error => {
     if (error) {
       res.json({
         "status": 500,
