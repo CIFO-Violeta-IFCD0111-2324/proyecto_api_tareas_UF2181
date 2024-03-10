@@ -176,7 +176,14 @@ button:hover {
   margin-top: 10px;
   margin-bottom: 10px;
   color: rgb(18, 141, 172);
- 
+}
+.tituloNoTareas {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(18, 141, 172);
 
 }
 #titulo_tarea {

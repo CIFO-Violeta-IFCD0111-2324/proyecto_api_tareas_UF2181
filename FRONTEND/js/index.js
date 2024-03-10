@@ -24,17 +24,17 @@ botonGuardar.addEventListener("click", () => {
         campoFecha_inicio.value.length === 0 || 
         campoFecha_final.value.length === 0 || 
         campoEstadoTarea.value.length === 0) {
-            mensajes.innerHTML = "Campos vacios!";
+            mensajes.innerHTML = "Campos vacios ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
             return;
         }
     
     if (campoFecha_inicio.value > campoFecha_final.value) {
-              mensajes.innerHTML = "La fecha de inicio no puede ser posterior a la fecha final!";
+              mensajes.innerHTML = "La fecha de inicio no puede ser <br> posterior a la fecha final ...  <i class='fa-solid fa-triangle-exclamation fa-beat'></i>";
               return;
           }
     
     if (campoDescripcion.value.length >= caracteresMax){
-      mensajes.innerHTML = "La descripción es demasiado larga";
+      mensajes.innerHTML = "La descripción es demasiado larga ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
       return;
     }    
     const url = "http://localhost:3500/api/v1/crearTarea";
@@ -67,7 +67,7 @@ fetch("http://localhost:3500/api/v1/leer")
     almacen = arrayDatosConsulta;
     console.log("al declarar "+ [almacen]);
     if (arrayDatosConsulta.length===0) {
-      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
+      contenedorDatos.innerHTML ="<h3 class='tituloNoTareas'> No hay ninguna tarea,<br><br> <b>¡¡¡espabila!!!</b> ... <i class='fa-regular fa-face-frown fa-bounce'></i> ... que te pilla el toro !</h3>";
      }else{
             for (let i = 0; i < arrayDatosConsulta.length; i++) {
               const tarea = arrayDatosConsulta[i];
@@ -155,8 +155,25 @@ fetch("http://localhost:3500/api/v1/leer")
               console.log("Campo de estado de inicio en modal de edición después de asignación:", campoEstadoTareaED.value);
 
               // Agrega un evento al botón de editar
+              const caracteresMaxED = 20;
                 const editarBoton = document.querySelector("#EditarTarea");
                 editarBoton.addEventListener("click", () => {
+                  if (campoDescripcionED.value.length === 0 ||
+                    campoFecha_inicioED.value.length === 0 || 
+                    campoFecha_finalED.value.length === 0 || 
+                    campoEstadoTareaED.value.length === 0) {
+                        mensajesEdicion.innerHTML = "Campos vacios ... <i class='fa-solid fa-triangle-exclamation fa-beat'></i>";
+                        return;
+                        
+                    }
+                    if (campoFecha_inicioED.value > campoFecha_finalED.value) {
+                      mensajesEdicion.innerHTML = "La fecha de inicio no puede ser <br> posterior a la fecha final ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
+                      return;
+                  }
+                  if (campoDescripcionED.value.length >= caracteresMaxED){
+                    mensajesEdicion.innerHTML = "La descripción es demasiado larga ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
+                    return;
+                  }
                     const url = "http://localhost:3500/api/v1/editar";
                     fetch(url, {
                         method: "PUT",
@@ -172,7 +189,7 @@ fetch("http://localhost:3500/api/v1/leer")
                     })
                     .then(res => res.json())
                     .then(mensaje => {
-                      mensajesEdicion.innerHTML = "Tarea EDITADA! ... <i class='fa-solid fa-wrench fa-spin'></i>";
+                      mensajesEdicion.innerHTML = "Tarea editada ... <i class='fa-solid fa-wrench fa-spin'></i>";
                         setTimeout(() => {
                           location.reload(); // refresca página
                         }, 3000);
