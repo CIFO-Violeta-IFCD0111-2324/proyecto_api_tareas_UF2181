@@ -50,10 +50,10 @@ botonGuardar.addEventListener("click", () => {
         })
         .then(res => res.json())
         .then(mensaje => {
-            mensajes.innerHTML = "Tarea Insertada <i class='fas fa-spinner fa-spin'></i>";
-            setTimeout(() => {// refresca página
+            mensajes.innerHTML = "Tarea Insertada correctamente ... <i class='fa-regular fa-pen-to-square fa-spin'></i>";
+            setTimeout(() => {// refresca página<i class="fc"></i>
               location.reload(); 
-            }, 1000);
+            }, 2000);
           })
         .catch(error => contenedorDatos.innerHTML =error);
 });
@@ -172,9 +172,12 @@ fetch("http://localhost:3500/api/v1/leer")
                     })
                     .then(res => res.json())
                     .then(mensaje => {
-                        console.log("Tarea Editada:", mensaje);
+                      mensajesEdicion.innerHTML = "Tarea EDITADA! ... <i class='fa-solid fa-wrench fa-spin'></i>";
+                        setTimeout(() => {
+                          location.reload(); // refresca página
+                        }, 3000);
                         // Puedes realizar alguna acción adicional después de editar la tarea, como recargar la página
-                        location.reload();
+                        
                     })
                     .catch(error => console.error("Error al editar la tarea:", error));
                 });
