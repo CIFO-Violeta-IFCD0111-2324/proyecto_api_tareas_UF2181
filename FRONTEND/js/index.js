@@ -1,3 +1,5 @@
+
+
 const botonGuardar = document.querySelector("#GuardarTarea");
 const mensajes = document.querySelector("#mensajes");
 
@@ -104,12 +106,23 @@ fetch("http://localhost:3500/api/v1/leer")
               for (let i = 0; i < almacen.length; i++) {
                   if (almacen[i].id.toString() === id) {
                       return almacen[i];
+                    
                   }
               }
               return null; // Retorna null si no se encuentra la tarea con el ID proporcionado
           }
+
+
+          
           
           const tareaEditada = encontrarTareaPorId(idED);
+
+          // Verifica si la tarea se encuentra en el array
+          console.log("----Verifica si la tarea se encuentra en el array");
+          console.log("Descripción editada:", tareaEditada.descripcion);
+          console.log("Fecha de inicio editada:", tareaEditada.diaInicio, tareaEditada.mesInicio, tareaEditada.anoInicio);
+          console.log("Fecha final editada:", tareaEditada.diafin, tareaEditada.mesfin, tareaEditada.anofin);
+          console.log("Estado editado:", tareaEditada.Estado_tarea);
 
             if (tareaEditada) {
               // Si se encuentra el elemento, puedes acceder a sus propiedades
@@ -117,13 +130,30 @@ fetch("http://localhost:3500/api/v1/leer")
               const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
               const campoFecha_finalED = document.querySelector("#fecha_finalED");
               const campoEstadoTareaED = document.querySelector("#estadoTareaED");
+              // Verifica los valores actuales de los campos
+              console.log("----Verifica los valores actuales de los campos");
+              console.log("Campo de de descripción en modal de edición antes de asignación:", campoDescripcionED.value);
+              console.log("Campo de fecha de inicio en modal de edición antes de asignación:", campoFecha_inicioED.value);
+              console.log("Campo de fecha final en modal de edición antes de asignación:", campoFecha_finalED.value);
+              console.log("Campo de estado de inicio en modal de edición antes de asignación:", campoEstadoTareaED.value);
+
 
               // Llena los campos del formulario con los valores del elemento encontrado
+              console.log("----Llena los campos del formulario con los valores del elemento encontrado");
+
               campoDescripcionED.value = tareaEditada.descripcion;
-              campoFecha_inicioED.value = `${tareaEditada.diafin}/${tareaEditada.mesfin}/${tareaEditada.anofin}`;
+              campoFecha_inicioED.value = tareaEditada.FechaInicio;
               campoFecha_finalED.value = `${tareaEditada.diafin}/${tareaEditada.mesfin}/${tareaEditada.anofin}`;
               campoEstadoTareaED.value = tareaEditada.Estado_tarea;
-              
+
+              // Verifica los valores actuales de los campos
+              console.log("----Verifica los valores actuales de los campos");
+
+              console.log("Campo de de descripción en modal de edición después de asignación:",campoDescripcionED.value);
+              console.log("Campo de fecha de inicio en modal de edición después de asignación:", campoFecha_inicioED.value);
+              console.log("Campo de fecha final en modal de edición después de asignación:", campoFecha_finalED.value);
+              console.log("Campo de estado de inicio en modal de edición después de asignación:", campoEstadoTareaED.value);
+
               // Agrega un evento al botón de editar
                 const editarBoton = document.querySelector("#EditarTarea");
                 editarBoton.addEventListener("click", () => {
@@ -132,15 +162,12 @@ fetch("http://localhost:3500/api/v1/leer")
                         method: "PUT",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            id: tareaEditada.id,
-                            descripcion: campoDescripcionED.value,
-                            anoInicio: tareaEditada.anoInicio,
-                            mesInicio: tareaEditada.mesInicio,
-                            diaInicio: tareaEditada.diaInicio,
-                            anofin: tareaEditada.anofin,
-                            mesfin: tareaEditada.mesfin,
-                            diafin: tareaEditada.diafin,
-                            Estado_tarea: campoEstadoTareaED.value
+
+                            "Descripcion":campoDescripcionED.value,
+                            "FechaInicio":campoFecha_inicioED.value,
+                            "Fechafinal":campoFecha_finalED.value,
+                            "Estado" : campoEstadoTareaED.value, 
+                            "id": idED
                         })
                     })
                     .then(res => res.json())
