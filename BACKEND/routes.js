@@ -4,6 +4,12 @@ const router = express.Router();
 
 const conexionMySQL = require('./conexionMySQL.js');
 
+/****** INICIO Funciones para controlar y optimizar los mensajes ***** */
+
+
+
+
+/****** FIN Funciones para controlar y optimizar los mensajes ***** */
 router.get("/saludo", (req, res) => {
   res.json({
     "saludo": "Hola!"
