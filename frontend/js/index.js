@@ -40,7 +40,7 @@ fetch("http://localhost:3333/api/v1/leer")
     const cajaResultados = document.querySelector("#cajaResultados");
     const arrayDatosConsulta = test.resultado;
     if (arrayDatosConsulta.length === 0) {
-      cajaResultados.innerHTML = "<h3 style='color:red'>Todavía no hay tareas guardadas</h3>";
+      cajaResultados.innerHTML = "<h3 style='color:darkslategrey'>Todavía no hay tareas guardadas</h3>";
       return;
     }
     for (let i = 0; i < arrayDatosConsulta.length; i++) {
@@ -56,8 +56,10 @@ fetch("http://localhost:3333/api/v1/leer")
         <hr>
       `;
     }
+    borrarDatos();
+    // editarDatoFuncion();
   })
-  .catch(error => console.log(error));
+  .catch(error => bodyRespuesta.innerHTML = "<h3 class='error center'>Error en servidor! Esta arrancado?</h3>");
 
 // cruD (borrar)
 function borrarDatos() {
@@ -76,17 +78,16 @@ function borrarDatos() {
             "descripcion": idDatoBorrar
           })
         })
-        .then(res => res.json())
-        .then(msg => {
-          bodyRespuesta.innerHTML += msg.mensaje;
-          setTimeout(() => {
-            location.reload();
-          }, 2000);
-        })
-        .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor! </h3>");
+          .then(res => res.json())
+          .then(msg => {
+            bodyRespuesta.innerHTML += msg.mensaje;
+            setTimeout(() => {
+              location.reload(); // refresca página
+            }, 2000);
+          })
+          .catch(error => bodyRespuesta.innerHTML = "<h3 class='error'>Error en servidor! </h3>");
       }
     });
-
   }
 }
 
@@ -98,3 +99,24 @@ function formatearFECHA(fecha) {
   let year = date.getFullYear()
   return `${day}-${month}-${year}`;
 }
+
+// crUd (actualizar)
+function editarTarea() {
+// editar Modal (IMPORTANTE! se añade en index.js ya que en primera instancia no se han creado las cajas de dato)
+const editarMODAL = document.getElementById("editarMODAL");
+// Botón editar que abre el modal editar
+const editarBTNs = document.querySelectorAll(".editarBTN");
+// elemento <span> que cierra el modal de editar.
+const editarSpan = document.getElementsByClassName("close")[1];
+
+
+
+
+}
+
+
+
+
+
+
+
