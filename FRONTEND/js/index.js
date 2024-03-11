@@ -290,7 +290,38 @@ function borrarFuncion() {
   const papeleras = document.querySelectorAll(".fa-trash-can");
   for (let i = 0; i < papeleras.length; i++) {
     papeleras[i].addEventListener("click", (papelerita) => {
-      if (confirm("Estás seguro que quieres eliminar la tarea?")) {
+
+      swal({
+        title: "Estás seguro de querer eliminar?",
+        text: "Luego de esta desición no hay vuelta atrás!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          fetch("http://localhost:3500/api/v1/borrar", {
+          method: "delete",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: papelerita.target.id,
+          }),
+        }),
+          swal("Poof!Tarea eliminada para SIEMPRE!", {
+            icon: "success",});
+            setTimeout(() => {
+              location.reload(); // refresca página
+            }, 3000);
+          
+        } else {
+          swal("TODO a SALVO!",{
+          icon: "success"}
+          );
+          
+        }
+      });
+      /* if (confirm("Estás seguro que quieres eliminar la tarea?")) {
         fetch("http://localhost:3500/api/v1/borrar", {
           method: "delete",
           headers: { "Content-Type": "application/json" },
@@ -306,7 +337,7 @@ function borrarFuncion() {
             }, 1000);
           })
           .catch((error) => (mensajes.innerHTML = "Error en servidor!"));
-      }
+      } */
     });
   }
 }
