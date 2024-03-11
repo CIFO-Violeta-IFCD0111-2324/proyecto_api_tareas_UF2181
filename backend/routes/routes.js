@@ -276,17 +276,15 @@ router.put("/edit", (req, res) => {
   conexionDB.query(query, [nombre, desc, fechaIn, fechaFin, id], error => {
     if (error) {
       res.status(400).json({
-        "mensaje": "<span class='error'>Error en la edición del dato. Error:" + error + "</span>"
+        "mensaje": "<span>Error en la edición del dato. Error:" + error + "</span>"
       });
     } else {
       res.status(200).json({
-        "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+        "mensaje": "<span>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
       });
     }
   });
 });
-
-
 
 
 

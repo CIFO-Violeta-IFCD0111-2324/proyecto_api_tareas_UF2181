@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const api = express();
+const port = 3000;
 
 // Swagger setup
 const swaggerJSDoc = require('swagger-jsdoc');
@@ -34,19 +35,19 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  // Paths to files containing OpenAPI definitions
+  // path hacia todas las rutas
   apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
-// configuracion
+// configuracion de la api
 api.use(cors()); 
 api.use(express.json());
 api.use(swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 // arrancar server
-api.listen(3000, () => {
-  console.log("Servidor OK!!!");
+api.listen(port, () => {
+  console.log("Servidor OK! listening to port: " + port);
 });
