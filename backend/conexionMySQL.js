@@ -7,6 +7,7 @@ const conexionMySQL = mysql.createConnection({
   user: 'root',
   password: '',
   database: 'task_db',
+  timezone: 'utc',
 });
 
 

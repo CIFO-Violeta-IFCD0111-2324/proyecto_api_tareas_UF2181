@@ -1,6 +1,5 @@
 
-// Crud - crear
-
+// Crud - Create
 async function insertSQL() {
     const nombre = document.querySelector("input#nombre");
     const fechaIn = document.querySelector("input#fecha-in");
@@ -51,7 +50,7 @@ async function insertSQL() {
     btnTarea.addEventListener('click', () => {
         // Evento sintetico
         const event = new Event('enviar', {
-            'bubbles': true,
+            'bubbles': false, //bubble va en false
             'cancelable': true
         });
 
@@ -61,7 +60,7 @@ async function insertSQL() {
 
 
 
-// cRud (leer)
+// cRud Read
 fetch("http://localhost:3000/api/read")
     .then(res => res.json())
     .then(datos => {
@@ -91,13 +90,13 @@ fetch("http://localhost:3000/api/read")
 
             // Elemento de la fecha-in
             const fechaInElm = document.createElement("span");
-            const textFechaIn = document.createTextNode("Inicio: " + tarea.fecha_inicio.substring(0, 10));
+            const textFechaIn = document.createTextNode("Inicio: " + tarea.fecha_inicio.split("T")[0]);
             fechaInElm.appendChild(textFechaIn);
             divFechas.appendChild(fechaInElm);
 
             // Elemento de la fecha-fin
             const fechaFinElm = document.createElement("span");
-            const textFechaFin = document.createTextNode("Final: " + tarea.fecha_fin.substring(0, 10));
+            const textFechaFin = document.createTextNode("Final: " + tarea.fecha_fin.split("T")[0]);
             fechaFinElm.appendChild(textFechaFin);
             divFechas.appendChild(fechaFinElm);
             divTarea.appendChild(divFechas)
@@ -111,7 +110,6 @@ fetch("http://localhost:3000/api/read")
             papelera.classList.add("fa-solid");
             papelera.classList.add("fa-trash");
             papelera.setAttribute("id", tarea.id);
-
             // cruD Delete 
             papelera.addEventListener("click", deletePapel, false);
             divPE.appendChild(papelera);
@@ -121,6 +119,7 @@ fetch("http://localhost:3000/api/read")
             const btnEdit = document.createElement("i");
             btnEdit.classList.add("fa-solid", "fa-pen-to-square");
             btnEdit.setAttribute("id", tarea.id);
+            // crUd Update
             btnEdit.addEventListener("click", editDato, false)
             divPE.appendChild(btnEdit)
 
@@ -215,6 +214,7 @@ async function editDato(event) {
 })();
 
 
+// funcion que introduce los datos al modal de edicion
 function datosIntoModalEdit(n, d, fi, fn, id) {
     const nombreIn = document.querySelector("#nombreEdit");
     const fechaInIn = document.querySelector("#fechaInEdit");
@@ -229,6 +229,7 @@ function datosIntoModalEdit(n, d, fi, fn, id) {
     descIn.value = d;
 
 }
+
 
 async function editTareaSQL() {
     const divRespuestas = document.querySelector("div#caja-respuestas");

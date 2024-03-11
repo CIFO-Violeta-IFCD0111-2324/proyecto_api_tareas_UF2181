@@ -208,6 +208,63 @@ router.delete("/delete", (req, res) => {
 });
 
 
+/**
+ * @swagger
+ * /edit:
+ *   put:
+ *     summary: Editar una tarea
+ *     description: Editar una tarea en la base de datos.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *                 description: Nombre de la tarea a editar
+ *                 example: Hacer la comida
+ *               descripcion:
+ *                 type: string
+ *                 description: Descripción de la tarea a editar
+ *                 example: Arroz con Curry
+ *               fecha_inicio:
+ *                 type: string
+ *                 format: date
+ *                 description: Fecha de inicio de la tarea a editar
+ *                 example: 2024-03-08
+ *               fecha_fin:
+ *                 type: string
+ *                 format: date
+ *                 description: Fecha de finalización de la tarea a editar
+ *                 example: 2024-03-15
+ *               id:
+ *                 type: integer
+ *                 description: ID de la tarea a editar
+ *                 example: 1
+ *     responses:
+ *       200:
+ *         description: Tarea editada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensaje:
+ *                   type: string
+ *                   description: Mensaje de éxito
+ *       400:
+ *         description: Error en la peticion
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensaje:
+ *                   type: string
+ *                   description: Mensaje de error
+ */
 router.put("/edit", (req, res) => {
   const nombre = req.body.nombre;
   const desc = req.body.descripcion;

@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Ojuju:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Kalam:wght@300;400;700&display=swap');
 
 * {
     margin: 0;
@@ -29,7 +30,7 @@ header>div:nth-of-type(1) {
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    text-transform: uppercase;  
+    text-transform: uppercase;
 }
 
 .logo myBtn {
@@ -38,11 +39,11 @@ header>div:nth-of-type(1) {
     padding: 0;
     cursor: pointer;
 }
-    
+
 .logo img {
-    width: 100px; 
-    height: auto; 
-    display: block; 
+    width: 100px;
+    height: auto;
+    display: block;
 
 }
 
@@ -91,8 +92,9 @@ main {
     border-image: url("./imagenes/madera2.jpg") 20;
     border-image-width: 18px;
     border-image-outset: 18px;
-    overflow-y: scroll;  
+    overflow-y: scroll;
     box-shadow: 3px 30000px 100px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
 }
 
 
@@ -129,7 +131,6 @@ main {
 }
 
 #caja-de-tareas>div>h4 {
-
     text-align: center;
     font-size: 1.5em;
     text-transform: uppercase;
@@ -137,8 +138,8 @@ main {
     background-color: rgba(255, 255, 255, 0.477);
     border-radius: 5px;
     padding: 10px;
-    font-family: "Permanent Marker", cursive;
-    font-weight: 400;
+    font-family: "Just Me Again Down Here", cursive;
+    font-weight: 600;
 }
 
 #caja-de-tareas>div>p {
@@ -148,14 +149,15 @@ main {
     font-weight: 400;
     font-style: normal;
     font-size: 1em;
-    text-align:center;
+    text-align: center;
 
 }
+
 #caja-de-tareas>div span {
     font-size: 14px;
     font-weight: 600;
     font-family: "Indie Flower", cursive;
-    text-align:center;
+    text-align: center;
 }
 
 #caja-de-tareas>div span:nth-of-type(1) {
@@ -253,4 +255,21 @@ textarea {
 
 .error {
     color: red;
+}
+
+.fa-pen-to-square {
+    transition: 200ms;
+}
+
+.fa-pen-to-square:hover {
+    cursor: pointer;
+    color: #7a7a7a;
+}
+
+.divPE>i:nth-of-type(1) {
+    margin-right: 10px;
+}
+
+.divPE>i:nth-of-type(2) {
+    margin-left: 10px;
 }
