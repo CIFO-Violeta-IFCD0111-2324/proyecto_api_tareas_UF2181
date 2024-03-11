@@ -50,6 +50,8 @@ button2.addEventListener("click", () => {
     method: "put",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      "final": document.getElementById("editarfin").value,
+      "inicio": document.getElementById("editarinicio").value,
       "portada": document.getElementById("editarPortada").value,
       "descripcion": document.getElementById("editarDescripcion").value,
       "titulo": document.getElementById("editarTitulo").value,
@@ -92,6 +94,15 @@ function editar () {
       const portadaTareaClickada = document.querySelector(".portada"+e.target.id).innerHTML;
       const inputEditarFormPortada = document.querySelector("#editarPortada");
       inputEditarFormPortada.value = portadaTareaClickada;
+
+
+      const FechaInicioTareaClickada = document.querySelector(".inicio"+e.target.id).innerHTML;
+      const inputEditarFormFechaInicio = document.querySelector("#FechaInicio");
+      inputEditarFormFechaInicio.value = FechaInicioTareaClickada;
+
+      const FechaFinalTareaClickada = document.querySelector(".final"+e.target.id).innerHTML;
+      const inputEditarFormFechaFinal = document.querySelector("#FechaFinal");
+      inputEditarFormFechaFinal.value = FechaFinalTareaClickada;
       
       
       
@@ -130,10 +141,10 @@ fetch("http://localhost:3001/api/v1/leer")
         </div>
         <div class="cuadro3">
         <h2 class="encabezados" >FechaInicio</h2>
-        <h3 id="contenido">${arrayDatosConsulta[i].fechainicio.substring(0,10)} </h3>
+        <h3 id="contenido" class="FechaInicio${arrayDatosConsulta[i].id}">${arrayDatosConsulta[i].fechainicio.substring(0,10)} </h3>
         </div>
         <div class="cuadro3">
-        <h2 class="encabezados">FechaFinal</h2>
+        <h2 class="encabezados" class="FechaFinal${arrayDatosConsulta[i].id}">FechaFinal</h2>
         <h3 id="contenido">${arrayDatosConsulta[i].fechafinal.substring(0,10)} </h3>
         </div>
         
