@@ -246,3 +246,33 @@ span.close {
   resize:none;
   outline: 0;
   }
+  .swal-modal {
+    background-color:white;
+    border: 3px solid #a9bae6;
+    border-radius: 16px;
+  }
+  .swal-title {
+    margin: 0px;
+    font-size: 26px;
+    color: rgb(18, 141, 172);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+    margin-bottom: 28px;
+  }
+  .swal-button {
+    padding: 7px 19px;
+    border-radius: 12px;
+    background: #ee6f57;
+    font-size: 12px;
+    color: white;
+    border: 1px solid #f0f2f6;
+    text-shadow: 0px -1px 0px rgba(255, 255, 255, 0.3);
+  }
+  .swal-button:hover {
+    background-color: #ee6f57;
+  }
+ 
+  .swal-footer {
+    background-color: rgb(245, 248, 250);
+    margin-top: 32px;
+    overflow: hidden;
+  }
