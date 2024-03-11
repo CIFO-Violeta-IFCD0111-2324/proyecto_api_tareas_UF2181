@@ -46,9 +46,9 @@ router.get("/leer", (req, res) => {
 //BORRAR
 
 router.delete("/borrar", (req, res) => {
-  const dato = req.body.tareas;
+  const id = req.body.id;
   const sql = "delete from tareas where id = ?";
-  conexionMySQL.query(sql, [nombre_tarea, fecha_inicio, fecha_fin, descripcion], error => {
+  conexionMySQL.query(sql, [id], error => {
     if (error) {
       res.json({
         "status": 500,
