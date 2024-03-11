@@ -72,6 +72,20 @@ router.post("/crearTarea", (req, res) => {
   });
 });
 ```
+Para probar en Postman, crear la tarea:
+1. Se selecciona el crud, en este caso POST
+2. Se escribe la url: http://localhost:3500/api/v1/crearTarea
+3. Se selecciona: body y despues Row
+4. Se escribe el objeto:
+{
+  "Descripcion": "tarea1",
+  "FechaInicio": "2024-03-12",
+  "Fechafinal":   "2024-03-12",
+  "Estado": "iniciada"
+}
+
+![Imagen de la base del documento](./post.png)
+
 
 ### 3.2.- Read (Leer)
 La operación de lectura permite a los usuarios ver todas las tareas existentes en la lista. Cuando un usuario accede a la página de visualización de tareas, el servidor recupera todas las tareas almacenadas en la base de datos y las envía al cliente para su visualización.
@@ -96,6 +110,11 @@ router.get("/leer", (req, res) => {
   });
 });
 ```
+POSTMAN: LEER-GET
+1. METODO: GET
+2. URL: http://localhost:3500/api/v1/leer
+3. send
+
 ### 3.3.- Delete (Eliminar)
 La operación de eliminación permite a los usuarios eliminar una tarea existente de la lista. Cuando un usuario elimina una tarea, se envía una solicitud al servidor que contiene el ID de la tarea a eliminar. El servidor procesa esta solicitud y elimina la tarea correspondiente de la base de datos.
 
@@ -122,6 +141,14 @@ router.delete("/borrar", (req, res) => {
 });
 
 ```
+POSTMAN: BORRAR-DELETE
+1. METODO: DELETE
+2. URL: http://localhost:3500/api/v1/borrar
+3. body - row -json
+4. se pone el objeto {"id": }
+5. send
+
+
 ### 3.4.- Update (Actualizar)
 La operación de actualización permite a los usuarios modificar el estado o los detalles de una tarea existente en la lista. Cuando un usuario edita una tarea, se envía una solicitud al servidor que contiene los nuevos detalles de la tarea. El servidor procesa esta solicitud y actualiza la tarea correspondiente en la base de datos.
 
@@ -152,12 +179,24 @@ router.put("/editar", (req, res) => {
     }
   });
 });
-
-
 ```
+POSTMAN: 
+
+1. Se selecciona el crud, en este caso PUT
+2. URL: http://localhost:3500/api/v1/editar
+3. Se selecciona: body y despues Row- json
+4. Se escribe el objeto:
+{
+  "Descripcion": "",
+  "FechaInicio": "",
+  "Fechafinal":   "",
+  "Estado": "",
+  "id": idED,
+}
+
 ## 4.- Interfaz de Usuario (FRONTEND)
 En esta sección, explicaremos cómo se implementa la interfaz de usuario (UI) para permitir a los usuarios realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en nuestra aplicación de Gestor de Tareas. La UI proporciona una experiencia amigable e intuitiva para que los usuarios interactúen con la aplicación y gestionen sus tareas de manera eficiente.
-Este código se encuentra en la carpeta **JS/idex.html** (interacción con la parte backend y funcionalidades), **JS/modal.js** (parte visual que hace aparecer al formulario cuando el usuario indica que quiere agregar una nueva tarea, hemos partido desde este código https://www.w3schools.com/howto/howto_css_modals.asp), e **index.html y CSS/styles.css**.
+Este código se encuentra en la carpeta **JS/index.html** (interacción con la parte backend y funcionalidades), **JS/modal.js** (parte visual que hace aparecer al formulario cuando el usuario indica que quiere agregar una nueva tarea, hemos partido desde este código https://www.w3schools.com/howto/howto_css_modals.asp), e **index.html y CSS/styles.css**.
 
 ![Imagen de la base del documento](./base_fornt.png)
 
