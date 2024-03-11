@@ -32,18 +32,34 @@ header>div:nth-of-type(1) {
     padding: 20px 0;
     text-transform: uppercase;
 }
+header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+}
 
-.logo myBtn {
+.logo {
+    margin-left: 60px;
+    margin-top: 55px;;
+    padding: 10px;
+    width: 180px;
+    background-size: cover;
+    height: 180px;
+}
+
+.logo2 myBtn {
     border: none;
     background: none;
     padding: 0;
     cursor: pointer;
+    margin-top: 350px;
 }
 
-.logo img {
+.logo2 img {
     width: 100px;
     height: auto;
-    display: block;
+    margin-top: 20px;
+    margin-right: 35px;
 
 }
 
