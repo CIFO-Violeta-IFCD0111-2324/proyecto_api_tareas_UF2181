@@ -75,8 +75,9 @@ router.put("/editar", (req, res) => {
   const idTarea = req.body.id;
   const tituloTarea = req.body.titulo;
   const descripcionTarea = req.body.descripcion;
-  const sql = "update tabla set titulo=?,descripcion=? where id=?";
-  conexionMySQL.query(sql, [tituloTarea,descripcionTarea,idTarea], error => {
+  const portadaTarea = req.body.portada;
+  const sql = "update tabla set titulo=?,descripcion=?, portada=? where id=?";
+  conexionMySQL.query(sql, [tituloTarea,descripcionTarea,portadaTarea,idTarea], error => {
     if (error) {
       res.json({
         "status": 500,
