@@ -1,26 +1,26 @@
 
 // Instalar mySQL2 y cambiar el mySQL1
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const util = require("util"); 
 
-// const conexionMySQL = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: 'task_db',
-//   timezone: 'utc',
-// });
+const conexionMySQL = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'task_db',
+  timezone: 'utc',
+});
 
 
 // railway deploy
-const conexionMySQL = mysql.createConnection({
-  host: 'monorail.proxy.rlwy.net',
-  user: 'root',
-  password: 'UdyWGZykRMUrUXcqMMiobZjXHHYpWIjG',
-  database: 'railway',
-  port: 56903,
-  timezone: 'utc',
-});
+// const conexionMySQL = mysql.createConnection({
+//   host: 'monorail.proxy.rlwy.net',
+//   user: 'root',
+//   password: 'UdyWGZykRMUrUXcqMMiobZjXHHYpWIjG',
+//   database: 'railway',
+//   port: 56903,
+//   timezone: 'utc',
+// });
 
 
 // promise wrapper to enable async await with MYSQL
