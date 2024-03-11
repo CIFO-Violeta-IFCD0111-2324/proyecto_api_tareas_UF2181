@@ -2,11 +2,21 @@
 const mysql = require('mysql');
 const util = require("util"); 
 
+// const conexionMySQL = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   database: 'task_db',
+//   timezone: 'utc',
+// });
+
+
+// railway deploy
 const conexionMySQL = mysql.createConnection({
-  host: 'localhost',
+  host: 'monorail.proxy.rlwy.net',
   user: 'root',
-  password: '',
-  database: 'task_db',
+  password: 'UdyWGZykRMUrUXcqMMiobZjXHHYpWIjG',
+  database: 'railway',
   timezone: 'utc',
 });
 
