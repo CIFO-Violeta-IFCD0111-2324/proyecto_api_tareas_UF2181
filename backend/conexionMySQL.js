@@ -1,24 +1,26 @@
+// DEPLOY: Desinstalar paquete mysql e instalar mysql2
+// Cambiar datos conexión
 // MySQL2!!!!!
 const mysql = require('mysql2');
 const util = require("util"); 
 
-const conexionMySQL = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'datos',
-});
-
-// railway
-
 // const conexionMySQL = mysql.createConnection({
-//   host: 'monorail.proxy.rlwy.net',
+//   host: 'localhost',
 //   user: 'root',
-//   password: 'F5aFEHgECaHGeFB4Hd3Ag5C64b6g625C',
-//   database: 'railway',
-//   port: 18798
+//   password: '',
+//   database: 'datos',
 // });
 
+// railway
+const conexionMySQL = mysql.createConnection({
+  host: 'roundhouse.proxy.rlwy.net',
+  user: 'root',
+  password: 'YYBGncDzztfVvHGmSKWKLpccIZkpwAZR',
+  database: 'railway',
+  port: 58285
+});
+
+// DEPLOY:
 // promise wrapper to enable async await with MYSQL
 conexionMySQL.query = util.promisify(conexionMySQL.query).bind(conexionMySQL);
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+// DEPLOY: Utiliza el puerto de Render
 const port = process.env.PORT || 3000; 
   
 const api = express();
