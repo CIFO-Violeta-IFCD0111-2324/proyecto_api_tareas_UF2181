@@ -29,25 +29,25 @@ Proyecto en grupo que desarrolla una APIREST mediante NodeJS y MySQL. La api ges
 
 ## 5- Despligue en servidor remoto:
 -  Pasos depliegue:
-  1- Crear una base de datos Mysql en Railway https://railway.app/ . No es necesario registrarse, directamente se crea un proyecto de MySQL.
-  2- Crear una conexión con MySQL Workbench con los datos de Railway
-  3- Crear la tabla dentro de su base de datos mediante nuestro código SQL
-  4- Crear cuenta en Render (mediante GitHub). https://render.com/
-  5- Desde su dashboard, crear un Servicio Web
-  6- Clickar la opción: "Build and deploy from a Git repository"
-  7- Conectarse a GitHub con tus credenciales de tu cuenta
-  8- Datos de configuración:
-    1- Name: Por defecto
-    2- Region: Europa
-    3- Branch: Tu rama del proyecto
-    4- Root Directory: En este proyecto "/backend"
-    5- Runtime: Node
-    6- Build Command: $yarn
-    7- Start Command: node api
-    8- For hobby projects
-    9- Crear Web Service
-    10- Hace deploy pero no funciona, ya que falta cambiar el código de la API
-  9- Modificar en el proyecto todo el codigo con el comentario "DEPLOY"
+  - 1- Crear una base de datos Mysql en Railway https://railway.app/ . No es necesario registrarse, directamente se crea un proyecto de MySQL.
+  - 2- Crear una conexión con MySQL Workbench con los datos de Railway
+  - 3- Crear la tabla dentro de su base de datos mediante nuestro código SQL
+  - 4- Crear cuenta en Render (mediante GitHub). https://render.com/
+  - 5- Desde su dashboard, crear un Servicio Web
+  - 6- Clickar la opción: "Build and deploy from a Git repository"
+  - 7- Conectarse a GitHub con tus credenciales de tu cuenta
+  - 8- Datos de configuración:
+    - 1- Name: Por defecto
+    - 2- Region: Europa
+    - 3- Branch: Tu rama del proyecto
+    - 4- Root Directory: En este proyecto "/backend"
+    - 5- Runtime: Node
+    - 6- Build Command: $yarn
+    - 7- Start Command: node api
+    - 8- For hobby projects
+    - 9- Crear Web Service
+    - 10- Hace deploy pero no funciona, ya que falta cambiar el código de la API
+  - 9- Modificar en el proyecto todo el codigo con el comentario "DEPLOY"
 
 
 
