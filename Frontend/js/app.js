@@ -38,7 +38,32 @@ button.addEventListener("click", () => {
 const button2 = document.getElementById("editarBTN");
 
 button2.addEventListener("click", () => {
-  alert()
+  const titulo = document.getElementById("titulo")
+  const descripcion = document.getElementById("descripcion")
+  const fechainicio = document.getElementById("inicio")
+  const fechafinal = document.getElementById("fin")
+  const portada = document.getElementById("portada")
+
+
+  const url = "http://localhost:3001/api/v1/editar";
+  fetch(url, {
+    method: "put",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      "titulo": document.getElementById("editarTitulo").value,
+      "id":document.getElementById("editarID").value
+      
+    })
+
+  })
+    .then(res => res.json())
+    .then(mensaje => {
+      setTimeout(() => {
+        location.reload(); // refresca página
+      }, 1000);
+      document.querySelector("div").innerHTML = mensaje.mensaje;
+    })
+
 
 });
 
@@ -55,6 +80,7 @@ function editar () {
       const tituloTareaClickada = document.querySelector(".titulo"+e.target.id).innerHTML;
       const inputEditarForm = document.querySelector("#editarTitulo");
       inputEditarForm.value = tituloTareaClickada;
+      document.querySelector("#editarID").value = e.target.id;
 
     });
   }

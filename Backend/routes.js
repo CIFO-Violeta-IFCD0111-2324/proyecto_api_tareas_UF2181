@@ -71,5 +71,23 @@ router.delete("/borrar", (req, res) => {
     }
   });
 });
+router.put("/editar", (req, res) => {
+  const idTarea = req.body.id;
+  const tituloTarea = req.body.titulo;
+  const sql = "update tabla set titulo=? where id=?";
+  conexionMySQL.query(sql, [tituloTarea,idTarea], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en el editado del dato. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
+});
 
   module.exports = router;
