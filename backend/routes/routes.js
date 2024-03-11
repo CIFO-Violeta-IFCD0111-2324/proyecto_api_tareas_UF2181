@@ -3,8 +3,6 @@ const express = require("express");
 const mysql = require("mysql");
 const router = express.Router();
 const cors = require("cors");
-const CryptoJS = require("crypto-js");
-const { v4: uuid_v4 } = require('uuid');
 
 
 const conexionDB = require("../conexionMySQL");
@@ -78,14 +76,15 @@ router.use(express.json());
  *                   description: Mensaje de error.
  */
 router.post("/insert", (req, res) => {
-  //Importar conexion DB:
   const tarea = req.body;
   const query = 'insert into tasks values (default,?,?,?,?)';
   conexionDB.query(query, [tarea.nombre, tarea.descripcion, tarea.fecha_inicio, tarea.fecha_fin], (err) => {
     if (err) {
       res.status(400).json("Error en la insercion de la tarea: " + err);
     } else {
-      res.status(200).json("Tarea insertada correctamente!");
+      res.status(200).json({
+        "mensaje": "<span>Tarea insertada correctamente! <i class='fas fa-spinner fa-spin'></i></span>",
+      });
     }
   });
 });
@@ -201,7 +200,7 @@ router.delete("/delete", (req, res) => {
       });
     } else {
       res.status(200).json({
-        "mensaje": "<span class='correcto'>Dato borrado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+        "mensaje": "<span>Dato borrado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
       });
     }
   })

@@ -1,6 +1,8 @@
 
 // Crud - Create
 async function insertSQL() {
+    const divRespuestas = document.querySelector("div#caja-respuestas");
+
     const nombre = document.querySelector("input#nombre");
     const fechaIn = document.querySelector("input#fecha-in");
     const fechaFin = document.querySelector("input#fecha-fin");
@@ -18,11 +20,13 @@ async function insertSQL() {
         })
     })
         .then(res => res.json())
-        .then(msg => console.log(msg))
-        .catch(err => alter(err))
-    setTimeout(() => {
-        location.reload(); // refresca página automatico en 1 segundo
-    }, 1000);
+        .then(msg => {
+            divRespuestas.innerHTML = msg.mensaje
+            setTimeout(() => {
+                location.reload()
+            }, 3000)
+        })
+        .catch(err => alert(err))
 
 }
 
@@ -242,25 +246,25 @@ async function editTareaSQL() {
     console.log(fechaInIn, fechaFinIn)
 
     await fetch("http://localhost:3000/api/edit", {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                "id": id,
-                "nombre": nombreIn,
-                "descripcion": descIn,
-                "fecha_inicio": fechaInIn,
-                "fecha_fin": fechaFinIn,
-            })
+        method: "put",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            "id": id,
+            "nombre": nombreIn,
+            "descripcion": descIn,
+            "fecha_inicio": fechaInIn,
+            "fecha_fin": fechaFinIn,
         })
-            .then(res => res.json())
-            .then(msg => {
-                divRespuestas.innerHTML = msg.mensaje;
-                setTimeout(() => {
-                    location.reload(); // refresca página
-                  }, 2000);
-                })
-            .catch(err => divRespuestas.innerHTML = "<h3 class='error'>Error en servidor!</h3>")
-    
+    })
+        .then(res => res.json())
+        .then(msg => {
+            divRespuestas.innerHTML = msg.mensaje;
+            setTimeout(() => {
+                location.reload(); // refresca página
+            }, 2000);
+        })
+        .catch(err => divRespuestas.innerHTML = "<h3 class='error'>Error en servidor!</h3>")
+
 }
 
 
