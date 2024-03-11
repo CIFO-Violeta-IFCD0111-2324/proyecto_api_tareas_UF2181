@@ -128,6 +128,30 @@ La operación de actualización permite a los usuarios modificar el estado o los
 Ejemplo de código Node.js-Express para manejar la solicitud de actualización de una tarea:
 
 ```
+// EDITAR
+router.put("/editar", (req, res) => {
+  const Descripcion = req.body.Descripcion;
+  const FechaInicio = req.body.FechaInicio;
+  const Fechafinal = req.body.Fechafinal;
+  const Estado = req.body.Estado;
+  const id = req.body.id;
+  // encriptamos el dato
+  //const datoEncriptado = CryptoJS.AES.encrypt(tarea, 'miTextoSecreto').toString();
+  const sql = "update tareas set descripcion = ?,fecha_inicio = ?, fecha_fin = ?, Estado_tarea = ? where id = ?";
+  conexionMySQL.query(sql, [Descripcion, FechaInicio, Fechafinal, Estado, id], error => {
+    if (error) {
+      res.json({
+        "status": 500,
+        "mensaje": "<span class='error'>Error en la edición del dato. Error:" + error + "</span>"
+      });
+    } else {
+      res.json({
+        "status": 200,
+        "mensaje": "<span class='correcto'>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
+      });
+    }
+  });
+});
 
 
 ```
@@ -199,36 +223,65 @@ botonGuardar.addEventListener("click", () => {
 ### 4.2- Leer (Read)
 Para mostrar todas las tareas existentes a los usuarios, implementamos una lista o tabla en la interfaz de usuario que muestra cada tarea junto con sus detalles, como la descripción, la fecha de creación, la fecha de vencimiento y el estado. Los usuarios pueden ver fácilmente todas las tareas en una sola pantalla.
 
-![Como se mnuestran los datos](./base_fornt.png)
+![Como se muestran los datos](./base_fornt.png)
 
 **Codigo Ejemplo para leer:**
 ```
 // cRud (leer)
 fetch("http://localhost:3500/api/v1/leer")
-  .then(res => res.json())
-  .then(datos => {
+  .then((res) => res.json())
+  .then((datos) => {
     const contenedorDatos = document.getElementById("contenedorDatos");
     const arrayDatosConsulta = datos.resultado;
-    if (arrayDatosConsulta.length===0) {
-      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
-     }else{
-            for (let i = 0; i < arrayDatosConsulta.length; i++) {
-              const tarea = arrayDatosConsulta[i];
-                                // Obtener la descripción y dividirla en fragmentos de 15 caracteres
-                                const descripcion = tarea.descripcion;
-                                const fragmentos = [];
-                                for (let j = 0; j < descripcion.length; j += 15) {
-                                    fragmentos.push(descripcion.substring(j, j + 15));
-                                }
-                                // Unir los fragmentos con saltos de línea o <br>
-                                const descripcionConSaltos = fragmentos.join("<br>");
+    almacen = arrayDatosConsulta;
+    console.log("al declarar " + [almacen]);
+    if (arrayDatosConsulta.length === 0) {
+      contenedorDatos.innerHTML =
+        "<h3 class='tituloNoTareas'> No hay ninguna tarea,<br><br> <b>¡¡¡espabila!!!</b> ... <i class='fa-regular fa-face-frown fa-bounce'></i> ... que te pilla el toro !</h3>";
+    } else {
+      for (let i = 0; i < arrayDatosConsulta.length; i++) {
+        const tarea = arrayDatosConsulta[i];
+        // Obtener la descripción y dividirla en fragmentos de 15 caracteres
+        const descripcion = tarea.descripcion;
+        const fragmentos = [];
+        for (let j = 0; j < descripcion.length; j += 15) {
+          fragmentos.push(descripcion.substring(j, j + 15));
+        }
+        // Unir los fragmentos con saltos de línea o <br>
+        const descripcionConSaltos = fragmentos.join("<br>");
 
-                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
-                }
-            borrarFuncion();
-          }
-    })
-  .catch(error => contenedorDatos.innerHTML =error);
+        contenedorDatos.innerHTML +=
+          "<div class='indiv'><p class='titulo'>TAREA: " +
+          tarea.id +
+          "</p><p class='detalle'>" +
+          descripcionConSaltos +
+          "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>" +
+          tarea.diaInicio +
+          "-" +
+          tarea.mesInicio +
+          "-" +
+          tarea.anoInicio +
+          "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" +
+          tarea.diafin +
+          "-" +
+          tarea.mesfin +
+          "-" +
+          tarea.anofin +
+          "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " +
+          tarea.Estado_tarea +
+          "</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square editarBTN' id='" +
+          tarea.id +
+          "'></i> <i class='fa-regular fa-trash-can' id='" +
+          tarea.id +
+          "'></i></div></div>";
+      }
+
+      borrarFuncion();
+      editarDatoFuncion();
+    }
+  })
+  .catch((error) => (contenedorDatos.innerHTML = error));
+
 ```
 
 ### 4.3- Eliminar (Delete)
@@ -236,27 +289,27 @@ Para permitir a los usuarios eliminar una tarea existente, implementamos funcion
 **Codigo Ejemplo para Eliminar:**
 ```
 
- // cruD (borrar)
+// cruD (borrar)
 function borrarFuncion() {
   const papeleras = document.querySelectorAll(".fa-trash-can");
   for (let i = 0; i < papeleras.length; i++) {
-    papeleras[i].addEventListener("click", papelerita => {
+    papeleras[i].addEventListener("click", (papelerita) => {
       if (confirm("Estás seguro que quieres eliminar la tarea?")) {
         fetch("http://localhost:3500/api/v1/borrar", {
           method: "delete",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            "id": papelerita.target.id
-          })
+            id: papelerita.target.id,
+          }),
         })
-          .then(res => res.json())
-          .then(mensaje => {
-            alert("Tarea eliminada, buen trabajo");
+          .then((res) => res.json())
+          .then((mensaje) => {
+           swal("Tarea eliminada, buen trabajo");
             setTimeout(() => {
               location.reload(); // refresca página
             }, 1000);
           })
-          .catch(error => mensajes.innerHTML = "Error en servidor!");
+          .catch((error) => (mensajes.innerHTML = "Error en servidor!"));
       }
     });
   }
@@ -273,6 +326,176 @@ Para permitir a los usuarios actualizar una tarea existente, implementamos funci
 
 **Codigo Ejemplo para Actualizar:**
 ```
+// crUd (update)//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function editarDatoFuncion() {
+  console.log(almacen);
+  const botonesEditar = document.querySelectorAll(".editarBTN");
+  for (let i = 0; i < botonesEditar.length; i++) {
+    botonesEditar[i].addEventListener("click", (lapicito) => {
+      editarMODAL.style.display = "Block";
+      const idED = lapicito.target.id.toString();
+      console.log(idED);
+
+      // Encuentra el elemento en el array `almacen` con el ID correspondiente
+      function encontrarTareaPorId(id) {
+        for (let i = 0; i < almacen.length; i++) {
+          if (almacen[i].id.toString() === id) {
+            return almacen[i];
+          }
+        }
+        return null; // Retorna null si no se encuentra la tarea con el ID proporcionado
+      }
+
+      const tareaEditada = encontrarTareaPorId(idED);
+
+      // Verifica si la tarea se encuentra en el array
+      console.log("----Verifica si la tarea se encuentra en el array");
+      console.log("Descripción editada:", tareaEditada.descripcion);
+      console.log(
+        "Fecha de inicio editada:",
+        tareaEditada.diaInicio,
+        tareaEditada.mesInicio,
+        tareaEditada.anoInicio
+      );
+      console.log(
+        "Fecha final editada:",
+        tareaEditada.diafin,
+        tareaEditada.mesfin,
+        tareaEditada.anofin
+      );
+      console.log("Estado editado:", tareaEditada.Estado_tarea);
+
+      if (confirm("¿Desea editar esta tarea?") && tareaEditada) {
+        // Si se encuentra el elemento, puedes acceder a sus propiedades
+        const campoDescripcionED = document.querySelector("#descripcionED");
+        const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
+        const campoFecha_finalED = document.querySelector("#fecha_finalED");
+        const campoEstadoTareaED = document.querySelector("#estadoTareaED");
+        // Verifica los valores actuales de los campos
+        console.log("----Verifica los valores actuales de los campos");
+        console.log(
+          "Campo de de descripción en modal de edición antes de asignación:",
+          campoDescripcionED.value
+        );
+        console.log(
+          "Campo de fecha de inicio en modal de edición antes de asignación:",
+          campoFecha_inicioED.value
+        );
+        console.log(
+          "Campo de fecha final en modal de edición antes de asignación:",
+          campoFecha_finalED.value
+        );
+        console.log(
+          "Campo de estado de inicio en modal de edición antes de asignación:",
+          campoEstadoTareaED.value
+        );
+
+        // Llena los campos del formulario con los valores del elemento encontrado
+        console.log(
+          "----Llena los campos del formulario con los valores del elemento encontrado"
+        );
+
+        campoDescripcionED.value = tareaEditada.descripcion;
+
+        // Crear objetos Date con las fechas de inicio y finalización, de manera que las formateamos para que las lea el explorador
+        var fechaInicio = new Date(
+          tareaEditada.anoInicio,
+          tareaEditada.mesInicio - 1,
+          tareaEditada.diaInicio + 1
+        );
+        var fechaFinalizacion = new Date(
+          tareaEditada.anofin,
+          tareaEditada.mesfin - 1,
+          tareaEditada.diafin + 1
+        );
+
+        // Formatear las fechas en formato "yyyy-MM-dd"
+        var fechaInicioFormateada = fechaInicio.toISOString().split("T")[0];
+        var fechaFinalizacionFormateada = fechaFinalizacion.toISOString().split("T")[0];
+
+        // Asignar las fechas formateadas a los campos de entrada de fecha
+        campoFecha_inicioED.value = fechaInicioFormateada;
+        campoFecha_finalED.value = fechaFinalizacionFormateada;
+
+        campoEstadoTareaED.value = tareaEditada.Estado_tarea;
+
+        // Verifica los valores actuales de los campos
+        console.log("----Verifica los valores actuales de los campos");
+
+        console.log(
+          "Campo de de descripción en modal de edición después de asignación:",
+          campoDescripcionED.value
+        );
+        console.log(
+          "Campo de fecha de inicio en modal de edición después de asignación:",
+          campoFecha_inicioED.value
+        );
+        console.log(
+          "Campo de fecha final en modal de edición después de asignación:",
+          campoFecha_finalED.value
+        );
+        console.log(
+          "Campo de estado de inicio en modal de edición después de asignación:",
+          campoEstadoTareaED.value
+        );
+
+        // Agrega un evento al botón de editar
+        const caracteresMaxED = 20;
+        const editarBoton = document.querySelector("#EditarTarea");
+        editarBoton.addEventListener("click", () => {
+          if (
+            campoDescripcionED.value.length === 0 ||
+            campoFecha_inicioED.value.length === 0 ||
+            campoFecha_finalED.value.length === 0 ||
+            campoEstadoTareaED.value.length === 0
+          ) {
+            mensajesEdicion.innerHTML =
+              "Campos vacios ... <i class='fa-solid fa-triangle-exclamation fa-beat'></i>";
+            return;
+          }
+          if (campoFecha_inicioED.value > campoFecha_finalED.value) {
+            mensajesEdicion.innerHTML =
+              "La fecha de inicio no puede ser <br> posterior a la fecha final ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
+            return;
+          }
+          if (campoDescripcionED.value.length >= caracteresMaxED) {
+            mensajesEdicion.innerHTML =
+              "La descripción es demasiado larga ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
+            return;
+          }
+          const url = "http://localhost:3500/api/v1/editar";
+          fetch(url, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              Descripcion: campoDescripcionED.value,
+              FechaInicio: campoFecha_inicioED.value,
+              Fechafinal: campoFecha_finalED.value,
+              Estado: campoEstadoTareaED.value,
+              id: idED,
+            }),
+          })
+            .then((res) => res.json())
+            .then((mensaje) => {
+              mensajesEdicion.innerHTML =
+                "Tarea editada ... <i class='fa-solid fa-wrench fa-spin'></i>";
+              setTimeout(() => {
+                location.reload(); // refresca página
+              }, 3000);
+              // Puedes realizar alguna acción adicional después de editar la tarea, como recargar la página
+            })
+            .catch((error) =>
+              console.error("Error al editar la tarea:", error)
+            );
+        });
+      } else {
+        console.log("No se encontró ninguna tarea con el ID proporcionado.");
+      }
+    });
+  }
+}
+
 ```
 
 ## 5. Pruebas
@@ -316,24 +539,50 @@ Para verificar la funcionalidad de lectura, realizamos pruebas para asegurarnos 
 **Codigo para Mostrar los datos de la bbdd**, pero lo condicionamos por si no hay datos mostrar mensaje y en caso de que haya mas de 15 caracteres en la descripción hacemos un "for" para recorrela y dividirlo para luego unirlo con "br" para que no se salga de la capa (fragmentos.join("<br>");):
 
 ```
- if (arrayDatosConsulta.length===0) {
-      contenedorDatos.innerHTML ="<h1 class='titulo'> No hay ninguna tarea, <b>¡¡¡espabila!!!</b> que te pilla el toro </h1>";
-     }else{
-            for (let i = 0; i < arrayDatosConsulta.length; i++) {
-              const tarea = arrayDatosConsulta[i];
-                                // Obtener la descripción y dividirla en fragmentos de 15 caracteres
-                                const descripcion = tarea.descripcion;
-                                const fragmentos = [];
-                                for (let j = 0; j < descripcion.length; j += 15) {
-                                    fragmentos.push(descripcion.substring(j, j + 15));
-                                }
-                                // Unir los fragmentos con saltos de línea o <br>
-                                const descripcionConSaltos = fragmentos.join("<br>");
+ if (arrayDatosConsulta.length === 0) {
+      contenedorDatos.innerHTML =
+        "<h3 class='tituloNoTareas'> No hay ninguna tarea,<br><br> <b>¡¡¡espabila!!!</b> ... <i class='fa-regular fa-face-frown fa-bounce'></i> ... que te pilla el toro !</h3>";
+    } else {
+      for (let i = 0; i < arrayDatosConsulta.length; i++) {
+        const tarea = arrayDatosConsulta[i];
+        // Obtener la descripción y dividirla en fragmentos de 15 caracteres
+        const descripcion = tarea.descripcion;
+        const fragmentos = [];
+        for (let j = 0; j < descripcion.length; j += 15) {
+          fragmentos.push(descripcion.substring(j, j + 15));
+        }
+        // Unir los fragmentos con saltos de línea o <br>
+        const descripcionConSaltos = fragmentos.join("<br>");
 
-                contenedorDatos.innerHTML += "<div class='indiv'><p class='titulo'>TAREA: " + tarea.id +"</p><p class='detalle'>" + descripcionConSaltos + "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>"+ tarea.diaInicio + "-"+ tarea.mesInicio + "-" + tarea.anoInicio + "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" + tarea.diafin + "-"+ tarea.mesfin + "-" + tarea.anofin + "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " + tarea.Estado_tarea +"</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square' id='"+ tarea.id +"'></i> <i class='fa-regular fa-trash-can' id='"+ tarea.id +"'></i></div></div>";
-                }
-            borrarFuncion();
-          }
+        contenedorDatos.innerHTML +=
+          "<div class='indiv'><p class='titulo'>TAREA: " +
+          tarea.id +
+          "</p><p class='detalle'>" +
+          descripcionConSaltos +
+          "</p><div class='row'><div class='col-25'>INICIO:</div><div class='col-75'>" +
+          tarea.diaInicio +
+          "-" +
+          tarea.mesInicio +
+          "-" +
+          tarea.anoInicio +
+          "</div></div><div class='row'><div class='col-25'>FIN:</div> <div class='col-75'>" +
+          tarea.diafin +
+          "-" +
+          tarea.mesfin +
+          "-" +
+          tarea.anofin +
+          "</div></div><div class='row'><div class='col-25'>ESTADO: </div><div class='col-75'> " +
+          tarea.Estado_tarea +
+          "</div></div><div id='iconosPosit'><i class='fa-regular fa-pen-to-square editarBTN' id='" +
+          tarea.id +
+          "'></i> <i class='fa-regular fa-trash-can' id='" +
+          tarea.id +
+          "'></i></div></div>";
+      }
+
+      borrarFuncion();
+      editarDatoFuncion();
+    }
 ```
 
 
@@ -343,11 +592,112 @@ Para verificar la funcionalidad de actualización, realizamos pruebas para asegu
 
 **Codigo para actualizar los datos**
 ```
-```
+function editarDatoFuncion() {
+  console.log(almacen);
+  const botonesEditar = document.querySelectorAll(".editarBTN");
+  for (let i = 0; i < botonesEditar.length; i++) {
+    botonesEditar[i].addEventListener("click", (lapicito) => {
+      editarMODAL.style.display = "Block";
+      const idED = lapicito.target.id.toString();
+      console.log(idED);
 
+      // Encuentra el elemento en el array `almacen` con el ID correspondiente
+      function encontrarTareaPorId(id) {
+        for (let i = 0; i < almacen.length; i++) {
+          if (almacen[i].id.toString() === id) {
+            return almacen[i];
+          }
+        }
+        return null; // Retorna null si no se encuentra la tarea con el ID proporcionado
+      }
 
-### 5.4.- Pruebas de Eliminación (Delete)
-Para verificar la funcionalidad de eliminación, realizamos pruebas para asegurarnos de que los usuarios pueden eliminar correctamente una tarea existente de la lista. Esto incluye eliminar tareas con diferentes conjuntos de datos y verificar que las tareas se eliminen correctamente de la base de datos y de la interfaz de usuario.
-**Codigo para Eliminar los datos de la bbdd**
-```
+      const tareaEditada = encontrarTareaPorId(idED);
+     
+      if (confirm("¿Desea editar esta tarea?") && tareaEditada) {
+        // Si se encuentra el elemento, puedes acceder a sus propiedades
+        const campoDescripcionED = document.querySelector("#descripcionED");
+        const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
+        const campoFecha_finalED = document.querySelector("#fecha_finalED");
+        const campoEstadoTareaED = document.querySelector("#estadoTareaED");
+
+        campoDescripcionED.value = tareaEditada.descripcion;
+
+        // Crear objetos Date con las fechas de inicio y finalización, de manera que las formateamos para que las lea el explorador
+        var fechaInicio = new Date(
+          tareaEditada.anoInicio,
+          tareaEditada.mesInicio - 1,
+          tareaEditada.diaInicio + 1
+        );
+        var fechaFinalizacion = new Date(
+          tareaEditada.anofin,
+          tareaEditada.mesfin - 1,
+          tareaEditada.diafin + 1
+        );
+
+        // Formatear las fechas en formato "yyyy-MM-dd"
+        var fechaInicioFormateada = fechaInicio.toISOString().split("T")[0];
+        var fechaFinalizacionFormateada = fechaFinalizacion.toISOString().split("T")[0];
+
+        // Asignar las fechas formateadas a los campos de entrada de fecha
+        campoFecha_inicioED.value = fechaInicioFormateada;
+        campoFecha_finalED.value = fechaFinalizacionFormateada;
+
+        campoEstadoTareaED.value = tareaEditada.Estado_tarea;
+
+        // Agrega un evento al botón de editar
+        const caracteresMaxED = 20;
+        const editarBoton = document.querySelector("#EditarTarea");
+        editarBoton.addEventListener("click", () => {
+          if (
+            campoDescripcionED.value.length === 0 ||
+            campoFecha_inicioED.value.length === 0 ||
+            campoFecha_finalED.value.length === 0 ||
+            campoEstadoTareaED.value.length === 0
+          ) {
+            mensajesEdicion.innerHTML =
+              "Campos vacios ... <i class='fa-solid fa-triangle-exclamation fa-beat'></i>";
+            return;
+          }
+          if (campoFecha_inicioED.value > campoFecha_finalED.value) {
+            mensajesEdicion.innerHTML =
+              "La fecha de inicio no puede ser <br> posterior a la fecha final ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
+            return;
+          }
+          if (campoDescripcionED.value.length >= caracteresMaxED) {
+            mensajesEdicion.innerHTML =
+              "La descripción es demasiado larga ... <i class='fa-solid fa-ban fa-beat-fade'></i>";
+            return;
+          }
+          const url = "http://localhost:3500/api/v1/editar";
+          fetch(url, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              Descripcion: campoDescripcionED.value,
+              FechaInicio: campoFecha_inicioED.value,
+              Fechafinal: campoFecha_finalED.value,
+              Estado: campoEstadoTareaED.value,
+              id: idED,
+            }),
+          })
+            .then((res) => res.json())
+            .then((mensaje) => {
+              mensajesEdicion.innerHTML =
+                "Tarea editada ... <i class='fa-solid fa-wrench fa-spin'></i>";
+              setTimeout(() => {
+                location.reload(); // refresca página
+              }, 3000);
+              // Puedes realizar alguna acción adicional después de editar la tarea, como recargar la página
+            })
+            .catch((error) =>
+              console.error("Error al editar la tarea:", error)
+            );
+        });
+      } else {
+        console.log("No se encontró ninguna tarea con el ID proporcionado.");
+      }
+    });
+  }
+}
+
 ```

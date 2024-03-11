@@ -187,9 +187,8 @@ function editarDatoFuncion() {
         );
 
         campoDescripcionED.value = tareaEditada.descripcion;
-        campoDescripcionED.value = tareaEditada.descripcion;
 
-        // Crear objetos Date con las fechas de inicio y finalización
+        // Crear objetos Date con las fechas de inicio y finalización, de manera que las formateamos para que las lea el explorador
         var fechaInicio = new Date(
           tareaEditada.anoInicio,
           tareaEditada.mesInicio - 1,
@@ -203,15 +202,11 @@ function editarDatoFuncion() {
 
         // Formatear las fechas en formato "yyyy-MM-dd"
         var fechaInicioFormateada = fechaInicio.toISOString().split("T")[0];
-        var fechaFinalizacionFormateada = fechaFinalizacion
-          .toISOString()
-          .split("T")[0];
+        var fechaFinalizacionFormateada = fechaFinalizacion.toISOString().split("T")[0];
 
         // Asignar las fechas formateadas a los campos de entrada de fecha
         campoFecha_inicioED.value = fechaInicioFormateada;
         campoFecha_finalED.value = fechaFinalizacionFormateada;
-
-        campoEstadoTareaED.value = tareaEditada.Estado_tarea;
 
         campoEstadoTareaED.value = tareaEditada.Estado_tarea;
 
