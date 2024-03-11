@@ -28,7 +28,7 @@ router.post("/crearTarea", (req, res) => {
     if (err) {
       res.json({
         "status": 500,
-        "mensaje": "Error en la inserción del dato. Error:" + err
+        "mensaje": "Error en la inserción del datos. Error:" + err
       });
     } else {
       res.json({
