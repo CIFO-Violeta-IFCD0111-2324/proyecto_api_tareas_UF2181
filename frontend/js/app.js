@@ -1,5 +1,5 @@
 
-// Crud - crear
+// Crud - Create
 
 async function insertSQL() {
     const nombre = document.querySelector("input#nombre");
@@ -51,7 +51,7 @@ async function insertSQL() {
     btnTarea.addEventListener('click', () => {
         // Evento sintetico
         const event = new Event('enviar', {
-            'bubbles': false,
+            'bubbles': false, //bubble va en false
             'cancelable': true
         });
 
@@ -61,7 +61,7 @@ async function insertSQL() {
 
 
 
-// cRud (leer)
+// cRud Read
 fetch("http://localhost:3000/api/read")
     .then(res => res.json())
     .then(datos => {
@@ -111,7 +111,6 @@ fetch("http://localhost:3000/api/read")
             papelera.classList.add("fa-solid");
             papelera.classList.add("fa-trash");
             papelera.setAttribute("id", tarea.id);
-
             // cruD Delete 
             papelera.addEventListener("click", deletePapel, false);
             divPE.appendChild(papelera);
@@ -121,6 +120,7 @@ fetch("http://localhost:3000/api/read")
             const btnEdit = document.createElement("i");
             btnEdit.classList.add("fa-solid", "fa-pen-to-square");
             btnEdit.setAttribute("id", tarea.id);
+            // crUd Update
             btnEdit.addEventListener("click", editDato, false)
             divPE.appendChild(btnEdit)
 
