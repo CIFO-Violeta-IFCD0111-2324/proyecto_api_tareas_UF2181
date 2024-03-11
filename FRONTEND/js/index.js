@@ -308,7 +308,7 @@ function borrarFuncion() {
         })
           .then((res) => res.json())
           .then((mensaje) => {
-            alert("Tarea eliminada, buen trabajo");
+           swal("Tarea eliminada, buen trabajo");
             setTimeout(() => {
               location.reload(); // refresca página
             }, 1000);
