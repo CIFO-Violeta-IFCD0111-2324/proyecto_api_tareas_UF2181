@@ -31,5 +31,4 @@ window.onclick = function (event) {
   } else if (event.target == modalEdit) {
     modalEdit.style.display = "none";
   }
-
 }

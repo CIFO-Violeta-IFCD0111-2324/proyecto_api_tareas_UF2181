@@ -269,10 +269,6 @@ textarea {
     align-items: center;
 }
 
-.error {
-    color: red;
-}
-
 .fa-pen-to-square {
     transition: 200ms;
 }

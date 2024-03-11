@@ -18,7 +18,7 @@ conexionMySQL.connect(err => {
   if (err) {
     console.log('Error en la conexión MySQL:', err);
   }
-  console.log('Conexion correcta');
+  console.log('Conexion establecida con MYSQL');
 });
 
 module.exports = conexionMySQL;
