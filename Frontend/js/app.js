@@ -50,6 +50,7 @@ button2.addEventListener("click", () => {
     method: "put",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      "descripcion": document.getElementById("editarDescripcion").value,
       "titulo": document.getElementById("editarTitulo").value,
       "id":document.getElementById("editarID").value
       
@@ -81,6 +82,13 @@ function editar () {
       const inputEditarForm = document.querySelector("#editarTitulo");
       inputEditarForm.value = tituloTareaClickada;
       document.querySelector("#editarID").value = e.target.id;
+      const descripcionTareaClickada = document.querySelector(".descripcion"+e.target.id).innerHTML;
+  
+      const inputEditarFormDescripcion = document.querySelector("#editarDescripcion");
+      inputEditarFormDescripcion.value = descripcionTareaClickada;
+      
+      
+      
 
     });
   }
@@ -108,7 +116,7 @@ fetch("http://localhost:3001/api/v1/leer")
         </div>
         <div class="cuadro2">
         <h2 class="encabezados">Descripcion</h2>
-        <h3 id="contenido">${arrayDatosConsulta[i].descripcion}  </h3>
+        <h3 id="contenido" class="descripcion${arrayDatosConsulta[i].id}">${arrayDatosConsulta[i].descripcion}  </h3>
         </div>
         <div class="cuadro2">
         <h2 class="encabezados">portada</h2>

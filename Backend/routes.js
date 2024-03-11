@@ -74,8 +74,9 @@ router.delete("/borrar", (req, res) => {
 router.put("/editar", (req, res) => {
   const idTarea = req.body.id;
   const tituloTarea = req.body.titulo;
-  const sql = "update tabla set titulo=? where id=?";
-  conexionMySQL.query(sql, [tituloTarea,idTarea], error => {
+  const descripcionTarea = req.body.descripcion;
+  const sql = "update tabla set titulo=?,descripcion=? where id=?";
+  conexionMySQL.query(sql, [tituloTarea,descripcionTarea,idTarea], error => {
     if (error) {
       res.json({
         "status": 500,
