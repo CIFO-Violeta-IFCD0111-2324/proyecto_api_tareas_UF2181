@@ -46,6 +46,7 @@ crearBTNform.addEventListener("click", () => {
 });
 
 // cRud (leer)
+<<<<<<< HEAD
 fetchData(apiUrl + "leer")
   .then(res => {
     if (res.status !== 200) {
@@ -53,6 +54,16 @@ fetchData(apiUrl + "leer")
       return;
     }
     const arrayDatosConsulta = res.resultado;
+=======
+// fetch(`https://proyecto-api-tareas-uf2181-2.onrender.com/api/v1/leer`)
+
+
+
+fetch("http://localhost:3000/api/v1/leer")
+  .then(res => res.json())
+  .then(datos => {
+    const arrayDatosConsulta = datos.resultado;
+>>>>>>> 2b0a64ba31764f75d8ad713bd186ce8923552c55
     if (arrayDatosConsulta.length === 0) {
       bodyRespuesta.innerHTML = "Todavía no hay datos guardados";
       return;
@@ -102,20 +113,29 @@ function editarDatoFuncion() {
   const editarSpan = document.getElementsByClassName("close")[1];
 
   for (let i = 0; i < editarBTNs.length; i++) {
-    editarBTNs[i].onclick = function (e) {
+    editarBTNs[i].addEventListener("click", () => {
       editarMODAL.style.display = "block";
       const dato = e.target.previousSibling.previousSibling.previousSibling.innerHTML;
       const editarINPUT = document.getElementById("editarINPUT");
       editarINPUT.value = dato;
       id = e.target.getAttribute("datoEditarAtributo");
-    }
+    });
   }
+<<<<<<< HEAD
 
   editarSpan.onclick = function () {
     editarMODAL.style.display = "none";
     resetForms();
   }
 
+=======
+  // When the user clicks on <span> (x), close the modal
+  editarSpan.addEventListener("click", () => {
+    editarMODAL.style.display = "none";
+    resetForms();
+  });
+  // DETECTAR SI HA HABIDO CAMBIO EN EL FORM DE EDITAR, SI HUBO EDITA EL DATO EN SERVIDOR
+>>>>>>> 2b0a64ba31764f75d8ad713bd186ce8923552c55
   const editarBTNform = document.getElementById("editarBTNform");
   const editarForm = document.querySelectorAll("form")[1];
   let cambioForm = false;
