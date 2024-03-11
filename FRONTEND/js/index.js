@@ -156,8 +156,7 @@ function editarDatoFuncion() {
       );
       console.log("Estado editado:", tareaEditada.Estado_tarea);
 
-      if (confirm("¿Desea editar esta tarea?") && tareaEditada) {
-        // Si se encuentra el elemento, puedes acceder a sus propiedades
+      // Si se encuentra el elemento, puedes acceder a sus propiedades
         const campoDescripcionED = document.querySelector("#descripcionED");
         const campoFecha_inicioED = document.querySelector("#fecha_inicioED");
         const campoFecha_finalED = document.querySelector("#fecha_finalED");
@@ -279,9 +278,7 @@ function editarDatoFuncion() {
               console.error("Error al editar la tarea:", error)
             );
         });
-      } else {
-        console.log("No se encontró ninguna tarea con el ID proporcionado.");
-      }
+
     });
   }
 }
