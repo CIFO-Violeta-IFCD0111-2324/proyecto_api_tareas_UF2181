@@ -1,6 +1,5 @@
 
 // Crud - Create
-
 async function insertSQL() {
     const nombre = document.querySelector("input#nombre");
     const fechaIn = document.querySelector("input#fecha-in");
@@ -215,6 +214,7 @@ async function editDato(event) {
 })();
 
 
+// funcion que introduce los datos al modal de edicion
 function datosIntoModalEdit(n, d, fi, fn, id) {
     const nombreIn = document.querySelector("#nombreEdit");
     const fechaInIn = document.querySelector("#fechaInEdit");
@@ -229,6 +229,7 @@ function datosIntoModalEdit(n, d, fi, fn, id) {
     descIn.value = d;
 
 }
+
 
 async function editTareaSQL() {
     const divRespuestas = document.querySelector("div#caja-respuestas");

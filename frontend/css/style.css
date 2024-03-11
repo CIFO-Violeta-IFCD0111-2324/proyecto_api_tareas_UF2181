@@ -94,6 +94,7 @@ main {
     border-image-outset: 18px;
     overflow-y: scroll;
     box-shadow: 3px 30000px 100px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
 }
 
 
