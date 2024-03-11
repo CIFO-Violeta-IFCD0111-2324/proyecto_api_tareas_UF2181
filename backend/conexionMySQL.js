@@ -1,5 +1,6 @@
 
-const mysql = require('mysql');
+// Instalar mySQL2 y cambiar el mySQL1
+const mysql = require('mysql2');
 const util = require("util"); 
 
 // const conexionMySQL = mysql.createConnection({
