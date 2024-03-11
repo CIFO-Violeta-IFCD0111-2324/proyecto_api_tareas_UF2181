@@ -12,8 +12,16 @@ router.use(cors());
 router.use(express.json());
 
 
-// Rutas
+// Error handler
+const handleError = (res, err, msg) => {
+  console.error(err);
+  res.status(400).json({
+    "mensaje": `<span>${msg}. Error: ${err}</span>`
+  })
+};
 
+
+// Rutas
 /**
  * @swagger
  * /insert:
@@ -80,13 +88,14 @@ router.post("/insert", (req, res) => {
   const query = 'insert into tasks values (default,?,?,?,?)';
   conexionDB.query(query, [tarea.nombre, tarea.descripcion, tarea.fecha_inicio, tarea.fecha_fin], (err) => {
     if (err) {
-      res.status(400).json("Error en la insercion de la tarea: " + err);
+      handleError(res, err, "Error en la insercion de la tarea");
     } else {
       res.status(200).json({
         "mensaje": "<span>Tarea insertada correctamente! <i class='fas fa-spinner fa-spin'></i></span>",
       });
     }
-  });
+  }
+  );
 });
 
 /**
@@ -138,9 +147,7 @@ router.get("/read", (req, res) => {
   const query = "select * from tasks";
   conexionDB.query(query, (error, result) => {
     if (error) {
-      res.status(400).json({
-        "mensaje": "Error en la query. Error: " + error,
-      });
+      handleError(res, error, "Error en la query.")
     } else {
       res.status(200).json({
         "resultado": result,
@@ -195,9 +202,7 @@ router.delete("/delete", (req, res) => {
 
   conexionDB.query(query, [dato], error => {
     if (error) {
-      res.status(400).json({
-        "mensaje": "Error en el borrado del dato" + error
-      });
+      handleError(res, error, "Error en el borrado del dato")
     } else {
       res.status(200).json({
         "mensaje": "<span>Dato borrado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"
@@ -275,9 +280,7 @@ router.put("/edit", (req, res) => {
   const query = "update tasks set nombre = ?,descripcion=?,fecha_inicio=?,fecha_fin=? where id = ?";
   conexionDB.query(query, [nombre, desc, fechaIn, fechaFin, id], error => {
     if (error) {
-      res.status(400).json({
-        "mensaje": "<span>Error en la edición del dato. Error:" + error + "</span>"
-      });
+      handleError(res, error, "Error en la edición de la tarea");
     } else {
       res.status(200).json({
         "mensaje": "<span>Dato editado correctamente! <i class='fas fa-spinner fa-spin'></i></span>"

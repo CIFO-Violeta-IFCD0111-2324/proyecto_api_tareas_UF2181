@@ -1,33 +1,48 @@
 
-// Crud - Create
-async function insertSQL() {
-    const divRespuestas = document.querySelector("div#caja-respuestas");
+// optimizing functions
+async function fetchData(url, method, bodyData) {
+    return fetch(url, {
+        method: method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bodyData)
+    })
+        .then(response => response.json())
+        .catch(error => {
+            showMessage(error.mensaje);
+            reloadPage();
+        });
+}
 
+function showMessage(message) {
+    const divRespuestas = document.querySelector("div#caja-respuestas");
+    divRespuestas.innerHTML = message;
+}
+
+function reloadPage() {
+    setTimeout(() => {
+        location.reload();
+    }, 2500);
+}
+
+const apiUrl = "http://localhost:3000/api/";
+
+// Crud - Create
+function insertSQL() {
     const nombre = document.querySelector("input#nombre");
     const fechaIn = document.querySelector("input#fecha-in");
     const fechaFin = document.querySelector("input#fecha-fin");
     const desc = document.querySelector("#descrip");
 
-    const url = "http://localhost:3000/api/insert";
-    await fetch(url, {
-        method: "post",
-        headers: { "Content-Type": "application/json", },
-        body: JSON.stringify({
-            "nombre": nombre.value,
-            "descripcion": desc.value,
-            "fecha_inicio": fechaIn.value,
-            "fecha_fin": fechaFin.value,
-        })
+    fetchData(apiUrl + "insert", "post", {
+        "nombre": nombre.value,
+        "descripcion": desc.value,
+        "fecha_inicio": fechaIn.value,
+        "fecha_fin": fechaFin.value,
     })
-        .then(res => res.json())
         .then(msg => {
-            divRespuestas.innerHTML = msg.mensaje
-            setTimeout(() => {
-                location.reload()
-            }, 3000)
+            showMessage(msg.mensaje);
+            reloadPage();
         })
-        .catch(err => alert(err))
-
 }
 
 // IIFE immediatly invoked function expression - strict mode activado
@@ -61,7 +76,6 @@ async function insertSQL() {
         form.dispatchEvent(event);
     });
 })();
-
 
 
 // cRud Read
@@ -115,7 +129,7 @@ fetch("http://localhost:3000/api/read")
             papelera.classList.add("fa-trash");
             papelera.setAttribute("id", tarea.id);
             // cruD Delete 
-            papelera.addEventListener("click", deletePapel, false);
+            papelera.addEventListener("click", deleteTask, false);
             divPE.appendChild(papelera);
 
             // boton editar 
@@ -142,28 +156,15 @@ function setNota(id) {
     return notasArray[index];
 }
 
-
-async function deletePapel(event) {
-    const divRespuestas = document.querySelector("div#caja-respuestas");
+function deleteTask(event) {
     if (confirm("Estás seguro que quieres eliminar la tarea?")) {
-        await fetch("http://localhost:3000/api/delete", {
-            method: "delete",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                "id": event.target.id
-            })
-        })
-            .then(res => res.json())
+        fetchData(apiUrl + "delete", "delete", { "id": event.target.id })
             .then(msg => {
-                divRespuestas.innerHTML = msg.mensaje;
-                setTimeout(() => {
-                    location.reload();
-                }, 3000)
+                showMessage(msg.mensaje);
+                reloadPage();
             })
-            .catch(error => divRespuestas.innerHTML = error.mensaje);
     }
 }
-
 
 async function editDato(event) {
     const modalEdit = document.querySelector("#myModalEdit");
@@ -234,37 +235,24 @@ function datosIntoModalEdit(n, d, fi, fn, id) {
 
 }
 
-
-async function editTareaSQL() {
-    const divRespuestas = document.querySelector("div#caja-respuestas");
+function editTareaSQL() {
     const nombreIn = document.querySelector("#nombreEdit").value;
     const fechaInIn = document.querySelector("#fechaInEdit").value;
     const fechaFinIn = document.querySelector("#fechaFinEdit").value;
     const descIn = document.querySelector("#descripEdit").value;
     const id = document.querySelector("p.titulo.editar").id;
 
-    console.log(fechaInIn, fechaFinIn)
-
-    await fetch("http://localhost:3000/api/edit", {
-        method: "put",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            "id": id,
-            "nombre": nombreIn,
-            "descripcion": descIn,
-            "fecha_inicio": fechaInIn,
-            "fecha_fin": fechaFinIn,
-        })
+    fetchData(apiUrl + "edit", "put", {
+        "id": id,
+        "nombre": nombreIn,
+        "descripcion": descIn,
+        "fecha_inicio": fechaInIn,
+        "fecha_fin": fechaFinIn,
     })
-        .then(res => res.json())
         .then(msg => {
-            divRespuestas.innerHTML = msg.mensaje;
-            setTimeout(() => {
-                location.reload(); // refresca página
-            }, 2000);
-        })
-        .catch(err => divRespuestas.innerHTML = "<h3 class='error'>Error en servidor!</h3>")
-
-}
+            showMessage(msg.mensaje);
+            reloadPage();
+        });
+};
 
 
