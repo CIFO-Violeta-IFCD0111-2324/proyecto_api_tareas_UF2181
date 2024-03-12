@@ -71,7 +71,7 @@ fetch("http://localhost:3500/api/v1/leer")
     console.log("al declarar " + [almacen]);
     if (arrayDatosConsulta.length === 0) {
       contenedorDatos.innerHTML =
-        "<h3 class='tituloNoTareas'> No hay ninguna tarea,<br><br> <b>¡¡¡espabila!!!</b> ... <i class='fa-regular fa-face-frown fa-bounce'></i> ... que te pilla el toro !</h3>";
+        "<p class='tituloNoTareas'> No hay ninguna tarea,<br><br> <b>¡espabila!</b> ... <i class='fa-regular fa-face-frown fa-bounce'></i> ... que te pilla el toro !</p>";
     } else {
       for (let i = 0; i < arrayDatosConsulta.length; i++) {
         const tarea = arrayDatosConsulta[i];
