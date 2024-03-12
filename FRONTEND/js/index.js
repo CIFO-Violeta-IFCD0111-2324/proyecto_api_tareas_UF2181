@@ -292,7 +292,7 @@ function borrarFuncion() {
     papeleras[i].addEventListener("click", (papelerita) => {
 
       swal({
-        title: "Estás seguro de querer eliminar?",
+        title: "Estás seguro de quieres eliminar esta TAREA?",
         text: "Luego de esta desición no hay vuelta atrás!",
         icon: "warning",
         buttons: true,
@@ -308,7 +308,7 @@ function borrarFuncion() {
             id: papelerita.target.id,
           }),
         }),
-          swal("Poof!Tarea eliminada para SIEMPRE!", {
+          swal("Poof! Tarea eliminada para SIEMPRE!", {
             icon: "success",});
             setTimeout(() => {
               location.reload(); // refresca página

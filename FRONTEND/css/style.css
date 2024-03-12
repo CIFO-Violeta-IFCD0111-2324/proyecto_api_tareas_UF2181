@@ -167,7 +167,7 @@ button {
 
 button:hover {
   background: #ec4f2f;
-  text-decoration:underline;
+
 
 }
 .titulo {
@@ -285,7 +285,7 @@ span.close {
   }
  
   .swal-footer {
-    background-color: rgb(245, 248, 250);
+    background-color:white;
     margin-top: 32px;
-    overflow: hidden;
+  
   }
