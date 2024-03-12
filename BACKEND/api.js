@@ -6,7 +6,7 @@ const swaggerSpec = require("./swagger");
 */
 
 //CONFIGURACION
-const port = 3500;
+const port =  process.env.PORT || 3500; 
 const api = express();
 
 //MIDDLEWEAR
