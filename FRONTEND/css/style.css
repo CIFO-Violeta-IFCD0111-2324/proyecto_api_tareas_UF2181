@@ -143,12 +143,12 @@ select, textarea {
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
-  color: #2a6592;
+  color: #2c70b0;
 }
 button {
   display: flex;
   background: #ee6f57;
-  margin-top: 60px;
+  margin-top: 20px;
   border-radius: 10px;
   border: solid 1px #ed6246;
   box-shadow: 1px 1px 5px gainsboro;
@@ -166,7 +166,7 @@ button {
 
 
 button:hover {
-  background: #ec8a76;
+  background: #ec4f2f;
   text-decoration:underline;
 
 }
@@ -189,13 +189,26 @@ button:hover {
 }
 #titulo_tarea {
   font-family: "Montserrat", sans-serif;
-  font-weight: bold;
   font-size: 20px;
-  font-style:bold;
-  color: #f35810;
-  padding-top: 0px;
-  padding-left: 30px;
+  color: #0b6dab;
+  padding-top: 10px;
+  padding-left: 20px;
+  
 
+}
+label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  color: white;
+  padding-top: 10px;
+  padding-left: 50px;
+}
+::placeholder {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  color: #ab580b;
+  padding-top: 10px;
+  padding-left: 20px;
 }
 span.close {
   font-family: "Montserrat", sans-serif;
